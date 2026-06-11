@@ -189,6 +189,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 .mk.l .chip{right:16px;border-left:none;border-right:3px solid var(--red)}
 #lightbox{position:fixed;inset:0;background:#000000E8;z-index:97;display:none;align-items:center;justify-content:center;padding:20px;flex-direction:column;gap:12px}
 #lightbox.open{display:flex}
+#lbStage{max-height:82vh;overflow-y:auto}
 #lbStage{position:relative;max-width:min(94vw,900px)}
 #lbStage img{width:100%;height:auto;border-radius:10px}
 #lbCap{color:#C9C9C9;font-size:13px;text-align:center}
@@ -366,7 +367,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
       <div id="practicalDocWrap" style="display:none;margin-top:12px">
         <button id="practicalDocBtn" style="display:flex;gap:12px;align-items:center;width:100%;background:#fff;border:1.5px solid #C8D8F0;border-radius:10px;padding:10px 12px;cursor:zoom-in;text-align:left">
           <img id="practicalDocThumb" style="width:64px;height:48px;object-fit:cover;border-radius:5px" alt="Practical load worksheet">
-          <span style="font-size:13px;font-weight:600;color:#1D4373">View your practical load worksheet<br><span style="font-weight:400;font-size:11.5px;color:#6E6E6A">NEC 220.87 · based on your 12-month utility data</span></span>
+          <span style="font-size:13px;font-weight:600;color:#1D4373"><span id="practicalDocLabel">View your practical load worksheet</span><br><span style="font-weight:400;font-size:11.5px;color:#6E6E6A">NEC 220.87 · based on your 12-month utility data</span></span>
         </button>
       </div>
       <details class="load-detail"><summary>See the full load calculation</summary>
@@ -544,7 +545,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
   "loadSolution":"",
   "subpanel":"",
   "practicalLoad":"",
-  "practicalDoc":"",
+  "practicalDocs":[],
   "loadNote":"",
   "items":["Single-Family Home Installation","Wiring & Conduit — back-to-back/side-to-side","Special Breaker: Zinsco 50A","One-year Warranty"],
   "price":"$670.00",
@@ -722,10 +723,16 @@ function render(){
   const pct=Math.min(gaugeLoad/C.panelRating,1);
   requestAnimationFrame(()=>{ $('gArc').style.transition='stroke-dashoffset 1.4s ease'; $('gArc').style.strokeDashoffset=283*(1-pct); });
   $('loadTable').innerHTML=(C.loadRows||[]).map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('');
-  if(lm==='practical' && C.practicalDoc){
+  const pdocs = C.practicalDocs && C.practicalDocs.length ? C.practicalDocs : (C.practicalDoc?[C.practicalDoc]:[]);
+  if(lm==='practical' && pdocs.length){
     $('practicalDocWrap').style.display='block';
-    $('practicalDocThumb').src=C.practicalDoc;
-    $('practicalDocBtn').onclick=()=>{ $('lbStage').innerHTML=`<img src="${C.practicalDoc}">`; $('lbCap').textContent='Practical load worksheet — NEC 220.87 (12 months of utility data)'; $('lightbox').classList.add('open'); };
+    $('practicalDocThumb').src=pdocs[0];
+    $('practicalDocLabel').textContent = pdocs.length>1 ? 'View your practical load worksheet ('+pdocs.length+' pages)' : 'View your practical load worksheet';
+    $('practicalDocBtn').onclick=()=>{
+      $('lbStage').innerHTML=pdocs.map(p=>`<img src="${p}" style="margin-bottom:14px">`).join('');
+      $('lbCap').textContent='Practical load worksheet — NEC 220.87 (12 months of utility data)'+(pdocs.length>1?' · scroll for all '+pdocs.length+' pages':'');
+      $('lightbox').classList.add('open');
+    };
   } else $('practicalDocWrap').style.display='none';
 
   $('siteLead').textContent = (C.siteNote||'').trim()
@@ -856,20 +863,25 @@ $('edPractical').addEventListener('change',async e=>{
     if(f.type==='application/pdf'){
       await loadPdfJs();
       const pdf=await window.pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;
-      const pg=await pdf.getPage(1);
-      const vp=pg.getViewport({scale:1.6});
-      const cv=document.createElement('canvas'); cv.width=vp.width; cv.height=vp.height;
-      await pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
-      CFG.practicalDoc=cv.toDataURL('image/jpeg',.85);
+      const pages=[]; const n=Math.min(pdf.numPages,10);
+      for(let p=1;p<=n;p++){
+        const pg=await pdf.getPage(p);
+        const vp=pg.getViewport({scale:1.6});
+        const cv=document.createElement('canvas'); cv.width=vp.width; cv.height=vp.height;
+        await pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
+        pages.push(cv.toDataURL('image/jpeg',.85));
+      }
+      CFG.practicalDocs=pages;
+      if(pdf.numPages>10) alert('Note: only the first 10 pages were included.');
     } else {
-      CFG.practicalDoc=await shrink(f);
+      CFG.practicalDocs=[await shrink(f)];
     }
     render();
-    alert('Worksheet attached — it will appear in the load section when the NEC 220.87 option is selected.');
+    alert('Worksheet attached ('+CFG.practicalDocs.length+' page'+(CFG.practicalDocs.length>1?'s':'')+') — it will appear in the load section when the NEC 220.87 option is selected.');
   }catch(err){ alert('Could not read that file ('+err.message+'). Try a screenshot/photo of the worksheet instead.'); }
   e.target.value='';
 });
-$('edPracticalClear').onclick=()=>{ CFG.practicalDoc=''; render(); };
+$('edPracticalClear').onclick=()=>{ CFG.practicalDocs=[]; render(); };
 
 $('edAddPhotos').addEventListener('change',async e=>{
   CFG.photos=CFG.photos||[];
