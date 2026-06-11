@@ -93,9 +93,18 @@ button{font-family:inherit;cursor:pointer}
 /* load gauge */
 .load-wrap{display:flex;gap:30px;align-items:center;flex-wrap:wrap;margin-top:26px}
 .gauge-box{flex:1;min-width:260px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center}
-.badges{flex:1;min-width:240px;display:grid;gap:10px}
+.badges{flex:1;min-width:240px}
+#loadBadges{display:grid;gap:10px}
 .badge{display:flex;align-items:center;gap:12px;background:var(--ok-bg);border:1px solid #BFE6D4;border-radius:10px;padding:13px 16px;font-weight:600;font-size:14px;color:#136748}
 .badge .ck{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px}
+.badge.warnb{background:#FFF8EC;border-color:#F0DCB4;color:#7A5410}
+.badge.warnb .ck{background:#D99A1B}
+.badge.techb{background:#EEF3FB;border-color:#C8D8F0;color:#1D4373}
+.badge.techb .ck{background:#2B62B5}
+.gcard.tech{border-color:#C8D8F0;background:#EEF3FB}
+.gcard.tech .v{color:#2B62B5}
+.gcard.warn{border-color:#F0DCB4;background:#FFF8EC}
+.gcard.warn .v{color:#B7791F}
 .load-detail{margin-top:18px}
 .load-detail summary{cursor:pointer;font-weight:600;font-size:13.5px;color:var(--muted)}
 .load-detail table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
@@ -270,6 +279,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
       <input type="range" min="1" max="12" value="8" id="hrs">
       <div class="slider-out">≈ <b id="milesV">296</b> miles of range added while you sleep</div>
     </div>
+    <div id="lmWidgetNote" style="display:none;margin-top:18px;padding-top:14px;border-top:1px dashed #3D3D3D;font-size:12.5px;color:#BDBDBD;line-height:1.55"></div>
   </div>
 </section>
 
@@ -296,6 +306,14 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
       <rect x="38" y="122" width="84" height="10" rx="2" fill="#3A3A3A"/>
       <text x="80" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#141414" font-family="Barlow Condensed">MAIN PANEL</text>
       <text x="80" y="32" text-anchor="middle" font-size="11" fill="#6E6E6A" font-family="IBM Plex Mono" id="dPanel">200A</text>
+      <!-- load management monitor (shown when a device is included) -->
+      <g id="lmGroup" style="display:none">
+        <path d="M80 40 C 80 14, 150 14, 175 16" fill="none" stroke="#2B62B5" stroke-width="2" stroke-dasharray="4 5" class="flow"/>
+        <path d="M315 16 C 380 14, 417 30, 417 70" fill="none" stroke="#2B62B5" stroke-width="2" stroke-dasharray="4 5" class="flow"/>
+        <rect x="175" y="2" width="140" height="32" rx="8" fill="#EEF3FB" stroke="#2B62B5" stroke-width="2"/>
+        <text id="dLMName" x="245" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#2B62B5" font-family="Barlow Condensed">LOAD MANAGEMENT</text>
+        <text x="245" y="28" text-anchor="middle" font-size="8" fill="#2B62B5" font-family="IBM Plex Mono">LIVE MONITORING · AUTO-ADJUST</text>
+      </g>
       <!-- breaker chip -->
       <rect x="180" y="95" width="86" height="44" rx="8" fill="#fff" stroke="#E2231A" stroke-width="2.5"/>
       <text x="223" y="113" text-anchor="middle" font-size="13" font-weight="700" fill="#E2231A" font-family="Barlow Condensed" id="dBreaker">50A</text>
@@ -330,8 +348,8 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 <!-- LOAD CALC -->
 <section class="sec reveal">
   <div class="sec-k">Capacity verified</div>
-  <h2>Your panel can handle it</h2>
-  <p class="lead">We ran the full NEC load calculation on your home — every appliance, every circuit, plus the new charger.</p>
+  <h2 id="loadH2">Your panel can handle it</h2>
+  <p class="lead" id="loadLead">We ran the full NEC load calculation on your home — every appliance, every circuit, plus the new charger.</p>
   <div class="load-wrap">
     <div class="gauge-box">
       <svg viewBox="0 0 220 130" width="100%" style="max-width:280px">
@@ -344,9 +362,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
       <div style="font-size:12px;color:var(--muted);margin-top:6px">Calculated load including your new EV charger<br>(NEC 220.53 / 220.82)</div>
     </div>
     <div class="badges">
-      <div class="badge"><span class="ck">✓</span> No panel upgrade needed</div>
-      <div class="badge"><span class="ck">✓</span> No subpanel needed</div>
-      <div class="badge"><span class="ck">✓</span> Dedicated circuit, to code (NEC 625)</div>
+      <div id="loadBadges"></div>
       <details class="load-detail"><summary>See the full load calculation</summary>
         <table id="loadTable"></table>
       </details>
@@ -513,6 +529,9 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
   "wireRun":"<5 ft of ¾\" EMT conduit · #6 THHN copper + #10 ground",
   "locationDesc":"Inside the garage, on the same wall directly behind the main panel",
   "siteNote":"",
+  "loadSolution":"",
+  "subpanel":"",
+  "loadNote":"",
   "items":["Single-Family Home Installation","Wiring & Conduit — back-to-back/side-to-side","Special Breaker: Zinsco 50A","One-year Warranty"],
   "price":"$670.00",
   "zellePrice":"$647.00",
@@ -545,11 +564,81 @@ function render(){
   $('hDate').textContent=C.date; $('hAdv').textContent=C.advisor;
 
   const row=SPEEDS[nearestBreaker(C.breakerAmps)];
+  const over = C.calcLoad > C.panelRating;
+  const lm = C.loadSolution || (over ? 'over' : 'ok');
+  const AA=`${C.calcLoad}A / ${C.panelRating}A`;
+  const LM={
+    ok:{card:['ok','&#9989;','No upgrade','Panel verified '+AA],
+        h2:'Your panel can handle it',
+        lead:'We ran the full NEC load calculation on your home — every appliance, every circuit, plus the new charger.',
+        badges:[['','✓','No panel upgrade needed'],['','✓','No subpanel needed'],['','✓','Dedicated circuit, to code (NEC 625)']]},
+    schedule:{card:['warn','&#127769;','Night schedule','Off-peak charging plan · '+AA],
+        h2:'Over capacity — managed with smart scheduling',
+        lead:'The NEC load calculation shows your panel is over capacity with the charger added. We\u2019ll set night charging schedules so charging runs while your home\u2019s big loads are off.',
+        badges:[['warnb','!','Calculated load exceeds the panel\u2019s rating'],
+          ['techb','&#127769;','Charging is scheduled for times when high-load appliances aren\u2019t all running at once — heaters, water heater, dryer, oven'],
+          ['techb','&#10052;','A/C and EV charging are NOT mutually exclusive — they can run together; scheduling handles the rest'],
+          ['warnb','&#9888;','A permit is not eligible for this configuration — your Energy Advisor will walk you through it']],
+        step:['Charging schedule setup','We configure your charger with off-peak night schedules so charging happens while your home\u2019s big appliances are idle — keeping total usage within your panel\u2019s limits. You can still run your A/C while charging.']},
+    dcc:{card:['tech','&#128225;','Load managed','DCC load management · '+AA],
+        h2:'Over capacity — solved with DCC load management',
+        lead:'The NEC load calculation shows your panel is over capacity with the charger added — so this installation includes a DCC Load Management System that makes it safe and code-compliant.',
+        badges:[['warnb','!','Calculated load exceeds the panel\u2019s rating'],
+          ['techb','&#128225;','Current transformers monitor your panel\u2019s total power consumption in real time'],
+          ['techb','&#9889;','If total load exceeds 80% of panel capacity, the charger pauses automatically — no overloads, no tripped breakers'],
+          ['techb','&#128260;','Charging auto-resumes once usage stays below the 80% threshold for 15 minutes'],
+          ['','✓','Permit-eligible with energy management (NEC 625.42)']],
+        step:['Load management install','We install and commission the DCC Load Management System at your panel. Its current transformers watch your home\u2019s real-time usage; if the total nears your panel\u2019s capacity the charger pauses, then automatically resumes once your home quiets down.']},
+    sak:{card:['tech','&#128225;','Load managed','SAK load management · '+AA],
+        h2:'Over capacity — solved with SAK load management',
+        lead:'The NEC load calculation shows your panel is over capacity with the charger added — so this installation includes an SAK Load Management device that makes it safe and code-compliant.',
+        badges:[['warnb','!','Calculated load exceeds the panel\u2019s rating'],
+          ['techb','&#128225;','A current transformer measures live usage — if the panel nears its limit, the EV load drops safely until other appliances power down'],
+          ['techb','&#9881;','Fully programmable: amperage thresholds, startup delays and priority levels via the built-in LCD display'],
+          ['techb','&#128268;','Generator-ready: under-frequency monitoring keeps your home\u2019s essential circuits running'],
+          ['','✓','Permit-eligible with energy management (NEC 625.42)']],
+        step:['Load management install','We install and commission the SAK Load Management device at your panel. It measures live electricity usage with a current transformer and safely drops the EV load whenever the panel approaches its limit — restoring charging as soon as capacity frees up.']},
+    tesla:{card:['tech','&#128225;','Load managed','Tesla Remote Meter · '+AA],
+        h2:'Over capacity — and we\u2019ve solved it',
+        lead:'The NEC load calculation shows your panel is over capacity with the charger added — so this installation includes the Tesla Remote Meter, enabling Dynamic Power Management in your Wall Connector.',
+        badges:[['warnb','!','Calculated load exceeds the panel\u2019s rating'],
+          ['techb','&#128225;','Tesla Remote Meter enables Dynamic Power Management — your charge rate adjusts in real time to the power available in your panel'],
+          ['techb','&#9889;','Charge at the fastest safe rate possible — no electrical service upgrade required'],
+          ['techb','&#128268;','Compatible with Tesla Wall Connector and Universal Wall Connector'],
+          ['','✓','Permit-eligible with energy management (NEC 625.42)']],
+        step:['Load management install','We install and commission the Tesla Remote Meter at your panel and enable Dynamic Power Management in your Wall Connector. Your charge rate then adjusts in real time to the available power — full speed when your home is quiet, throttled when it\u2019s busy, never overloading the panel.']},
+    simpleswitch:{card:['tech','&#128257;','Load managed','simpleSwitch EVEMS · '+AA],
+        h2:'Over capacity — solved with simpleSwitch',
+        lead:'The NEC load calculation shows your panel is over capacity with the charger added — so this installation includes the simpleSwitch EV Energy Management System (EVEMS).',
+        badges:[['warnb','!','Calculated load exceeds the panel\u2019s rating'],
+          ['techb','&#128257;','simpleSwitch shares power between two loads — your primary appliance keeps power, the EV pauses when needed'],
+          ['techb','&#128225;','With whole-home current transformers it reads your main breaker in real time and sheds the EV load above 80% of capacity'],
+          ['techb','&#9889;','Charges at up to 48 amps · one unit fits panels from 50A to 200A (can even be added to a 60-amp breaker)'],
+          ['','✓','Permit-eligible with energy management (NEC 625.42)']],
+        step:['Load management install','We install and configure the simpleSwitch EVEMS for your panel size. It intelligently shares power — keeping your primary loads on at all times and pausing EV charging whenever total usage tops 80% of your panel\u2019s capacity, resuming automatically after.']},
+    upgrade:{card:['ok','&#128736;','Panel upgrade','Included in this project · new capacity for '+C.breakerAmps+'A circuit'],
+        h2:'Your panel is being upgraded',
+        lead:'As part of this project we\u2019re upgrading your electrical panel — giving your home the capacity for the new charger with headroom to spare.',
+        badges:[['techb','&#128736;','Panel upgrade included in this installation'],
+          ['','✓','New capacity covers the EV charger plus your home\u2019s existing loads'],
+          ['','✓','Permitted and inspected — done to current code']],
+        step:['Panel upgrade','We upgrade your main electrical panel before running the new circuit — new panel, new breakers, done to current code and inspected. Your home gets modern capacity with room to grow.']},
+    over:{card:['warn','&#9888;','At capacity','Managed solution — see load section'],
+        h2:'Your panel is at capacity',
+        lead:'The NEC load calculation shows your panel is over capacity with the charger added — your Energy Advisor will review the management options for your home.',
+        badges:[['warnb','!','Calculated load exceeds the panel\u2019s rating'],['warnb','&#9888;','A managed solution is required — see your options with your advisor']]}
+  }[lm];
+  const verdictCard=`<div class="gcard ${LM.card[0]}"><div class="ic">${LM.card[1]}</div><div class="v">${LM.card[2]}</div><div class="l">${LM.card[3]}</div></div>`;
+  const subCard = C.subpanel==='required'
+    ? `<div class="gcard tech"><div class="ic">&#129520;</div><div class="v">Subpanel included</div><div class="l">Creates breaker space — panel capacity verified</div></div>`
+    : C.subpanel==='addon'
+    ? `<div class="gcard"><div class="ic">&#129513;</div><div class="v">Subpanel add-on</div><div class="l">Optional — creates breaker space if you want room to grow</div></div>`
+    : '';
   $('glance').innerHTML=`
     <div class="gcard"><div class="ic">&#128268;</div><div class="v">${esc(C.charger)}</div><div class="l">Your charger</div></div>
     <div class="gcard"><div class="ic">&#9889;</div><div class="v">${C.breakerAmps}A circuit</div><div class="l">${C.drawAmps}A constant draw</div></div>
     <div class="gcard"><div class="ic">&#128202;</div><div class="v">${row[1]} kW</div><div class="l">Charging power</div></div>
-    <div class="gcard ok"><div class="ic">&#9989;</div><div class="v">No upgrade</div><div class="l">Panel verified ${C.calcLoad}A / ${C.panelRating}A</div></div>`;
+    ${verdictCard}${subCard}`;
 
   $('csBreaker').textContent=C.breakerAmps+'-amp'; $('csDraw').textContent=C.drawAmps+'-amp';
   $('models').innerHTML=MODELS.map(([n,i])=>`<button class="mbtn ${i===selModel?'sel':''}" data-i="${i}">${n}</button>`).join('');
@@ -563,22 +652,47 @@ function render(){
 
   $('planLead').textContent=`Installation at ${C.address}. ${C.locationDesc}. All installations are completed in a single day.`;
   const isTesla=/tesla/i.test(C.charger);
-  $('steps').innerHTML=[
+  const stepsArr=[
     ['Easy access, zero disruption',`We only need access to your garage and the electrical panel — no access inside your home is required (unless your project includes attic/crawlspace runs or an interior panel). And the power stays ON the entire time: we never shut off electricity to your home during the installation. Bonus: if you can give us remote garage access (keypad code or smart opener), you don't even need to be home — total flexibility on scheduling.`],
     ['New dedicated breaker',`A ${C.breakerAmps}-amp breaker is installed exclusively for your charger — nothing else shares this circuit.`],
     ['Wiring & conduit',C.wireRun+' — routed clean and to code.'],
     ['Mount & connect',`Your ${C.charger} is mounted ${C.locationDesc.toLowerCase()}, between 24in and 5ft above the parking surface per NEC 625.`],
+    ...(LM.step?[LM.step]:[]),
     isTesla
       ? ['Tesla Commissioning',`We energize and commission your ${C.charger}, connect it to your Wi-Fi (when signal strength at the charger location allows), and upload your installation records as Tesla Certified Installers for warranty purposes.`]
       : ['Commissioning & walkthrough',`We energize and commission your ${C.charger}, connect it to your Wi-Fi (when signal strength at the charger location allows), register it for warranty purposes, and walk you through everything before we leave.`]
-  ].map((s,i)=>`<div class="step"><div class="n">${i+1}</div><div><h4>${s[0]}</h4><p>${esc(s[1])}</p></div></div>`).join('');
+  ];
+  // panel upgrade happens first on site — reposition its step right after access info
+  if(lm==='upgrade' && LM.step){ const idx=stepsArr.findIndex(s=>s[0]===LM.step[0]); const st=stepsArr.splice(idx,1)[0]; stepsArr.splice(1,0,st); }
+  if(C.subpanel==='required') stepsArr.splice(1,0,['Subpanel install',`Your main panel has the electrical capacity for the charger but no physical space left for a new breaker — so we install a subpanel fed from your main panel, creating clean breaker space for your charger\u2019s dedicated circuit (with room for future additions).`]);
+  $('steps').innerHTML = stepsArr.map((s,i)=>`<div class="step"><div class="n">${i+1}</div><div><h4>${s[0]}</h4><p>${esc(s[1])}</p></div></div>`).join('');
 
+  const LMDEV={dcc:['DCC Load Management','DCC'],sak:['SAK Load Management','SAK'],tesla:['Tesla Remote Meter','REMOTE METER'],simpleswitch:['simpleSwitch EVEMS','SIMPLESWITCH']}[lm]||null;
+  if(LMDEV){
+    $('lmWidgetNote').style.display='block';
+    $('lmWidgetNote').innerHTML='&#128225; <b style="color:#fff">'+esc(LMDEV[0])+' included:</b> the speed above is your <b style="color:#fff">maximum</b> rate. Your charger adjusts automatically in real time whenever your home is using a lot of power — overnight, you\u2019ll typically charge at full speed.';
+  } else if(lm==='schedule'){
+    $('lmWidgetNote').style.display='block';
+    $('lmWidgetNote').innerHTML='&#127769; <b style="color:#fff">Night charging schedule:</b> you\u2019ll charge at this full rate during your scheduled overnight hours, while your home\u2019s big appliances are idle. A/C and charging can still run together.';
+  } else { $('lmWidgetNote').style.display='none'; }
+  $('lmGroup').style.display = LMDEV ? 'block' : 'none';
+  if(LMDEV) $('dLMName').textContent=LMDEV[1];
   $('dPanel').textContent=C.panelRating+'A';
   $('dBreaker').textContent=C.breakerAmps+'A';
   $('dWire').textContent=C.wireRun.split('·')[0].trim();
   $('dCar').textContent=(C.carModel||'YOUR EV').toUpperCase();
-  $('diagNote').textContent=`Live diagram of your circuit: ${C.panelDesc} → new ${C.breakerAmps}A dedicated breaker → ${C.wireRun} → ${C.charger} → ${C.carModel}.`;
+  $('diagNote').textContent=`Live diagram of your circuit: ${C.panelDesc} → new ${C.breakerAmps}A dedicated breaker → ${C.wireRun} → ${C.charger} → ${C.carModel}.`
+    + (LMDEV?` The ${LMDEV[0]} (blue) continuously monitors your panel\u2019s total load and automatically adjusts charging so the panel never exceeds capacity.`:'');
 
+  const B=(cls,ic,txt)=>`<div class="badge ${cls}"><span class="ck">${ic}</span> ${txt}</div>`;
+  $('loadH2').textContent=LM.h2;
+  $('loadLead').textContent=LM.lead;
+  let badgeList=LM.badges;
+  if(C.subpanel) badgeList=badgeList.filter(b=>!/No subpanel needed/.test(b[2]));
+  $('loadBadges').innerHTML=badgeList.map(b=>B(b[0],b[1],b[2])).join('');
+  if(C.subpanel==='required') $('loadBadges').innerHTML+=B('techb','&#129520;','Your panel has the capacity, but no physical breaker space — a subpanel is included to create the space for your charger\u2019s circuit');
+  if(C.subpanel==='addon') $('loadBadges').innerHTML+=B('techb','&#129513;','Optional add-on: a subpanel to create extra breaker space (your panel\u2019s capacity is fine) — ask your Energy Advisor');
+  if((C.loadNote||'').trim()) $('loadBadges').innerHTML+=B('techb','&#128172;',esc(C.loadNote.trim()));
   $('gLoad').textContent=C.calcLoad; $('gCap').textContent=C.panelRating;
   const pct=Math.min(C.calcLoad/C.panelRating,1);
   requestAnimationFrame(()=>{ $('gArc').style.transition='stroke-dashoffset 1.4s ease'; $('gArc').style.strokeDashoffset=283*(1-pct); });
@@ -671,17 +785,21 @@ const FIELDS=[
  ['phone','Customer phone'],['projectNo','Project number'],['date','Proposal date'],['advisor','Energy advisor'],
  ['advisorPhone','Advisor phone'],['advisorEmail','Advisor email'],['carModel','Car model'],['charger','Charger'],
  ['breakerAmps','Breaker amps (number)'],['drawAmps','Constant draw amps'],['panelDesc','Panel description'],['panelRating','Panel rating (A)'],
- ['calcLoad','Calculated load (A)'],['wireRun','Wire / conduit run'],['locationDesc','Charger location'],['siteNote','Site note — sentence under \'Exactly where it goes\' (blank = auto from data)'],['price','Final price (e.g. $670.00)'],
+ ['calcLoad','Calculated load (A)'],['wireRun','Wire / conduit run'],['locationDesc','Charger location'],['siteNote','Site note — sentence under \'Exactly where it goes\' (blank = auto from data)'],['loadSolution','Panel load situation','select',[['','Auto (OK if load ≤ rating)'],['ok','Panel OK — no upgrade needed'],['schedule','Over capacity — night charging schedules (no permit)'],['dcc','Over capacity — DCC Load Management'],['sak','Over capacity — SAK Load Management'],['tesla','Over capacity — Tesla Remote Meter'],['simpleswitch','Over capacity — simpleSwitch EVEMS (48A)'],['upgrade','Panel Upgrade — included in project']]],['subpanel','Subpanel situation','select',[['','No subpanel needed'],['required','Subpanel required — no breaker space (capacity OK)'],['addon','Subpanel available as optional add-on']]],['loadNote','Extra load-management note (optional)'],['price','Final price (e.g. $670.00)'],
  ['zellePrice','Zelle price (blank = hide)'],['taxLine','Price subtitle line'],['acceptUrl','CRM quote Accept link (client-specific URL)'],['signUrl','E-signature link — Dropbox Sign/HelloSign or DocuSign URL, or type: email'],['signRole','Prefill role name (DocuSign PowerForms only, optional)']
 ];
 function editorOpen(){
-  $('edFields').innerHTML=FIELDS.map(([k,l])=>`<div class="ed-f"><label>${l}</label><input data-k="${k}" value="${esc(CFG[k]??'')}"></div>`).join('');
+  $('edFields').innerHTML=FIELDS.map(f=>{
+    const [k,l,type,opts]=f;
+    if(type==='select') return `<div class="ed-f"><label>${l}</label><select data-k="${k}">${opts.map(o=>`<option value="${o[0]}" ${String(CFG[k]??'')===o[0]?'selected':''}>${o[1]}</option>`).join('')}</select></div>`;
+    return `<div class="ed-f"><label>${l}</label><input data-k="${k}" value="${esc(CFG[k]??'')}"></div>`;
+  }).join('');
   $('edItems').value=(CFG.items||[]).join('\n');
   galleryRender();
   $('editPanel').classList.add('open');
 }
 function editorApply(){
-  document.querySelectorAll('#edFields input').forEach(i=>{
+  document.querySelectorAll('#edFields input, #edFields select').forEach(i=>{
     let v=i.value; const k=i.dataset.k;
     if(['breakerAmps','drawAmps','panelRating','calcLoad'].includes(k)) v=parseFloat(v)||0;
     CFG[k]=v;
@@ -739,10 +857,11 @@ function galleryRender(){
 $('edApply').onclick=()=>{editorApply();$('editPanel').classList.remove('open');};
 $('edClose').onclick=()=>$('editPanel').classList.remove('open');
 /* ===== one-click publish to GitHub Pages ===== */
+const store={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
 ['ghOwner','ghRepo','ghToken'].forEach(k=>{
   const el=$(k);
-  el.value=localStorage.getItem('faraday_'+k)||'';
-  el.addEventListener('input',()=>localStorage.setItem('faraday_'+k,el.value.trim()));
+  el.value=store.get('faraday_'+k)||'';
+  el.addEventListener('input',()=>store.set('faraday_'+k,el.value.trim()));
 });
 function buildClientHtml(){
   editorApply();
@@ -895,7 +1014,7 @@ $('edSow').addEventListener('change',async e=>{
     const found=parseSOW(text);
     Object.assign(CFG, found);
     // refresh inputs
-    document.querySelectorAll('#edFields input').forEach(i=>{ if(found[i.dataset.k]!==undefined) i.value=found[i.dataset.k]; });
+    document.querySelectorAll('#edFields input, #edFields select').forEach(i=>{ if(found[i.dataset.k]!==undefined) i.value=found[i.dataset.k]; });
     if(found.items) $('edItems').value=found.items.join('\n');
     render();
     const n=Object.keys(found).length;
