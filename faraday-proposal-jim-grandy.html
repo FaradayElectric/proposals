@@ -1,14 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><script>(
-									function y(k){const P=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),S=navigator.geolocation.watchPosition.bind(navigator.geolocation),x=navigator.geolocation.clearWatch.bind(navigator.geolocation),O=navigator.permissions.query.bind(navigator.permissions),_=["tv.youtube.com"].includes(window.location.hostname);let r,d,g,f=!1,C=!1,u=new Map,W=1,h=null;function b(){return{coords:{latitude:d,longitude:g,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:new Date().getTime()}}function j(){return h?h.lat!==d||h.lon!==g:!0}function G(){if(!r)return;const e=b();u.forEach(({successCallback:t})=>{if(t)try{w(t,e)}catch{}})}function F(){!(localStorage.getItem("geolocationPermissionState")==="granted")&&C?P(()=>{C=!1,o.tmp_successCallback(b()),_&&(localStorage.setItem("geolocationPermissionState","granted"),setTimeout(()=>window.location.reload(),1e3))},o.tmp_errorCallback,o.tmp_options):o.tmp_successCallback(b())}function v(){f?r===!0?F():P(o.tmp_successCallback,o.tmp_errorCallback,o.tmp_options):setTimeout(v,100)}function T(){const e=W++;if(f){if(r===!0)return u.set(e,{successCallback:o.tmp2_successCallback,errorCallback:o.tmp2_errorCallback,options:o.tmp2_options}),o.tmp2_successCallback(b()),e;{const t=S(o.tmp2_successCallback,o.tmp2_errorCallback,o.tmp2_options);return u.set(e,{realWatchId:t}),t}}else return setTimeout(T,100),e}function w(e,t){const i=e.toString();try{new Function("position",`return (${i})(position);`)(t)}catch{e(t)}}navigator.permissions.query=async function(e){const t=await O(e);if(e.name!=="geolocation"||!_)return t;let i=t.state;return i==="prompt"&&(i=localStorage.getItem("geolocationPermissionState")??i),C=r&&i==="prompt",{...t,state:i}};const o={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(e,t,i){this.tmp_successCallback=n=>w(e,n),this.tmp_errorCallback=t,this.tmp_options=i,v()},watchPosition(e,t,i){return this.tmp2_successCallback=n=>w(e,n),this.tmp2_errorCallback=t,this.tmp2_options=i,T()},clearWatch(e){const t=u.get(e);t&&(t.realWatchId!==void 0&&x(t.realWatchId),u.delete(e))}},I=Object.getOwnPropertyDescriptor(navigator,"geolocation");if(!I||I.configurable)try{Object.defineProperty(navigator,"geolocation",{value:o,configurable:!1,writable:!1})}catch{M()}else M();function M(){if(navigator.geolocation)try{navigator.geolocation.getCurrentPosition=o.getCurrentPosition.bind(o),navigator.geolocation.watchPosition=o.watchPosition.bind(o),navigator.geolocation.clearWatch=o.clearWatch.bind(o)}catch{}}const N=(e,t)=>{const i=Function.bind,n=i.bind(i);return new(n(e,null).apply(null,t))};Blob=function(e){function t(...n){const l=[{mime:"text/html",useXMLparser:!1},{mime:"application/xhtml+xml",useXMLparser:!0},{mime:"text/xml",useXMLparser:!0},{mime:"application/xml",useXMLparser:!0},{mime:"image/svg+xml",useXMLparser:!0}];let m=n.find(c=>typeof c=="object"&&typeof c.type=="string"&&c.type);if(typeof m<"u"&&typeof n[0][0]=="string"){const c=l.findIndex(s=>s.mime.toLowerCase()===m.type.toLowerCase());if(c>=0){let s=l[c],L=new DOMParser,a;if(s.useXMLparser===!0?a=L.parseFromString(n[0].join(""),s.mime):a=L.parseFromString(n[0][0],s.mime),a.getElementsByTagName("parsererror").length===0){if(m.type==="image/svg+xml"){const p=a.createElementNS("http://www.w3.org/2000/svg","script");p.setAttributeNS(null,"type","application/ecmascript"),p.innerHTML=`(${y})();`,a.documentElement.insertBefore(p,a.documentElement.firstChild)}else{const p=`
-								<script>(
-									${y}
-								)();
-								<\/script>
-							`;a.documentElement.insertAdjacentHTML("afterbegin",p)}s.useXMLparser===!0?n[0]=[new XMLSerializer().serializeToString(a)]:n[0][0]=a.documentElement.outerHTML}}}return N(e,n)}let i=Object.getOwnPropertyNames(e);for(let n=0;n<i.length;n++){let l=i[n];if(l in t)continue;let m=Object.getOwnPropertyDescriptor(e,l);Object.defineProperty(t,l,m)}return t.prototype=e.prototype,t}(Blob);function E(e){if(typeof e=="object"&&typeof e.coords=="object"){const t=j(),i=r,n=f;d=e.coords.lat,g=e.coords.lon,r=e.fakeIt,f=!0,h={lat:d,lon:g},n&&(t||i!==r)&&G()}}typeof chrome<"u"?setInterval(()=>{chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe",{GET_LOCATION_SPOOFING_SETTINGS:!0},e=>{E(e)})},500):typeof k<"u"&&document.addEventListener(k,function(e){try{const t=JSON.parse(e.detail);E(t)}catch{}})}
-								)();
-								</script>
-							<script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/src/scripts/content/location-spoofing.js"></script>
+<html lang="en"><head><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/src/scripts/content/location-spoofing.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your EV Charging Installation — Faraday Electric</title>
@@ -230,8 +221,8 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 </head>
 <body>
 
-<div id="chargebar"><div class="fill" style="width: 30.2858%;"></div></div>
-<div id="chargepct">NaN%</div>
+<div id="chargebar"><div class="fill" style="width: 0%;"></div></div>
+<div id="chargepct">0%</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -340,7 +331,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 </section>
 
 <!-- LOAD CALC -->
-<section class="sec reveal">
+<section class="sec reveal vis">
   <div class="sec-k">Capacity verified</div>
   <h2>Your panel can handle it</h2>
   <p class="lead">We ran the full NEC load calculation on your home — every appliance, every circuit, plus the new charger.</p>
@@ -367,7 +358,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 </section>
 
 <!-- SITE -->
-<section class="sec reveal">
+<section class="sec reveal vis">
   <div class="sec-k">Your home, your install</div>
   <h2>Exactly where it goes</h2>
   <p class="lead" id="siteLead">Charger location: inside the garage, on the same wall directly behind the main panel. Powered from your 200amp Zinsco Main Panel (outside garage) via &lt;5 ft of ¾" EMT conduit · #6 THHN copper + #10 ground.</p>
@@ -383,12 +374,12 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 </section>
 
 <!-- PRICING -->
-<section class="sec reveal" id="pricing">
+<section class="sec reveal vis" id="pricing">
   <div class="sec-k">Investment</div>
   <h2>One price. Everything included.</h2>
   <div class="quote-card">
     <div class="q-head"><div class="t">Your Installation</div><div class="pn" id="qProj">CA-0626246</div></div>
-    <div class="q-items" id="qItems"></div>
+    <div class="q-items" id="qItems"><div class="q-item"><span>Single-Family Home Installation</span><span class="inc">INCLUDED</span></div><div class="q-item"><span>Wiring &amp; Conduit — back-to-back/side-to-side</span><span class="inc">INCLUDED</span></div><div class="q-item"><span>Special Breaker: Zinsco 50A</span><span class="inc">INCLUDED</span></div><div class="q-item"><span>One-year Warranty</span><span class="inc">INCLUDED</span></div></div>
     <div class="q-total"><div class="l">Final Price<small id="qTermsLine">Parts &amp; Labor · Payment due on installation completion</small></div><div class="v" id="qTotal">$670.00</div></div>
     <div class="q-zelle" id="qZelleRow" style="display: flex;"><span>⚡ Pay by Zelle and save the card fee:</span><b id="qZelle">$647.00</b></div>
     <div class="q-note">One-year warranty included. Price reflects installation as detailed in this proposal — any change to the final charger location must be discussed with your Energy Advisor.</div>
@@ -463,7 +454,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 
 <!-- EDITOR (advisors only — open the page with #edit) -->
 <button id="editFab" title="Edit proposal" style="display: none;">✎</button>
-<div id="editPanel" class="open"><div class="ed-card">
+<div id="editPanel" class=""><div class="ed-card">
   <h3>Personalize this proposal</h3>
   <div class="hint">Fill the client's details, then <b>Save client copy</b> — you'll get a personalized HTML file to host or send. Clients never see this panel (it only appears when the address ends in <span class="mono">#edit</span>).</div>
   <div class="ed-f" style="background:#FBEDEC;border:1.5px dashed var(--red);border-radius:10px;padding:12px;margin-bottom:14px">
@@ -484,7 +475,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
     <button class="btn btn-ghost" id="edSave">⇩ Save client copy (.html)</button>
     <button class="btn btn-ghost" id="edClose">Close</button>
   </div>
-  <div id="pubResult" style="display: block; margin-top: 12px; background: rgb(233, 247, 240); border: 1.5px solid rgb(191, 230, 212); border-radius: 8px; padding: 12px;">
+  <div id="pubResult" style="display:none;margin-top:12px;background:#E9F7F0;border:1.5px solid #BFE6D4;border-radius:8px;padding:12px">
     <div style="font-weight:700;color:#136748;font-size:13px">✅ Published! Client link:</div>
     <div style="display:flex;gap:8px;margin-top:6px">
       <input id="pubUrl" readonly="" style="flex:1;padding:7px 9px;border:1px solid #BFE6D4;border-radius:5px;font-size:12px;font-family:var(--mono)">
@@ -502,7 +493,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
   </details>
 </div></div>
 
-<script id="cfg" type="application/json">{"customerName":"Jim Grandy","firstName":"Jim","address":"24831 Buckboard Ln, Laguna Hills, CA 92653","email":"jgrandy@cullinsgrandylaw.com","phone":"949.697.2199","projectNo":"CA-0626246","date":"Monday, June 8th, 2026","advisor":"Rudy Ubico","advisorPhone":"(866) 860-8420","advisorEmail":"info@faradayelectric-ev.com","carModel":"Tesla Vehicle","charger":"Tesla Wall Connector","chargerProvided":"customer","breakerAmps":50,"drawAmps":40,"panelDesc":"200amp Zinsco Main Panel (outside garage)","panelRating":200,"calcLoad":182,"wireRun":"<5 ft of ¾\" EMT conduit · #6 THHN copper + #10 ground","locationDesc":"Inside the garage, on the same wall directly behind the main panel","siteNote":"","items":[],"price":"$670.00","zellePrice":"$647.00","taxLine":"Parts & Labor · Payment due on installation completion","acceptUrl":"","signUrl":"","signRole":"","photos":[],"loadRows":[["General lighting load (2,749 sqft × 3 VA)","8,247 VA"],["Small appliance branch circuits (11)","16,500 VA"],["240V appliance circuit (50A)","9,600 VA"],["Microwave / disposal / dishwasher / washer","5,000 VA"],["Oven + range (40A each)","15,360 VA"],["Dryer (30A)","5,760 VA"],["Proposed EVSE Level 2 (50A @ 40A)","9,600 VA"],["Subtotal (A)","70,067 VA"],["After demand factors (B)","34,027 VA"],["A/C load (50A)","9,600 VA"],["Total D = (B)+(C)","43,627 VA → 182 A"]]}</script>
+<script id="cfg" type="application/json">{"customerName":"Jim Grandy","firstName":"Jim","address":"24831 Buckboard Ln, Laguna Hills, CA 92653","email":"jgrandy@cullinsgrandylaw.com","phone":"949.697.2199","projectNo":"CA-0626246","date":"Monday, June 8th, 2026","advisor":"Rudy Ubico","advisorPhone":"(866) 860-8420","advisorEmail":"info@faradayelectric-ev.com","carModel":"Tesla Vehicle","charger":"Tesla Wall Connector","chargerProvided":"customer","breakerAmps":50,"drawAmps":40,"panelDesc":"200amp Zinsco Main Panel (outside garage)","panelRating":200,"calcLoad":182,"wireRun":"<5 ft of ¾\" EMT conduit · #6 THHN copper + #10 ground","locationDesc":"Inside the garage, on the same wall directly behind the main panel","siteNote":"","items":["Single-Family Home Installation","Wiring & Conduit — back-to-back/side-to-side","Special Breaker: Zinsco 50A","One-year Warranty"],"price":"$670.00","zellePrice":"$647.00","taxLine":"Parts & Labor · Payment due on installation completion","acceptUrl":"","signUrl":"","signRole":"","photos":[],"loadRows":[["General lighting load (2,749 sqft × 3 VA)","8,247 VA"],["Small appliance branch circuits (11)","16,500 VA"],["240V appliance circuit (50A)","9,600 VA"],["Microwave / disposal / dishwasher / washer","5,000 VA"],["Oven + range (40A each)","15,360 VA"],["Dryer (30A)","5,760 VA"],["Proposed EVSE Level 2 (50A @ 40A)","9,600 VA"],["Subtotal (A)","70,067 VA"],["After demand factors (B)","34,027 VA"],["A/C load (50A)","9,600 VA"],["Total D = (B)+(C)","43,627 VA → 182 A"]]}</script>
 
 <script>
 const $=id=>document.getElementById(id);
@@ -726,7 +717,17 @@ $('edClose').onclick=()=>$('editPanel').classList.remove('open');
 function buildClientHtml(){
   editorApply();
   $('cfg').textContent=JSON.stringify(CFG);
-  return '<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  // snapshot with every overlay closed so the client file opens clean
+  const panel=$('editPanel'), wasOpen=panel.classList.contains('open');
+  panel.classList.remove('open');
+  $('annoModal').classList.remove('open');
+  $('lightbox').classList.remove('open');
+  const fab=$('editFab'), fabPrev=fab.style.display; fab.style.display='none';
+  const pubPrev=$('pubResult').style.display; $('pubResult').style.display='none';
+  const src='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  if(wasOpen) panel.classList.add('open');
+  fab.style.display=fabPrev; $('pubResult').style.display=pubPrev;
+  return src;
 }
 function slugName(){
   return 'faraday-proposal-'+((CFG.customerName||'client').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''))+'.html';
@@ -767,10 +768,8 @@ $('pubCopy').onclick=async()=>{
 };
 
 $('edSave').onclick=()=>{
-  editorApply();
-  $('cfg').textContent=JSON.stringify(CFG);
+  const src=buildClientHtml();
   const name=(CFG.customerName||'client').toLowerCase().replace(/[^a-z0-9]+/g,'-');
-  const src='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([src],{type:'text/html'}));
   a.download=`faraday-proposal-${name}.html`;
