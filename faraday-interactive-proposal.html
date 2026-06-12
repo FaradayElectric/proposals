@@ -591,6 +591,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
     <button class="btn btn-dark" id="edApply">Apply changes</button>
     <button class="btn btn-red" id="edPublish">&#128640; Publish &amp; get client link</button>
     <button class="btn btn-ghost" id="edSave">&#8681; Save client copy (.html)</button>
+    <button class="btn btn-ghost" id="edReset" style="color:var(--red);border-color:#F0C9C6">&#8634; Reset for new client</button>
     <button class="btn btn-ghost" id="edClose">Close</button>
   </div>
   <div id="pubResult" style="display:none;margin-top:12px;background:#E9F7F0;border:1.5px solid #BFE6D4;border-radius:8px;padding:12px">
@@ -1336,6 +1337,30 @@ $('edSow').addEventListener('change',async e=>{
   }catch(err){ alert('Could not read that PDF here ('+err.message+'). Fill the fields manually.'); }
   e.target.value='';
 });
+
+/* reset for a new client — keeps advisor info, hero branding, and publishing setup */
+$('edReset').onclick=()=>{
+  if(!confirm('Clear all client data and start fresh? (Your advisor info, hero title, and publishing setup are kept.)')) return;
+  const keep={heroTitle:CFG.heroTitle, heroSub:'', advisor:CFG.advisor, advisorPhone:CFG.advisorPhone, advisorEmail:CFG.advisorEmail};
+  CFG={
+    customerName:'', firstName:'', address:'', email:'', phone:'',
+    projectNo:'', date:'', carModel:'', charger:'',
+    breakerAmps:50, drawAmps:40, panelDesc:'', panelRating:200, calcLoad:'',
+    wireRun:'', locationDesc:'', siteNote:'',
+    loadSolution:'', subpanel:'', subpanelRating:'', subpanelLoad:'',
+    practicalLoad:'', practicalDocs:[], sowPages:[],
+    items:[], loadRows:[], photos:[],
+    price:'', permitTotal:'', priceLabor:'', zellePrice:'',
+    taxLine:'Parts & Labor · Payment due on installation completion',
+    acceptUrl:'', signUrl:'', signRole:'', loadNote:'',
+    ...keep
+  };
+  selModel=-1;
+  editorOpen();
+  render();
+  $('pubResult').style.display='none';
+  alert('Cleared — ready for the new client. Tip: start with the SOW PDF auto-fill.');
+};
 
 function checkEdit(){ $('editFab').style.display = location.hash==='#edit' ? 'block':'none'; }
 window.addEventListener('hashchange',checkEdit); checkEdit();
