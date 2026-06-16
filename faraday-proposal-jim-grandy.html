@@ -257,8 +257,8 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 </head>
 <body>
 
-<div id="chargebar"><div class="fill" style="width: 29.5255%;"></div></div>
-<div id="chargepct">30%</div>
+<div id="chargebar"><div class="fill" style="width: 0%;"></div></div>
+<div id="chargepct">0%</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -283,7 +283,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 </header>
 
 <!-- AT A GLANCE -->
-<section class="sec reveal vis">
+<section class="sec reveal">
   <div class="sec-k">At a glance</div>
   <h2>Everything checked. <span style="color:var(--red)">Ready to install.</span></h2>
   <div class="glance" id="glance">
@@ -294,7 +294,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 </section>
 
 <!-- CHARGE SPEED -->
-<section class="sec reveal vis">
+<section class="sec reveal">
   <div class="sec-k">What you get</div>
   <h2>Wake up to a full battery</h2>
   <p class="lead">Your charger will run on a dedicated <b id="csBreaker">50-amp</b> circuit at <b id="csDraw">40-amp</b> constant draw. Pick your model to see real charging speed:</p>
@@ -315,7 +315,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 </section>
 
 <!-- THE PLAN -->
-<section class="sec reveal vis" id="plan">
+<section class="sec reveal" id="plan">
   <div class="sec-k">Installation day</div>
   <h2>The plan, step by step</h2>
   <p class="lead" id="planLead">Installation at 24831 Buckboard Ln, Laguna Hills, CA 92653. Inside the garage, on the same wall directly behind the main panel. All installations are completed in a single day.</p>
@@ -550,7 +550,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 <footer id="foot">Faraday Electric Corp · C10 License #1046805 · 2684 A Street, San Diego CA 92102<br>(866) 860-8420 · info@faradayelectric-ev.com · www.faradayelectric-ev.com<br>Proposal CA-0626246 prepared for Jim Grandy · Monday, June 8th, 2026</footer>
 
 <!-- sticky bar -->
-<div class="sticky show" id="sticky">
+<div class="sticky" id="sticky">
   <div class="p"><small>Final price</small><span id="sPrice">$670.00</span></div>
   <button class="btn btn-red" onclick="document.getElementById('approveSec').scrollIntoView()">Approve &amp; Schedule</button>
 </div>
@@ -610,7 +610,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
       <span class="hint" style="align-self:center">The link goes live in ~1 minute — paste into your texting app and send.</span>
     </div>
   </div>
-  <details style="margin-top:14px"><summary style="cursor:pointer;font-size:12px;font-weight:700;color:var(--muted)">⚙ Publishing setup (one time per advisor)</summary>
+  <details style="margin-top:14px" open=""><summary style="cursor:pointer;font-size:12px;font-weight:700;color:var(--muted)">⚙ Publishing setup (one time per advisor)</summary>
     <div class="ed-grid" style="margin-top:8px">
       <div class="ed-f"><label>GitHub username (owner)</label><input id="ghOwner" placeholder="e.g. faradayelectric"></div>
       <div class="ed-f"><label>Repository name</label><input id="ghRepo" placeholder="proposals"></div>
