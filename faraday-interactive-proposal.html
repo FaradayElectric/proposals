@@ -1089,7 +1089,17 @@ $('edLoadCalc').addEventListener('change',async e=>{
     if(isXlsx){
       await loadSheetJs();
       const wb=window.XLSX.read(await f.arrayBuffer(),{type:'array'});
-      const found=parseLoadXlsx(wb);
+      const sheets=listLoadSheets(wb);
+      if(!sheets.length){ alert('No EVSE load worksheet found in that file.'); e.target.value=''; return; }
+      let chosen=sheets[0];
+      if(sheets.length>1){
+        const menu=sheets.map((s,i)=>(i+1)+'. '+s.name+(sheetIsMain(s.name,s.ws)?'  (main panel)':'  (subpanel)')).join('\n');
+        const ans=prompt('This file has more than one load worksheet — which one is for THIS proposal?\n\n'+menu+'\n\nEnter the number:', '1');
+        const idx=parseInt(ans)-1;
+        if(isNaN(idx)||idx<0||idx>=sheets.length){ e.target.value=''; return; }
+        chosen=sheets[idx];
+      }
+      const found=parseLoadSheet(chosen.ws);
       const picked={};
       ['panelRating','calcLoad','breakerAmps','drawAmps','loadRows','address'].forEach(k=>{ if(found[k]!==undefined) picked[k]=found[k]; });
       Object.assign(CFG, picked);
@@ -1097,7 +1107,7 @@ $('edLoadCalc').addEventListener('change',async e=>{
       if(found.loadRows) $('edLoadRows').value=found.loadRows.map(r=>r[0]+' | '+r[1]).join('\n');
       render();
       const n=Object.keys(picked).length;
-      alert(n? 'Pulled '+n+' field'+(n>1?'s':'')+' from the Excel load calculator (panel rating, load, breakdown). Please review before saving.' : 'Could not read that spreadsheet layout — enter the values manually.');
+      alert(n? 'Pulled '+n+' field'+(n>1?'s':'')+' from "'+chosen.name+'" (panel rating, load, breakdown). Please review before saving.' : 'Could not read that spreadsheet layout — enter the values manually.');
       e.target.value=''; return;
     }
     if(f.type==='application/pdf'){
@@ -1373,56 +1383,49 @@ function loadSheetJs(){
     document.head.appendChild(s);
   });
 }
-function parseLoadXlsx(wb){
-  const X=window.XLSX, norm=s=>String(s==null?'':s).trim();
-  // choose the worksheet whose cells contain 'EVSE LOAD CALCULATION WORKSHEET' AND 'D = (B) + (C)'
-  let best=null, bestScore=-1;
-  wb.SheetNames.forEach(name=>{
-    const ws=wb.Sheets[name]; if(!ws||!ws['!ref']) return;
-    let score=0;
-    Object.keys(ws).forEach(k=>{ if(k[0]==='!') return; const v=norm(ws[k].v).toLowerCase();
-      if(v.includes('evse load calculation')) score+=5;
-      if(v==='d = (b) + (c)') score+=4;
-      if(v.includes('subtotal (a)')) score+=2;
-      if(v.includes('proposedevse')) score+=2;
-    });
-    if(score>bestScore){ bestScore=score; best=ws; }
+function scoreLoadSheet(ws){
+  if(!ws||!ws['!ref']) return 0;
+  const norm=s=>String(s==null?'':s).trim().toLowerCase();
+  let score=0;
+  Object.keys(ws).forEach(k=>{ if(k[0]==='!') return; const v=norm(ws[k].v);
+    if(v.includes('evse load calculation')) score+=5;
+    if(v==='d = (b) + (c)') score+=4;
+    if(v.includes('subtotal (a)')) score+=2;
+    if(v.includes('proposedevse')) score+=2;
   });
-  if(!best||bestScore<5) return {};
-  const ws=best, out={};
+  return score;
+}
+function sheetIsMain(name,ws){
+  const n=(name||'').toLowerCase();
+  if(/\bmsp\b|main/.test(n) && !/sub/.test(n)) return true;
+  if(/sub/.test(n)) return false;
+  // fall back to header text
+  if(ws){ for(const k of Object.keys(ws)){ if(k[0]==='!')continue; const v=String(ws[k].v||'').toLowerCase(); if(/\bmain panel\b/.test(v)) return true; if(/sub ?panel/.test(v)) return false; } }
+  return true;
+}
+function listLoadSheets(wb){
+  return wb.SheetNames.map(name=>({name, ws:wb.Sheets[name], score:scoreLoadSheet(wb.Sheets[name])}))
+    .filter(s=>s.score>=5)
+    .sort((a,b)=> (sheetIsMain(b.name,b.ws)-sheetIsMain(a.name,a.ws)) || (b.score-a.score));
+}
+function parseLoadSheet(ws){
+  const X=window.XLSX, norm=s=>String(s==null?'':s).trim();
+  if(!ws||!ws['!ref']) return {};
+  const out={};
   const range=X.utils.decode_range(ws['!ref']);
   const at=(r,c)=>{ const k=X.utils.encode_cell({r,c}); return ws[k]?ws[k].v:null; };
-  // find a cell matching regex -> {r,c}
   const find=re=>{ for(let r=range.s.r;r<=range.e.r;r++) for(let c=range.s.c;c<=range.e.c;c++){ const v=at(r,c); if(v!=null&&re.test(norm(v))) return {r,c}; } return null; };
   const numNear=(p,span=10)=>{ if(!p) return null; for(let c=p.c+1;c<=p.c+span;c++){ const v=at(p.r,c); if(typeof v==='number') return v; } return null; };
-
-  // Panel rating + type: header cell like '90AMP Main Panel ' near top-left (NOT the dropdown Sheet1)
-  const ph=find(/^\s*(sub ?panel\s*)?\d{2,3}\s*amp[^\n]*(main panel|sub ?panel|cutler|siemens|eaton|square|zinsco|hammer)/i)
-        || find(/^\s*\d{2,3}\s*amp\s+main panel/i)
-        || find(/^sub ?panel\s*\d{2,3}\s*amp/i);
-  if(ph){ const t=norm(at(ph.r,ph.c)); const m=t.match(/(\d{2,3})\s*amp/i); if(m) out.panelRating=+m[1]; }
-
-  // Address: the row right under 'PROJECT ADDRESS:'
-  const ad=find(/project address/i);
-  if(ad){ for(let r=ad.r;r<=ad.r+2;r++){ const v=norm(at(r,0))||norm(at(r,ad.c)); if(v && !/project address/i.test(v) && /\d/.test(v) && v.length>8){ out.address=v; break; } } }
-
-  // Breaker/draw from ProposedEVSE row (e.g. '40amp@32amp')
-  const ev=find(/proposedevse|proposed evse/i);
-  if(ev){ for(let c=ev.c;c<=ev.c+8;c++){ const m=norm(at(ev.r,c)).match(/(\d{2,3})\s*amp\s*@\s*(\d{2,3})\s*amp/i); if(m){ out.breakerAmps=+m[1]; out.drawAmps=+m[2]; break; } } }
-
-  // Calculated load AMPS: numeric near the threshold note ('If this value is less than...')
-  const note=find(/if this value is less than the rating/i);
-  if(note){ for(let dr=-2;dr<=2;dr++) for(let c=note.c;c<=range.e.c;c++){ const v=at(note.r+dr,c); if(typeof v==='number'&&v>15&&v<800){ out.calcLoad=Math.round(v); break; } if(out.calcLoad) break; } }
-  if(out.calcLoad===undefined){ const d=find(/^d\s*=\s*\(b\)\s*\+\s*\(c\)/i); /* VA total, not amps; skip */ }
-
-  // Load breakdown rows
+  const vaOnRow=(p,span=10)=>{ if(!p) return null; let last=null; for(let c=p.c+1;c<=p.c+span;c++){ const v=at(p.r,c); if(typeof v==='number'&&v>=100) last=v; } return last; };
+  const ph=find(/^\s*(sub ?panel\s*)?\d{2,3}\s*amp[^\n]*(main panel|sub ?panel|cutler|siemens|eaton|square|zinsco|hammer)/i)||find(/^\s*\d{2,3}\s*amp\s+main panel/i)||find(/^sub ?panel\s*\d{2,3}\s*amp/i);
+  if(ph){ const m=norm(at(ph.r,ph.c)).match(/(\d{2,3})\s*amp/i); if(m) out.panelRating=+m[1]; }
+  const ad=find(/project address/i); if(ad){ for(let r=ad.r;r<=ad.r+2;r++){ const v=norm(at(r,0))||norm(at(r,ad.c)); if(v&&!/project address/i.test(v)&&/\d/.test(v)&&v.length>8){ out.address=v; break; } } }
+  const ev=find(/proposedevse|proposed evse/i); if(ev){ for(let c=ev.c;c<=ev.c+8;c++){ const m=norm(at(ev.r,c)).match(/(\d{2,3})\s*amp\s*@\s*(\d{2,3})\s*amp/i); if(m){ out.breakerAmps=+m[1]; out.drawAmps=+m[2]; break; } } }
+  const note=find(/if this value is less than the rating/i); if(note){ for(let dr=-2;dr<=2;dr++){ for(let c=note.c;c<=range.e.c;c++){ const v=at(note.r+dr,c); if(typeof v==='number'&&v>15&&v<800){ out.calcLoad=Math.round(v); break; } } if(out.calcLoad) break; } }
   const rows=[];
-  const vaOnRow=(p,span=10)=>{ if(!p) return null; let last=null; for(let c=p.c+1;c<=p.c+span;c++){ const v=at(p.r,c); if(typeof v==='number' && v>=100) last=v; } return last; };
   const gl=find(/general light\w*\s*load/i); if(gl){ const v=vaOnRow(gl,10); if(v!=null) rows.push(['General lighting load', v.toLocaleString()+' VA']); }
   const sa1=find(/small appliance branch circuits/i); if(sa1){ const v=vaOnRow(sa1,10); if(v!=null) rows.push(['Small appliance branch circuits', v.toLocaleString()+' VA']); }
-  [['microwave','Microwave'],['garbage disposal','Garbage disposal'],['dishwasher','Dishwasher'],['laundry','Laundry'],['stove','Stove'],['dryer','Dryer'],['oven','Oven'],['range','Range'],['water heater','Water heater'],['pool','Pool/Spa']].forEach(p=>{
-    const pos=find(new RegExp('^\\s*'+p[0],'i')); if(pos){ const v=numNear(pos,12); if(typeof v==='number'&&v>=200) rows.push([p[1], v.toLocaleString()+' VA']); }
-  });
+  [['microwave','Microwave'],['garbage disposal','Garbage disposal'],['dishwasher','Dishwasher'],['laundry','Laundry'],['stove','Stove'],['dryer','Dryer'],['oven','Oven'],['range','Range'],['water heater','Water heater'],['pool','Pool/Spa']].forEach(p=>{ const pos=find(new RegExp('^\\s*'+p[0],'i')); if(pos){ const v=numNear(pos,12); if(typeof v==='number'&&v>=200) rows.push([p[1], v.toLocaleString()+' VA']); } });
   const evp=find(/proposedevse|proposed evse|evse-level 2/i); if(evp){ const v=numNear(evp,12); if(typeof v==='number'&&v>0) rows.push(['Proposed EVSE Level 2', v.toLocaleString()+' VA']); }
   const sA=find(/subtotal \(a\)/i); if(sA){ const v=numNear(sA,12); if(v!=null) rows.push(['Subtotal (A)', v.toLocaleString()+' VA']); }
   const sB=find(/subtotal \(b\)/i); if(sB){ const v=numNear(sB,12); if(v!=null) rows.push(['After demand factors (B) — NEC 220.82', v.toLocaleString()+' VA']); }
