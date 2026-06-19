@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faraday Electric — Interactive Proposal Guide for Advisors</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--red:#E2231A;--ink:#141414;--muted:#6E6E6A;--line:#E6E6E2;--paper:#FAFAF8;--ok:#1E9E6A;--okbg:#E9F7F0;--warnbg:#FBEDEC;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Public Sans',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;font-size:15px}
+.wrap{max-width:780px;margin:0 auto;padding:40px 24px 80px}
+.disp{font-family:'Barlow Condensed',sans-serif}
+header{border-bottom:3px solid var(--red);padding-bottom:18px;margin-bottom:8px}
+.kick{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+h1{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:700;text-transform:uppercase;line-height:1;margin-top:6px}
+h2{font-family:'Barlow Condensed',sans-serif;font-size:27px;font-weight:700;text-transform:uppercase;margin:36px 0 6px;letter-spacing:.02em;border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:600;text-transform:uppercase;margin:22px 0 4px;color:var(--red)}
+p{margin:8px 0}
+.lead{color:var(--muted);font-size:16px;margin-top:10px}
+ol,ul{margin:10px 0 10px 4px;padding-left:22px}
+li{margin:7px 0}
+.step{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:8px;padding:16px 18px;margin:14px 0}
+.step .n{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em}
+.step h3{margin:2px 0 6px;color:var(--ink)}
+.tag{display:inline-block;background:var(--okbg);color:#136748;border:1px solid #BFE6D4;border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace}
+.tag.man{background:var(--warnbg);color:#7A1610;border-color:#F0C9C6}
+.callout{border-radius:10px;padding:14px 18px;margin:16px 0}
+.callout.warn{background:var(--warnbg);border:2px solid var(--red)}
+.callout.ok{background:var(--okbg);border:1px solid #BFE6D4}
+.callout .t{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase}
+.callout.warn .t{color:var(--red)}
+.callout.ok .t{color:#136748}
+code{font-family:'IBM Plex Mono',monospace;background:#EFEFEC;padding:1px 6px;border-radius:4px;font-size:13px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-size:13px;letter-spacing:.04em;background:#F2F2EF}
+.muted{color:var(--muted);font-size:13px}
+.big{font-size:17px;font-weight:600}
+@media print{body{background:#fff}.wrap{padding:0}h2{break-after:avoid}.step,.callout{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kick">Faraday Electric · Sales Team</div>
+  <h1>Interactive Proposal — Advisor Guide</h1>
+  <p class="lead">How to turn a CRM quote into a personalized interactive link you can text to a client — in about 90 seconds.</p>
+</header>
+
+<div class="callout ok">
+  <div class="t">⚡ Why we do this</div>
+  <p style="margin-top:4px">The cheap competitors text the client a price. <b>We send an experience</b> — their load calculation, a live diagram, annotated photos of their own home, our license &amp; $2M insurance, and a charging-speed calculator for their car. Send this link <b>with the quote, while they're still shopping</b> — it's what makes us the obvious choice, not just one of the bunch.</p>
+</div>
+
+<h2>What you need first</h2>
+<p>Before you open the tool, have these ready (your normal process already produces them):</p>
+<ul>
+  <li>✅ <b>The CRM quote</b> — downloaded as a PDF</li>
+  <li>✅ <b>The load calculation</b> — the Excel spreadsheet</li>
+  <li>✅ <b>The photos</b> — satellite view, panel pictures, and the product renderings</li>
+  <li>✅ <b>The CRM "Accept" link</b> for this client's quote</li>
+</ul>
+<p class="muted">If you don't have all of it yet, wait — the link is only impressive when it's complete. (You can always send the link in two passes: quote-info first, photos when the renderings team finishes. See "Two-send option" at the end.)</p>
+
+<h2>The 7 steps</h2>
+
+<div class="step">
+  <div class="n">Step 1 — Open the editor</div>
+  <p>Open the proposal tool link (bookmark it). To open advisor mode, <b>click the Faraday logo 5 times</b> (or press <code>Ctrl</code>+<code>Shift</code>+<code>E</code>). The editor panel slides up. <span class="muted">Clients never see this — it's locked on the published copies they receive.</span></p>
+</div>
+
+<div class="step">
+  <div class="n">Step 2 — Drop in the quote PDF</div>
+  <span class="tag">AUTO</span>
+  <p>In the green box at the top, click <b>"or upload the quote PDF"</b> and select the downloaded CRM quote. It auto-fills: customer name, address, phone, email, project #, charger, line items, wiring run, total price, and the scope note.</p>
+  <p class="muted">No PDF handy? Copy the quote text and paste it into the box, then click "Auto-fill from pasted text."</p>
+</div>
+
+<div class="step">
+  <div class="n">Step 3 — Upload the load calculation</div>
+  <span class="tag">AUTO</span>
+  <p>In the blue box, upload the load-calc <b>Excel</b>. It fills the panel rating, calculated load, breaker, and the full breakdown table the client can expand.</p>
+  <p>If the file has a subpanel tab, it asks: <b>type 1</b> for main panel only (most jobs), or <b>type 2</b> for main + subpanel.</p>
+</div>
+
+<div class="step">
+  <div class="n">Step 4 — Add the photos</div>
+  <span class="tag">AUTO</span> <span class="tag man">+ annotate</span>
+  <p>Scroll to <b>"Project photos"</b> and select all your images at once (satellite, panel, renderings). For each one you can add a caption and tap <b>📍 Annotate</b> to drop labeled pins (e.g., "New Level 2 EV Charger", "Existing 200A Main Panel").</p>
+</div>
+
+<div class="step">
+  <div class="n">Step 5 — Set the two dropdowns <span class="tag man">YOUR CALL</span></div>
+  <p>These are judgment calls — the tool can't guess them:</p>
+  <ul>
+    <li><b>Panel load situation</b> — choose: Panel OK / Practical load (NEC 220.87) / Night schedule / DCC / SAK / Tesla Remote Meter / simpleSwitch / Panel Upgrade.</li>
+    <li><b>Subpanel situation</b> — None / Subpanel required (new) / Use existing subpanel (closer) / Add-on. If you pick one, also fill the <b>subpanel rating &amp; load</b>.</li>
+  </ul>
+</div>
+
+<div class="step">
+  <div class="n">Step 6 — Review (the red checklist)</div>
+  <span class="tag man">CHECK</span>
+  <p>At the top of the editor is a red <b>"Review before you publish"</b> list. Confirm the <b>final price &amp; permit total</b>, the dropdowns, the panel numbers, the photos, the charger model, the client info spelling, and paste the <b>CRM Accept link</b>.</p>
+</div>
+
+<div class="step">
+  <div class="n">Step 7 — Publish &amp; send</div>
+  <p>Click <b>🚀 Publish &amp; get client link</b>. If a non-default option (subpanel / load management) or a blank field needs a look, it'll ask you to confirm first. Then it shows the <b>client link</b> and a <b>ready-to-send SMS</b> — tap <b>Copy SMS message</b>, paste it into your texting app, and send.</p>
+  <p class="muted">Give the link about a minute to go live, then open it once yourself to confirm before texting the client.</p>
+</div>
+
+<h2>What fills automatically vs. by hand</h2>
+<table>
+  <tr><th>You provide</th><th>Fills automatically</th></tr>
+  <tr><td>Quote PDF / paste</td><td>Name, address, phone, email, project #, charger, line items, wiring run, total, scope note</td></tr>
+  <tr><td>Load-calc Excel</td><td>Panel rating &amp; load, subpanel (if chosen), breakdown table</td></tr>
+  <tr><td>Photos</td><td>The swipeable photo showcase</td></tr>
+  <tr><th>By hand (your judgment)</th><th></th></tr>
+  <tr><td colspan="2">Panel load dropdown · subpanel dropdown · photo annotations · price/permit review · CRM Accept link</td></tr>
+</table>
+
+<h2>New client? Hit Reset</h2>
+<p>To start a fresh proposal, open the editor and click <b>🔄 Reset for new client</b>. It clears the previous client's data but keeps your advisor info and publishing setup.</p>
+
+<h2>One-time setup (per device)</h2>
+<p>The first time you use the tool on your computer, open <b>⚙ Publishing setup</b> at the bottom of the editor and paste the <b>GitHub username, repo name, and access token</b> your admin gives you. It's saved in your browser — you only do this once.</p>
+
+<div class="callout warn">
+  <div class="t">⚠️ Always remember</div>
+  <ul style="margin-top:6px">
+    <li>Auto-fill is a <b>head start, not the final word</b> — review every field, especially the price.</li>
+    <li>Never label an AI/product rendering as the "final product" — it's an <b>illustration</b> until installed.</li>
+    <li>The link is a <b>sales weapon for the shopping phase</b> — send it with the quote, not after they've decided.</li>
+  </ul>
+</div>
+
+<h2>Two-send option (when renderings aren't ready)</h2>
+<p>Don't wait on the renderings team to send something impressive:</p>
+<ol>
+  <li><b>Send 1 (with the quote):</b> publish with everything you have now — quote info, load calc, plan, trust, terms. Text it with the quote.</li>
+  <li><b>Send 2 (when photos are ready):</b> reopen, add the satellite/panel/rendering photos, re-publish to the <b>same link</b>, and text: <i>"Hi [name], just added the photos and engineering layout for your install — take a look 👀 [same link]"</i></li>
+</ol>
+<p class="muted">Two touchpoints beat one — you're following up while the other contractors went silent.</p>
+
+<p style="margin-top:40px;text-align:center;color:var(--muted);font-size:12px">Faraday Electric Corp · C10 License #1046805 · Internal sales tool — do not share the editor link outside the team.</p>
+</div>
+</body>
+</html>
