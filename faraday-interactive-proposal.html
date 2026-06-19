@@ -595,6 +595,11 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
     <div class="hint" style="margin:6px 0 0">Upload the SOW PDF and I'll extract the customer, project, panel, breaker, load and price details automatically — and optionally attach the full document for the client to view. Always review the fields before saving.</div>
     <button class="btn btn-ghost" id="edSowClear" style="margin-top:6px;padding:6px 11px;font-size:11.5px">Remove attached SOW document</button>
   </div>
+  <div class="ed-f" style="background:#EEF3FB;border:1.5px dashed #2B62B5;border-radius:10px;padding:12px;margin-bottom:14px">
+    <label style="color:#2B62B5">&#128202; Load Calculation only (no full SOW?)</label>
+    <input type="file" accept="application/pdf,image/*,.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="edLoadCalc">
+    <div class="hint" style="margin:6px 0 0">Upload just the EVSE Load Calculation Worksheet — Excel (.xlsx), PDF, or photo. I'll pull the panel rating, calculated load, the line-item breakdown, and attach the worksheet. Use this when you don't have the full Scope of Work PDF.</div>
+  </div>
   <div class="ed-grid" id="edFields"></div>
   <div class="ed-f"><label>Quote line items (one per line)</label><textarea id="edItems" rows="4"></textarea></div>
   <div class="ed-f"><label>Load calculation table — one per line: Label | Value (auto-filled from the SOW PDF)</label><textarea id="edLoadRows" rows="5"></textarea></div>
@@ -1077,6 +1082,58 @@ function shrink(file){
     rd.readAsDataURL(file);
   });
 }
+$('edLoadCalc').addEventListener('change',async e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const isXlsx=/\.(xlsx|xls)$/i.test(f.name)||/spreadsheet/i.test(f.type);
+  try{
+    if(isXlsx){
+      await loadSheetJs();
+      const wb=window.XLSX.read(await f.arrayBuffer(),{type:'array'});
+      const found=parseLoadXlsx(wb);
+      const picked={};
+      ['panelRating','calcLoad','breakerAmps','drawAmps','loadRows','address'].forEach(k=>{ if(found[k]!==undefined) picked[k]=found[k]; });
+      Object.assign(CFG, picked);
+      document.querySelectorAll('#edFields input, #edFields select').forEach(i=>{ if(picked[i.dataset.k]!==undefined) i.value=picked[i.dataset.k]; });
+      if(found.loadRows) $('edLoadRows').value=found.loadRows.map(r=>r[0]+' | '+r[1]).join('\n');
+      render();
+      const n=Object.keys(picked).length;
+      alert(n? 'Pulled '+n+' field'+(n>1?'s':'')+' from the Excel load calculator (panel rating, load, breakdown). Please review before saving.' : 'Could not read that spreadsheet layout — enter the values manually.');
+      e.target.value=''; return;
+    }
+    if(f.type==='application/pdf'){
+      await loadPdfJs();
+      const pdf=await window.pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;
+      let text=''; const pages=[];
+      for(let p=1;p<=Math.min(pdf.numPages,6);p++){
+        const pg=await pdf.getPage(p);
+        const tc=await pg.getTextContent(); let last=null;
+        tc.items.forEach(it=>{ const y=Math.round(it.transform[5]); if(last!==null&&Math.abs(y-last)>3) text+='\n'; text+=it.str+' '; last=y; });
+        text+='\n';
+        const vp=pg.getViewport({scale:1.4});
+        const cv=document.createElement('canvas'); cv.width=vp.width; cv.height=vp.height;
+        await pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
+        pages.push(cv.toDataURL('image/jpeg',.8));
+      }
+      const found=parseSOW(text);
+      const picked={};
+      ['panelRating','calcLoad','breakerAmps','drawAmps','loadRows','address','projectNo'].forEach(k=>{ if(found[k]!==undefined) picked[k]=found[k]; });
+      Object.assign(CFG, picked);
+      CFG.practicalDocs=pages;  // also show as the worksheet (useful for NEC 220.87 mode)
+      document.querySelectorAll('#edFields input, #edFields select').forEach(i=>{ if(picked[i.dataset.k]!==undefined) i.value=picked[i.dataset.k]; });
+      if(found.loadRows) $('edLoadRows').value=found.loadRows.map(r=>r[0]+' | '+r[1]).join('\n');
+      render();
+      const n=Object.keys(picked).length;
+      alert(n? 'Pulled '+n+' field'+(n>1?'s':'')+' from the load calculation (panel rating, load, breakdown). Review before saving.' : 'Could not read this layout as text — if it\u2019s a scanned image, the values can be typed in manually. The worksheet image was still attached.');
+    } else {
+      // image: can't extract text, but attach it as the worksheet
+      CFG.practicalDocs=[await shrink(f)];
+      render();
+      alert('Worksheet image attached. (Text extraction only works on PDF worksheets — enter the panel rating and load manually for image uploads.)');
+    }
+  }catch(err){ alert('Could not read that file ('+err.message+'). Enter the values manually.'); }
+  e.target.value='';
+});
+
 $('edPractical').addEventListener('change',async e=>{
   const f=e.target.files[0]; if(!f) return;
   try{
@@ -1307,6 +1364,73 @@ function parseSOW(t){
   return out;
 }
 window.parseSOW=parseSOW;
+function loadSheetJs(){
+  return new Promise((res,rej)=>{
+    if(window.XLSX) return res();
+    const s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+    s.onload=()=>res(); s.onerror=()=>rej(new Error('xlsx load failed'));
+    document.head.appendChild(s);
+  });
+}
+function parseLoadXlsx(wb){
+  const X=window.XLSX, norm=s=>String(s==null?'':s).trim();
+  // choose the worksheet whose cells contain 'EVSE LOAD CALCULATION WORKSHEET' AND 'D = (B) + (C)'
+  let best=null, bestScore=-1;
+  wb.SheetNames.forEach(name=>{
+    const ws=wb.Sheets[name]; if(!ws||!ws['!ref']) return;
+    let score=0;
+    Object.keys(ws).forEach(k=>{ if(k[0]==='!') return; const v=norm(ws[k].v).toLowerCase();
+      if(v.includes('evse load calculation')) score+=5;
+      if(v==='d = (b) + (c)') score+=4;
+      if(v.includes('subtotal (a)')) score+=2;
+      if(v.includes('proposedevse')) score+=2;
+    });
+    if(score>bestScore){ bestScore=score; best=ws; }
+  });
+  if(!best||bestScore<5) return {};
+  const ws=best, out={};
+  const range=X.utils.decode_range(ws['!ref']);
+  const at=(r,c)=>{ const k=X.utils.encode_cell({r,c}); return ws[k]?ws[k].v:null; };
+  // find a cell matching regex -> {r,c}
+  const find=re=>{ for(let r=range.s.r;r<=range.e.r;r++) for(let c=range.s.c;c<=range.e.c;c++){ const v=at(r,c); if(v!=null&&re.test(norm(v))) return {r,c}; } return null; };
+  const numNear=(p,span=10)=>{ if(!p) return null; for(let c=p.c+1;c<=p.c+span;c++){ const v=at(p.r,c); if(typeof v==='number') return v; } return null; };
+
+  // Panel rating + type: header cell like '90AMP Main Panel ' near top-left (NOT the dropdown Sheet1)
+  const ph=find(/^\s*(sub ?panel\s*)?\d{2,3}\s*amp[^\n]*(main panel|sub ?panel|cutler|siemens|eaton|square|zinsco|hammer)/i)
+        || find(/^\s*\d{2,3}\s*amp\s+main panel/i)
+        || find(/^sub ?panel\s*\d{2,3}\s*amp/i);
+  if(ph){ const t=norm(at(ph.r,ph.c)); const m=t.match(/(\d{2,3})\s*amp/i); if(m) out.panelRating=+m[1]; }
+
+  // Address: the row right under 'PROJECT ADDRESS:'
+  const ad=find(/project address/i);
+  if(ad){ for(let r=ad.r;r<=ad.r+2;r++){ const v=norm(at(r,0))||norm(at(r,ad.c)); if(v && !/project address/i.test(v) && /\d/.test(v) && v.length>8){ out.address=v; break; } } }
+
+  // Breaker/draw from ProposedEVSE row (e.g. '40amp@32amp')
+  const ev=find(/proposedevse|proposed evse/i);
+  if(ev){ for(let c=ev.c;c<=ev.c+8;c++){ const m=norm(at(ev.r,c)).match(/(\d{2,3})\s*amp\s*@\s*(\d{2,3})\s*amp/i); if(m){ out.breakerAmps=+m[1]; out.drawAmps=+m[2]; break; } } }
+
+  // Calculated load AMPS: numeric near the threshold note ('If this value is less than...')
+  const note=find(/if this value is less than the rating/i);
+  if(note){ for(let dr=-2;dr<=2;dr++) for(let c=note.c;c<=range.e.c;c++){ const v=at(note.r+dr,c); if(typeof v==='number'&&v>15&&v<800){ out.calcLoad=Math.round(v); break; } if(out.calcLoad) break; } }
+  if(out.calcLoad===undefined){ const d=find(/^d\s*=\s*\(b\)\s*\+\s*\(c\)/i); /* VA total, not amps; skip */ }
+
+  // Load breakdown rows
+  const rows=[];
+  const vaOnRow=(p,span=10)=>{ if(!p) return null; let last=null; for(let c=p.c+1;c<=p.c+span;c++){ const v=at(p.r,c); if(typeof v==='number' && v>=100) last=v; } return last; };
+  const gl=find(/general light\w*\s*load/i); if(gl){ const v=vaOnRow(gl,10); if(v!=null) rows.push(['General lighting load', v.toLocaleString()+' VA']); }
+  const sa1=find(/small appliance branch circuits/i); if(sa1){ const v=vaOnRow(sa1,10); if(v!=null) rows.push(['Small appliance branch circuits', v.toLocaleString()+' VA']); }
+  [['microwave','Microwave'],['garbage disposal','Garbage disposal'],['dishwasher','Dishwasher'],['laundry','Laundry'],['stove','Stove'],['dryer','Dryer'],['oven','Oven'],['range','Range'],['water heater','Water heater'],['pool','Pool/Spa']].forEach(p=>{
+    const pos=find(new RegExp('^\\s*'+p[0],'i')); if(pos){ const v=numNear(pos,12); if(typeof v==='number'&&v>=200) rows.push([p[1], v.toLocaleString()+' VA']); }
+  });
+  const evp=find(/proposedevse|proposed evse|evse-level 2/i); if(evp){ const v=numNear(evp,12); if(typeof v==='number'&&v>0) rows.push(['Proposed EVSE Level 2', v.toLocaleString()+' VA']); }
+  const sA=find(/subtotal \(a\)/i); if(sA){ const v=numNear(sA,12); if(v!=null) rows.push(['Subtotal (A)', v.toLocaleString()+' VA']); }
+  const sB=find(/subtotal \(b\)/i); if(sB){ const v=numNear(sB,12); if(v!=null) rows.push(['After demand factors (B) — NEC 220.82', v.toLocaleString()+' VA']); }
+  const acl=find(/total a\/c load/i); if(acl){ const v=numNear(acl,12); if(typeof v==='number'&&v>0) rows.push(['A/C load', v.toLocaleString()+' VA']); }
+  const dd=find(/^d\s*=\s*\(b\)\s*\+\s*\(c\)/i); if(dd){ const v=numNear(dd,12); if(v!=null) rows.push(['Total D = (B) + (C)', v.toLocaleString()+' VA'+(out.calcLoad?' → '+out.calcLoad+' A':'')]); }
+  if(rows.length>=3) out.loadRows=rows;
+  return out;
+}
 function loadPdfJs(){
   return new Promise((res,rej)=>{
     if(window.pdfjsLib) return res();
