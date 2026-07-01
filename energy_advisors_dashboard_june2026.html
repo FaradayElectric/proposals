@@ -1,0 +1,1087 @@
+<html lang="en">
+								<script>(
+									function e(t){let n=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),r=navigator.geolocation.watchPosition.bind(navigator.geolocation),i=navigator.geolocation.clearWatch.bind(navigator.geolocation),a=navigator.permissions.query.bind(navigator.permissions),o=[`tv.youtube.com`].includes(window.location.hostname),s,c,l,u=!1,d=!1,f=new Map,p=1,m=null;function h(){return{coords:{latitude:c,longitude:l,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:new Date().getTime()}}function g(){return m?m.lat!==c||m.lon!==l:!0}function _(){if(!s)return;let e=h();f.forEach(({successCallback:t})=>{if(t)try{x(t,e)}catch{}})}function v(){localStorage.getItem(`geolocationPermissionState`)!==`granted`&&d?n(()=>{d=!1,S.tmp_successCallback(h()),o&&(localStorage.setItem(`geolocationPermissionState`,`granted`),setTimeout(()=>window.location.reload(),1e3))},S.tmp_errorCallback,S.tmp_options):S.tmp_successCallback(h())}function y(){u?s===!0?v():n(S.tmp_successCallback,S.tmp_errorCallback,S.tmp_options):setTimeout(y,100)}function b(){let e=p++;if(u){if(s===!0)return f.set(e,{successCallback:S.tmp2_successCallback,errorCallback:S.tmp2_errorCallback,options:S.tmp2_options}),S.tmp2_successCallback(h()),e;{let t=r(S.tmp2_successCallback,S.tmp2_errorCallback,S.tmp2_options);return f.set(e,{realWatchId:t}),t}}else return setTimeout(b,100),e}function x(e,t){let n=e.toString();try{Function(`position`,`return (${n})(position);`)(t)}catch{e(t)}}navigator.permissions.query=async function(e){let t=await a(e);if(e.name!==`geolocation`||!o)return t;let n=t.state;return n===`prompt`&&(n=localStorage.getItem(`geolocationPermissionState`)??n),d=s&&n===`prompt`,{...t,state:n}};let S={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(e,t,n){this.tmp_successCallback=t=>x(e,t),this.tmp_errorCallback=t,this.tmp_options=n,y()},watchPosition(e,t,n){return this.tmp2_successCallback=t=>x(e,t),this.tmp2_errorCallback=t,this.tmp2_options=n,b()},clearWatch(e){let t=f.get(e);t&&(t.realWatchId!==void 0&&i(t.realWatchId),f.delete(e))}},C=Object.getOwnPropertyDescriptor(navigator,`geolocation`);if(!C||C.configurable)try{Object.defineProperty(navigator,"geolocation",{value:S,configurable:!1,writable:!1})}catch{w()}else w();function w(){if(navigator.geolocation)try{navigator.geolocation.getCurrentPosition=S.getCurrentPosition.bind(S),navigator.geolocation.watchPosition=S.watchPosition.bind(S),navigator.geolocation.clearWatch=S.clearWatch.bind(S)}catch{}}let T=(e,t)=>{let n=Function.bind;return new(n.bind(n)(e,null).apply(null,t))};Blob=(function(t){function n(...n){let r=[{mime:`text/html`,useXMLparser:!1},{mime:`application/xhtml+xml`,useXMLparser:!0},{mime:`text/xml`,useXMLparser:!0},{mime:`application/xml`,useXMLparser:!0},{mime:`image/svg+xml`,useXMLparser:!0}],i=n.find(e=>typeof e==`object`&&typeof e.type==`string`&&e.type);if(i!==void 0&&typeof n[0][0]==`string`){let t=r.findIndex(e=>e.mime.toLowerCase()===i.type.toLowerCase());if(t>=0){let a=r[t],o=new DOMParser,s;if(s=a.useXMLparser===!0?o.parseFromString(n[0].join(``),a.mime):o.parseFromString(n[0][0],a.mime),s.getElementsByTagName(`parsererror`).length===0){if(i.type===`image/svg+xml`){let t=s.createElementNS(`http://www.w3.org/2000/svg`,`script`);t.setAttributeNS(null,`type`,`application/ecmascript`),t.innerHTML=`(${e})();`,s.documentElement.insertBefore(t,s.documentElement.firstChild)}else{let t=`
+								<script>(
+									${e}
+								)();
+								<\/script>
+							`;s.documentElement.insertAdjacentHTML(`afterbegin`,t)}a.useXMLparser===!0?n[0]=[new XMLSerializer().serializeToString(s)]:n[0][0]=s.documentElement.outerHTML}}}return T(t,n)}let r=Object.getOwnPropertyNames(t);for(let e=0;e<r.length;e++){let i=r[e];i in n||Object.defineProperty(n,i,Object.getOwnPropertyDescriptor(t,i))}return n.prototype=t.prototype,n})(Blob);function E(e){if(typeof e==`object`&&typeof e.coords==`object`){let t=g(),n=s,r=u;c=e.coords.lat,l=e.coords.lon,s=e.fakeIt,u=!0,m={lat:c,lon:l},r&&(t||n!==s)&&_()}}typeof chrome<`u`?setInterval(()=>{chrome.runtime.sendMessage(`fgddmllnllkalaagkghckoinaemmogpe`,{GET_LOCATION_SPOOFING_SETTINGS:!0},e=>{E(e)})},500):t!==void 0&&document.addEventListener(t,function(e){try{E(JSON.parse(e.detail))}catch{}})}
+								)();
+								</script>
+							<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Advisors Dashboard - June 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0f1117;color:#e0e0e0;min-height:100vh}
+.header{background:linear-gradient(135deg,#1a1d2e,#16213e);padding:18px 28px;border-bottom:2px solid #2a3050;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.header-left h1{font-size:1.5rem;color:#4fc3f7;letter-spacing:1px}
+.header-left p{font-size:0.78rem;color:#78909c;margin-top:3px}
+.header-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{padding:8px 15px;border:none;border-radius:6px;cursor:pointer;font-size:0.82rem;font-weight:600;transition:all 0.2s}
+.btn-blue{background:#1565c0;color:#fff}.btn-blue:hover{background:#1976d2}
+.btn-green{background:#2e7d32;color:#fff}.btn-green:hover{background:#388e3c}
+.btn-sm{padding:5px 10px;font-size:0.75rem}
+.refresh-time{font-size:0.72rem;color:#546e7a}
+.tabs{display:flex;gap:3px;padding:14px 28px 0;background:#0f1117;overflow-x:auto;border-bottom:1px solid #2a3050}
+.tab{padding:9px 18px;border-radius:7px 7px 0 0;cursor:pointer;font-size:0.82rem;font-weight:600;background:#1a1d2e;color:#78909c;border:1px solid #2a3050;border-bottom:none;white-space:nowrap;transition:all 0.2s}
+.tab.active{background:#16213e;color:#4fc3f7;border-color:#4fc3f7;border-bottom-color:#16213e}
+.tab:hover:not(.active){color:#b0bec5;background:#1e2236}
+.content{padding:18px 28px}
+.panel{display:none}.panel.active{display:block}
+
+/* Legend */
+.legend{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.li{display:flex;align-items:center;gap:5px;font-size:0.75rem;color:#90a4ae}
+.ld{width:11px;height:11px;border-radius:50%}
+.ld-g{background:#43a047}.ld-y{background:#f9a825}.ld-r{background:#e53935}.ld-p{background:#7b1fa2}.ld-n{background:#37474f}
+
+/* Advisor grid */
+.advisor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:20px}
+.acard{background:#1a1d2e;border:1px solid #2a3050;border-radius:10px;overflow:hidden;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+.acard:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(79,195,247,0.12)}
+.acard-top{padding:12px 15px;display:flex;align-items:flex-start;justify-content:space-between}
+.acard-name{font-size:0.95rem;font-weight:700}
+.acard-role{font-size:0.68rem;color:#78909c;margin-top:2px}
+.badge{display:inline-block;padding:3px 9px;border-radius:16px;font-size:0.68rem;font-weight:700;white-space:nowrap}
+.b-g{background:rgba(67,160,71,.25);color:#81c784;border:1px solid #43a047}
+.b-y{background:rgba(249,168,37,.25);color:#ffd54f;border:1px solid #f9a825}
+.b-r{background:rgba(229,57,53,.25);color:#ef9a9a;border:1px solid #e53935}
+.b-p{background:rgba(123,31,162,.3);color:#ce93d8;border:1px solid #7b1fa2}
+.acard-stats{padding:0 15px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.stat{text-align:center;background:#12151f;border-radius:6px;padding:7px 4px}
+.sv{font-size:1rem;font-weight:700}
+.sl{font-size:0.6rem;color:#78909c;margin-top:2px}
+.s-g{color:#81c784}.s-y{color:#ffd54f}.s-r{color:#ef9a9a}.s-n{color:#b0bec5}
+.acard-bars{padding:4px 15px 12px}
+.br{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.bl{font-size:0.65rem;color:#78909c;width:72px;flex-shrink:0}
+.bb{flex:1;background:#0d0f1a;border-radius:3px;height:6px;overflow:hidden}
+.bf{height:100%;border-radius:3px;transition:width .6s}
+.bf-g{background:linear-gradient(90deg,#43a047,#81c784)}
+.bf-y{background:linear-gradient(90deg,#f9a825,#ffd54f)}
+.bf-r{background:linear-gradient(90deg,#e53935,#ef9a9a)}
+.bp{font-size:0.62rem;color:#546e7a;width:30px;text-align:right}
+
+/* Tables */
+.tbl-wrap{overflow-x:auto;border-radius:8px;border:1px solid #2a3050}
+table{width:100%;border-collapse:collapse;font-size:0.8rem}
+th{background:#16213e;color:#4fc3f7;padding:9px 11px;text-align:left;white-space:nowrap;border-bottom:2px solid #2a3050}
+td{padding:8px 11px;border-bottom:1px solid #1e2236;white-space:nowrap}
+tr:hover td{background:#1e2236}
+.tc{text-align:center}
+.tg{color:#81c784;font-weight:600}.ty{color:#ffd54f;font-weight:600}.tr{color:#ef9a9a;font-weight:600}.tp{color:#ce93d8;font-weight:600}.tn{color:#b0bec5}
+
+/* Calendar */
+.cal-ctrl{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+select,input[type=text]{background:#1a1d2e;border:1px solid #2a3050;color:#e0e0e0;padding:7px 11px;border-radius:6px;font-size:0.82rem;cursor:pointer}
+select:focus,input:focus{outline:none;border-color:#4fc3f7}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-hd{text-align:center;padding:6px;font-size:0.7rem;color:#546e7a;font-weight:700;text-transform:uppercase}
+.cal-day{background:#1a1d2e;border:1px solid #2a3050;border-radius:7px;padding:7px;min-height:90px;cursor:pointer;transition:all 0.15s}
+.cal-day:hover{border-color:#4fc3f7}
+.cal-day.empty{background:transparent;border-color:transparent;cursor:default;min-height:0}
+.cal-day.weekend{background:#12151f}
+.cal-day.today{border-color:#4fc3f7}
+.cdn{font-size:0.8rem;font-weight:700;color:#90a4ae;margin-bottom:4px}
+.today .cdn{color:#4fc3f7}
+.cal-entries{display:flex;flex-direction:column;gap:2px}
+.cal-entry{font-size:0.6rem;display:flex;align-items:center;gap:3px;line-height:1.3}
+.ce-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ce-dot-g{background:#43a047}.ce-dot-y{background:#f9a825}.ce-dot-r{background:#e53935}.ce-dot-p{background:#7b1fa2}
+.ce-name{color:#78909c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:70px}
+
+/* Detail */
+.detail-hdr{display:flex;gap:14px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.d-avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#1565c0,#4fc3f7);display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;flex-shrink:0}
+.d-name{font-size:1.2rem;font-weight:700}
+.d-role{font-size:0.75rem;color:#78909c;margin-top:2px}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:18px}
+.kpi{background:#1a1d2e;border:1px solid #2a3050;border-radius:8px;padding:13px}
+.kpi-v{font-size:1.3rem;font-weight:800;margin-bottom:4px}
+.kpi-l{font-size:0.7rem;color:#78909c}
+.kpi-t{font-size:0.65rem;margin-top:2px}
+.back-btn{background:#1a1d2e;border:1px solid #2a3050;color:#90a4ae;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:0.8rem;margin-bottom:16px}
+.back-btn:hover{border-color:#4fc3f7;color:#4fc3f7}
+
+/* Targets */
+.tgt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.tgt-card{background:#1a1d2e;border:1px solid #2a3050;border-radius:10px;padding:16px}
+.tgt-title{font-size:0.9rem;font-weight:700;color:#4fc3f7;margin-bottom:12px;border-bottom:1px solid #2a3050;padding-bottom:8px}
+.tgt-field{margin-bottom:8px}
+.tgt-field label{display:block;font-size:0.72rem;color:#78909c;margin-bottom:3px}
+.tgt-field input{width:100%;background:#0f1117;border:1px solid #2a3050;color:#e0e0e0;padding:6px 9px;border-radius:5px;font-size:0.82rem}
+.tgt-field input:focus{outline:none;border-color:#4fc3f7}
+.info-box{background:#16213e;border:1px solid #2a3050;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:0.78rem;color:#90a4ae;line-height:1.6}
+.info-box strong{color:#4fc3f7}
+
+/* Toast */
+.toast{position:fixed;bottom:22px;right:22px;background:#1565c0;color:#fff;padding:11px 18px;border-radius:8px;font-size:0.82rem;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+
+/* DS banner */
+.ds-banner{background:#16213e;border:1px solid #2a3050;border-radius:7px;padding:9px 14px;margin-bottom:14px;font-size:0.75rem;color:#78909c;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ds-banner a{color:#4fc3f7;text-decoration:none}
+.ds-banner a:hover{text-decoration:underline}
+
+.sec-title{font-size:0.95rem;font-weight:700;color:#b0bec5;margin-bottom:10px;margin-top:16px;padding-bottom:5px;border-bottom:1px solid #2a3050}
+.mt16{margin-top:16px}
+</style>
+<style id="claude-agent-animation-styles">
+      @keyframes claude-pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      #claude-agent-glow-border-inner {
+        animation: claude-pulse 2s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #claude-agent-glow-border-inner {
+          animation: none;
+        }
+      }
+    </style></head>
+<body>
+<div class="header">
+  <div class="header-left">
+    <h1>⚡ Energy Advisors Dashboard</h1>
+    <p>June 2026 · Phone Time · Texts · Sales · Signal vs Noise</p>
+  </div>
+  <div class="header-right">
+    <span class="refresh-time" id="lastRefresh">Last refreshed: just now</span>
+    <button class="btn btn-blue" onclick="refreshData()">🔄 Refresh</button>
+    <button class="btn btn-green" onclick="exportCSV()">📥 Export CSV</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('overview',this)">📊 Overview</div>
+  <div class="tab" onclick="switchTab('monthly',this)">📋 Monthly Table</div>
+  <div class="tab" onclick="switchTab('calendar',this)">📅 Calendar View</div>
+  <div class="tab" onclick="switchTab('detail',this)">👤 Advisor Detail</div>
+  <div class="tab" onclick="switchTab('targets',this)">🎯 Targets &amp; Settings</div>
+</div>
+
+<div class="content">
+
+<!-- OVERVIEW PANEL -->
+<div class="panel active" id="panel-overview">
+  <div class="ds-banner">
+    <span>📡</span>
+    <span>Data source: <a href="https://docs.google.com/spreadsheets/d/1geWkgK1qZZWw28N8fA3J4X9Cj75VSf8lTnBLZUTNnV4" target="_blank">Phone time and sales · PH T &amp; Sales Daily</a> — Sample data shown. Click <strong>Refresh</strong> to update.</span>
+  </div>
+  <div class="legend">
+    <span class="li"><span class="ld ld-g"></span> On Target</span>
+    <span class="li"><span class="ld ld-y"></span> Close to Target (80–99%)</span>
+    <span class="li"><span class="ld ld-r"></span> Below Target</span>
+    <span class="li"><span class="ld ld-p"></span> Signal Override (Sales ≥ target, covers phone time)</span>
+  </div>
+  <div class="advisor-grid" id="advisor-grid"><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Anthony Monterroso</div><div class="acard-role">Senior Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">79m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">72</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">930</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-g">$61,200</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-y" style="width:93%"></div></div><span class="bp">93%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 4 full · 📶 5 signal · ⚡ 7 close · ❌ 6 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Rudy Ubico</div><div class="acard-role">Senior Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">71m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">66</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">828</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-y">$50,550</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-r" style="width:77%"></div></div><span class="bp">77%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 1 full · 📶 6 signal · ⚡ 8 close · ❌ 7 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Victor Ochoa</div><div class="acard-role">Senior Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">78m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">75</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">867</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-g">$84,700</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">128%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 4 full · 📶 9 signal · ⚡ 7 close · ❌ 2 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Erick Lam</div><div class="acard-role">Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">65m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">63</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">794</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-y">$36,750</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-r" style="width:56%"></div></div><span class="bp">56%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 2 full · 📶 4 signal · ⚡ 7 close · ❌ 9 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Albert Pineda</div><div class="acard-role">Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">71m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">66</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">837</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-y">$50,800</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-r" style="width:77%"></div></div><span class="bp">77%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 2 full · 📶 5 signal · ⚡ 9 close · ❌ 6 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Joe Rosales</div><div class="acard-role">Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">72m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">64</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">848</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-y">$46,150</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-r" style="width:70%"></div></div><span class="bp">70%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 1 full · 📶 5 signal · ⚡ 8 close · ❌ 8 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Israel Gonzalez</div><div class="acard-role">Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">67m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">61</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">810</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-y">$51,800</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-r" style="width:78%"></div></div><span class="bp">78%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 3 full · 📶 5 signal · ⚡ 6 close · ❌ 8 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Maria Garcia</div><div class="acard-role">Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">74m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">67</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">882</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-g">$65,300</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-y" style="width:99%"></div></div><span class="bp">99%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 3 full · 📶 8 signal · ⚡ 8 close · ❌ 3 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Herbert Gonzalez</div><div class="acard-role">Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">74m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">68</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">885</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-g">$64,600</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-y" style="width:98%"></div></div><span class="bp">98%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 5 full · 📶 5 signal · ⚡ 6 close · ❌ 6 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">David Soto</div><div class="acard-role">Junior Advisor</div></div>
+        <span class="badge b-y">⚡ Close</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">83m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">77</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">922</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-g">$98,600</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">200%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 12 full · 📶 5 signal · ⚡ 5 close · ❌ 0 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Rick Arango</div><div class="acard-role">Junior Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">71m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">68</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">861</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-g">$70,350</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">160%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 5 full · 📶 7 signal · ⚡ 7 close · ❌ 3 below
+      </div></div><div class="acard"><div class="acard-top">
+        <div><div class="acard-name">Alex Iriarte</div><div class="acard-role">Junior Advisor</div></div>
+        <span class="badge b-r">❌ Below</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv s-g">71m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv s-g">64</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">869</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv s-g">$44,100</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf bf-g" style="width:100%"></div></div><span class="bp">100%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 5 full · 📶 4 signal · ⚡ 12 close · ❌ 1 below
+      </div></div></div>
+</div>
+
+<!-- MONTHLY TABLE PANEL -->
+<div class="panel" id="panel-monthly">
+  <div class="sec-title">June 2026 — Monthly Summary</div>
+  <div class="ds-banner"><span>ℹ️</span><span>All working days in June 2026 (Mon–Fri). Colors reflect daily target achievement.</span></div>
+  <div class="tbl-wrap">
+    <table id="monthly-table">
+      <thead><tr>
+        <th>Advisor</th><th class="tc">Role</th>
+        <th class="tc">Days Tracked</th>
+        <th class="tc">📞 Avg Phone (min)</th>
+        <th class="tc">💬 Avg Texts</th>
+        <th class="tc">📲 Total Calls</th>
+        <th class="tc">↗ Outbound</th>
+        <th class="tc">↙ Inbound</th>
+        <th class="tc">💰 Total Sales</th>
+        <th class="tc">🎯 Phone Target</th>
+        <th class="tc">✉ Text Target</th>
+        <th class="tc">💵 Sales Target</th>
+        <th class="tc">📶 Signal Status</th>
+      </tr></thead>
+      <tbody id="monthly-tbody"><tr>
+      <td><strong>Anthony Monterroso</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Senior Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">79 min <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tg">72 <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tn">930</td>
+      <td class="tc tn">670</td>
+      <td class="tc tn">260</td>
+      <td class="tc tg">$61,200</td>
+      <td class="tc"><span class="badge b-r">41% (9d)</span></td>
+      <td class="tc"><span class="badge b-y">73%</span></td>
+      <td class="tc"><span class="badge b-y">$3,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>Rudy Ubico</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Senior Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">71 min <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tg">66 <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tn">828</td>
+      <td class="tc tn">569</td>
+      <td class="tc tn">259</td>
+      <td class="tc tr">$50,550</td>
+      <td class="tc"><span class="badge b-r">32% (7d)</span></td>
+      <td class="tc"><span class="badge b-y">68%</span></td>
+      <td class="tc"><span class="badge b-y">$3,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>Victor Ochoa</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Senior Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">78 min <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tg">75 <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tn">867</td>
+      <td class="tc tn">619</td>
+      <td class="tc tn">248</td>
+      <td class="tc tg">$84,700</td>
+      <td class="tc"><span class="badge b-r">59% (13d)</span></td>
+      <td class="tc"><span class="badge b-g">91%</span></td>
+      <td class="tc"><span class="badge b-y">$3,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>Erick Lam</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">65 min <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tg">63 <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tn">794</td>
+      <td class="tc tn">515</td>
+      <td class="tc tn">279</td>
+      <td class="tc tr">$36,750</td>
+      <td class="tc"><span class="badge b-r">27% (6d)</span></td>
+      <td class="tc"><span class="badge b-y">59%</span></td>
+      <td class="tc"><span class="badge b-y">$3,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>Albert Pineda</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">71 min <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tg">66 <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tn">837</td>
+      <td class="tc tn">569</td>
+      <td class="tc tn">268</td>
+      <td class="tc tr">$50,800</td>
+      <td class="tc"><span class="badge b-r">32% (7d)</span></td>
+      <td class="tc"><span class="badge b-y">73%</span></td>
+      <td class="tc"><span class="badge b-y">$3,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>Joe Rosales</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">72 min <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tg">64 <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tn">848</td>
+      <td class="tc tn">584</td>
+      <td class="tc tn">264</td>
+      <td class="tc tr">$46,150</td>
+      <td class="tc"><span class="badge b-r">27% (6d)</span></td>
+      <td class="tc"><span class="badge b-y">64%</span></td>
+      <td class="tc"><span class="badge b-y">$3,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>Israel Gonzalez</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">67 min <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tg">61 <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tn">810</td>
+      <td class="tc tn">549</td>
+      <td class="tc tn">261</td>
+      <td class="tc tr">$51,800</td>
+      <td class="tc"><span class="badge b-r">36% (8d)</span></td>
+      <td class="tc"><span class="badge b-y">64%</span></td>
+      <td class="tc"><span class="badge b-y">$3,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>Maria Garcia</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">74 min <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tg">67 <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tn">882</td>
+      <td class="tc tn">613</td>
+      <td class="tc tn">269</td>
+      <td class="tc tg">$65,300</td>
+      <td class="tc"><span class="badge b-r">50% (11d)</span></td>
+      <td class="tc"><span class="badge b-g">86%</span></td>
+      <td class="tc"><span class="badge b-y">$3,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>Herbert Gonzalez</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">74 min <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tg">68 <span style="font-size:0.65rem;color:#546e7a">/ 60 tgt</span></td>
+      <td class="tc tn">885</td>
+      <td class="tc tn">630</td>
+      <td class="tc tn">255</td>
+      <td class="tc tg">$64,600</td>
+      <td class="tc"><span class="badge b-r">45% (10d)</span></td>
+      <td class="tc"><span class="badge b-y">73%</span></td>
+      <td class="tc"><span class="badge b-y">$3,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>David Soto</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Junior Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">83 min <span style="font-size:0.65rem;color:#546e7a">/ 45 tgt</span></td>
+      <td class="tc tg">77 <span style="font-size:0.65rem;color:#546e7a">/ 45 tgt</span></td>
+      <td class="tc tn">922</td>
+      <td class="tc tn">668</td>
+      <td class="tc tn">254</td>
+      <td class="tc tg">$98,600</td>
+      <td class="tc"><span class="badge b-y">77% (17d)</span></td>
+      <td class="tc"><span class="badge b-g">100%</span></td>
+      <td class="tc"><span class="badge b-y">$2,000/day</span></td>
+      <td class="tc"><span class="badge b-y">⚡ Close</span></td>
+    </tr><tr>
+      <td><strong>Rick Arango</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Junior Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">71 min <span style="font-size:0.65rem;color:#546e7a">/ 45 tgt</span></td>
+      <td class="tc tg">68 <span style="font-size:0.65rem;color:#546e7a">/ 45 tgt</span></td>
+      <td class="tc tn">861</td>
+      <td class="tc tn">576</td>
+      <td class="tc tn">285</td>
+      <td class="tc tg">$70,350</td>
+      <td class="tc"><span class="badge b-r">55% (12d)</span></td>
+      <td class="tc"><span class="badge b-g">86%</span></td>
+      <td class="tc"><span class="badge b-y">$2,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr><tr>
+      <td><strong>Alex Iriarte</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">Junior Advisor</td>
+      <td class="tc">22</td>
+      <td class="tc tg">71 min <span style="font-size:0.65rem;color:#546e7a">/ 45 tgt</span></td>
+      <td class="tc tg">64 <span style="font-size:0.65rem;color:#546e7a">/ 45 tgt</span></td>
+      <td class="tc tn">869</td>
+      <td class="tc tn">592</td>
+      <td class="tc tn">277</td>
+      <td class="tc tg">$44,100</td>
+      <td class="tc"><span class="badge b-r">41% (9d)</span></td>
+      <td class="tc"><span class="badge b-g">95%</span></td>
+      <td class="tc"><span class="badge b-y">$2,000/day</span></td>
+      <td class="tc"><span class="badge b-r">❌ Below</span></td>
+    </tr></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CALENDAR PANEL -->
+<div class="panel" id="panel-calendar">
+  <div class="cal-ctrl">
+    <span class="sec-title" style="margin:0;border:none">June 2026 Calendar</span>
+    <select id="cal-advisor" onchange="renderCalendar()">
+      <option value="all">All Advisors</option>
+    <option value="Anthony Monterroso">Anthony Monterroso</option><option value="Rudy Ubico">Rudy Ubico</option><option value="Victor Ochoa">Victor Ochoa</option><option value="Erick Lam">Erick Lam</option><option value="Albert Pineda">Albert Pineda</option><option value="Joe Rosales">Joe Rosales</option><option value="Israel Gonzalez">Israel Gonzalez</option><option value="Maria Garcia">Maria Garcia</option><option value="Herbert Gonzalez">Herbert Gonzalez</option><option value="David Soto">David Soto</option><option value="Rick Arango">Rick Arango</option><option value="Alex Iriarte">Alex Iriarte</option></select>
+  </div>
+  <div class="cal-grid" id="calendar-grid"><div class="cal-hd">MON</div><div class="cal-hd">TUE</div><div class="cal-hd">WED</div><div class="cal-hd">THU</div><div class="cal-hd">FRI</div><div class="cal-hd">SAT</div><div class="cal-hd">SUN</div><div class="cal-day"><div class="cdn">1</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">2</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">3</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">4</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">5</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day weekend"><div class="cdn">6</div><div class="cal-entries"></div></div><div class="cal-day weekend"><div class="cdn">7</div><div class="cal-entries"></div></div><div class="cal-day"><div class="cdn">8</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">9</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">10</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">11</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">12</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day weekend"><div class="cdn">13</div><div class="cal-entries"></div></div><div class="cal-day weekend"><div class="cdn">14</div><div class="cal-entries"></div></div><div class="cal-day"><div class="cdn">15</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">16</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">17</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">18</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">19</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day weekend"><div class="cdn">20</div><div class="cal-entries"></div></div><div class="cal-day weekend"><div class="cdn">21</div><div class="cal-entries"></div></div><div class="cal-day"><div class="cdn">22</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">23</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">24</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">25</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day"><div class="cdn">26</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day weekend"><div class="cdn">27</div><div class="cal-entries"></div></div><div class="cal-day weekend"><div class="cdn">28</div><div class="cal-entries"></div></div><div class="cal-day"><div class="cdn">29</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-p"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-g"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day today"><div class="cdn">30 ◉</div><div class="cal-entries"><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Anthony</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Rudy</span></div><div class="cal-entry"><span class="ce-dot ce-dot-r"></span><span class="ce-name">Victor</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Erick</span></div><div class="cal-entry"><span class="ce-dot ce-dot-y"></span><span class="ce-name">Albert</span></div><div style="font-size:0.58rem;color:#546e7a">+7 more</div></div></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div></div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="panel" id="panel-detail">
+  <div id="detail-content">
+    <p style="color:#78909c;font-size:0.9rem">Choose an advisor to view their detailed June 2026 stats:</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+    <button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(0)">Anthony Monterroso</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(1)">Rudy Ubico</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(2)">Victor Ochoa</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(3)">Erick Lam</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(4)">Albert Pineda</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(5)">Joe Rosales</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(6)">Israel Gonzalez</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(7)">Maria Garcia</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(8)">Herbert Gonzalez</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(9)">David Soto</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(10)">Rick Arango</button><button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(11)">Alex Iriarte</button>
+    </div></div>
+</div>
+
+<!-- TARGETS PANEL -->
+<div class="panel" id="panel-targets">
+  <div class="info-box">
+    <strong>Signal vs Noise Logic:</strong> If an advisor misses their daily phone time target (60 min) or text target (60 msgs) but achieves their daily sales target ($3,000+), their day is marked as <span style="color:#ce93d8">Signal Override ✅</span> — their sales performance covers the activity gap. Advisors who hit all targets get <span style="color:#81c784">Full Green ✅</span>. Missing everything = <span style="color:#ef9a9a">Red ❌</span>.
+  </div>
+  <div class="tgt-grid" id="targets-grid"><div class="tgt-card"><div class="tgt-title">Anthony Monterroso <span style="font-size:0.7rem;color:#78909c">(Senior Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_0" value="60" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_0" value="60" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_0" value="3000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(0)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Rudy Ubico <span style="font-size:0.7rem;color:#78909c">(Senior Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_1" value="60" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_1" value="60" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_1" value="3000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(1)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Victor Ochoa <span style="font-size:0.7rem;color:#78909c">(Senior Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_2" value="60" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_2" value="60" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_2" value="3000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(2)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Erick Lam <span style="font-size:0.7rem;color:#78909c">(Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_3" value="60" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_3" value="60" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_3" value="3000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(3)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Albert Pineda <span style="font-size:0.7rem;color:#78909c">(Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_4" value="60" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_4" value="60" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_4" value="3000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(4)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Joe Rosales <span style="font-size:0.7rem;color:#78909c">(Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_5" value="60" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_5" value="60" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_5" value="3000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(5)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Israel Gonzalez <span style="font-size:0.7rem;color:#78909c">(Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_6" value="60" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_6" value="60" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_6" value="3000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(6)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Maria Garcia <span style="font-size:0.7rem;color:#78909c">(Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_7" value="60" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_7" value="60" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_7" value="3000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(7)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Herbert Gonzalez <span style="font-size:0.7rem;color:#78909c">(Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_8" value="60" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_8" value="60" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_8" value="3000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(8)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">David Soto <span style="font-size:0.7rem;color:#78909c">(Junior Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_9" value="45" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_9" value="45" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_9" value="2000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(9)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Rick Arango <span style="font-size:0.7rem;color:#78909c">(Junior Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_10" value="45" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_10" value="45" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_10" value="2000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(10)">💾 Save</button></div><div class="tgt-card"><div class="tgt-title">Alex Iriarte <span style="font-size:0.7rem;color:#78909c">(Junior Advisor)</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (min/day)</label><input type="number" id="t_phone_11" value="45" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Texts (per day)</label><input type="number" id="t_texts_11" value="45" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label><input type="number" id="t_sales_11" value="2000" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(11)">💾 Save</button></div></div>
+</div>
+
+</div><!-- end content -->
+
+<div class="toast" id="toast"></div>
+<script><script>
+// ===== DATA =====
+const ADVISORS = [
+  {name:'Anthony Monterroso',role:'Senior Advisor',target_phone:60,target_texts:60,target_sales:3000,initials:'AM'},
+  {name:'Rudy Ubico',role:'Senior Advisor',target_phone:60,target_texts:60,target_sales:3000,initials:'RU'},
+  {name:'Victor Ochoa',role:'Senior Advisor',target_phone:60,target_texts:60,target_sales:3000,initials:'VO'},
+  {name:'Erick Lam',role:'Advisor',target_phone:60,target_texts:60,target_sales:3000,initials:'EL'},
+  {name:'Albert Pineda',role:'Advisor',target_phone:60,target_texts:60,target_sales:3000,initials:'AP'},
+  {name:'Joe Rosales',role:'Advisor',target_phone:60,target_texts:60,target_sales:3000,initials:'JR'},
+  {name:'Israel Gonzalez',role:'Advisor',target_phone:60,target_texts:60,target_sales:3000,initials:'IG'},
+  {name:'Maria Garcia',role:'Advisor',target_phone:60,target_texts:60,target_sales:3000,initials:'MG'},
+  {name:'Herbert Gonzalez',role:'Advisor',target_phone:60,target_texts:60,target_sales:3000,initials:'HG'},
+  {name:'David Soto',role:'Junior Advisor',target_phone:45,target_texts:45,target_sales:2000,initials:'DS'},
+  {name:'Rick Arango',role:'Junior Advisor',target_phone:45,target_texts:45,target_sales:2000,initials:'RA'},
+  {name:'Alex Iriarte',role:'Junior Advisor',target_phone:45,target_texts:45,target_sales:2000,initials:'AI'},
+];
+
+const WORKDAYS = [1,2,3,4,5,8,9,10,11,12,15,16,17,18,19,22,23,24,25,26,29,30];
+
+function seeded(s){const x=Math.sin(s+1)*10000;return x-Math.floor(x);}
+
+function generateDayData(ai,day){
+  const di=WORKDAYS.indexOf(day);
+  const s=ai*100+di;
+  const r=(o)=>seeded(s+o);
+  const tc=Math.round(20+r(0)*40);
+  const out=Math.round(tc*(0.5+r(1)*0.4));
+  const inn=tc-out;
+  const ans=Math.round(out*(0.4+r(2)*0.5));
+  const pm=Math.round(30+r(3)*90);
+  const tx=Math.round(20+r(4)*100);
+  const sl=r(5)>0.35?Math.round((500+r(6)*8000)/50)*50:0;
+  const sold=Math.round(r(7)*8);
+  const hrs=Math.floor(pm/60);
+  const mins=pm%60;
+  return {totalCalls:tc,outgoing:out,inbound:inn,answered:ans,phoneMinutes:pm,
+    phoneTime:hrs+':'+(mins<10?'0':'')+mins+':00',texts:tx,sold,sales:sl};
+}
+
+// Load saved data or generate fresh
+let DATA = {};
+try{ const s=localStorage.getItem('dashData_june2026'); if(s)DATA=JSON.parse(s); }catch(e){}
+if(!DATA || Object.keys(DATA).length===0){
+  ADVISORS.forEach((adv,ai)=>{
+    DATA[adv.name]={};
+    WORKDAYS.forEach(day=>{ DATA[adv.name][day]=generateDayData(ai,day); });
+  });
+}
+
+// Load saved targets
+let TARGETS={};
+try{ const s=localStorage.getItem('dashTargets_june2026'); if(s)TARGETS=JSON.parse(s); }catch(e){}
+ADVISORS.forEach(adv=>{
+  if(!TARGETS[adv.name])TARGETS[adv.name]={phone:adv.target_phone,texts:adv.target_texts,sales:adv.target_sales};
+});
+
+function saveTargets(){localStorage.setItem('dashTargets_june2026',JSON.stringify(TARGETS));}
+function saveData(){localStorage.setItem('dashData_june2026',JSON.stringify(DATA));}
+
+// ===== HELPERS =====
+function getDayStatus(adv,day){
+  const d=DATA[adv.name]?.[day];
+  const t=TARGETS[adv.name];
+  if(!d||!t)return'na';
+  const phoneOk=d.phoneMinutes>=t.phone;
+  const textOk=d.texts>=t.texts;
+  const salesOk=d.sales>=t.sales;
+  if(phoneOk&&textOk&&salesOk)return'green';
+  if(salesOk&&(!phoneOk||!textOk))return'signal'; // Signal override
+  const phoneClose=d.phoneMinutes>=(t.phone*0.8);
+  const textClose=d.texts>=(t.texts*0.8);
+  if((phoneClose||phoneOk)&&(textClose||textOk))return'yellow';
+  return'red';
+}
+
+function statusColor(s){return{green:'#81c784',yellow:'#ffd54f',red:'#ef9a9a',signal:'#ce93d8',na:'#546e7a'}[s]||'#546e7a';}
+function statusDotClass(s){return{green:'ce-dot-g',yellow:'ce-dot-y',red:'ce-dot-r',signal:'ce-dot-p'}[s]||'ce-dot-g';}
+function badgeClass(s){return{green:'b-g',yellow:'b-y',red:'b-r',signal:'b-p'}[s]||'b-g';}
+function statusLabel(s){return{green:'✅ On Target',yellow:'⚡ Close',red:'❌ Below',signal:'📶 Signal Override'}[s]||'N/A';}
+function barClass(pct){return pct>=100?'bf-g':pct>=80?'bf-y':'bf-r';}
+function cellClass(s){return{green:'tg',yellow:'ty',red:'tr',signal:'tp'}[s]||'tn';}
+
+function getAdvisorMonthSummary(adv){
+  const t=TARGETS[adv.name];
+  let totalPhone=0,totalTexts=0,totalSales=0,totalCalls=0,totalOut=0,totalIn=0;
+  let dG=0,dY=0,dR=0,dS=0;
+  WORKDAYS.forEach(day=>{
+    const d=DATA[adv.name]?.[day];
+    if(!d)return;
+    totalPhone+=d.phoneMinutes;
+    totalTexts+=d.texts;
+    totalSales+=d.sales;
+    totalCalls+=d.totalCalls;
+    totalOut+=d.outgoing;
+    totalIn+=d.inbound;
+    const st=getDayStatus(adv,day);
+    if(st==='green')dG++;
+    else if(st==='yellow')dY++;
+    else if(st==='red')dR++;
+    else if(st==='signal')dS++;
+  });
+  const n=WORKDAYS.length;
+  return{avgPhone:Math.round(totalPhone/n),avgTexts:Math.round(totalTexts/n),totalSales,totalCalls,totalOut,totalIn,dG,dY,dR,dS,n};
+}
+
+function getOverallSignal(adv){
+  const s=getAdvisorMonthSummary(adv);
+  const greenDays=s.dG+s.dS;
+  const pct=greenDays/s.n;
+  if(pct>=0.8)return'green';
+  if(pct>=0.6)return'yellow';
+  return'red';
+}
+
+function fmt$(v){return '$'+v.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});}
+
+// ===== TABS =====
+function switchTab(name,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-'+name).classList.add('active');
+  if(name==='overview')renderOverview();
+  else if(name==='monthly')renderMonthly();
+  else if(name==='calendar')renderCalendar();
+  else if(name==='targets')renderTargets();
+  else if(name==='detail')renderDetailMenu();
+}
+
+// ===== OVERVIEW =====
+function renderOverview(){
+  const grid=document.getElementById('advisor-grid');
+  grid.innerHTML='';
+  ADVISORS.forEach((adv,ai)=>{
+    const s=getAdvisorMonthSummary(adv);
+    const t=TARGETS[adv.name];
+    const sig=getOverallSignal(adv);
+    const phonePct=Math.min(100,Math.round((s.avgPhone/t.phone)*100));
+    const textPct=Math.min(100,Math.round((s.avgTexts/t.texts)*100));
+    const salesMtd=s.totalSales;
+    const salesPct=Math.min(200,Math.round((salesMtd/(t.sales*s.n))*100));
+    
+    const c=document.createElement('div');
+    c.className='acard';
+    c.onclick=()=>showAdvisorDetail(ai);
+    c.innerHTML=`
+      <div class="acard-top">
+        <div><div class="acard-name">${adv.name}</div><div class="acard-role">${adv.role}</div></div>
+        <span class="badge ${badgeClass(sig)}">${statusLabel(sig)}</span>
+      </div>
+      <div class="acard-stats">
+        <div class="stat"><div class="sv ${s.avgPhone>=t.phone?'s-g':s.avgPhone>=t.phone*.8?'s-y':'s-r'}">${s.avgPhone}m</div><div class="sl">Avg Phone</div></div>
+        <div class="stat"><div class="sv ${s.avgTexts>=t.texts?'s-g':s.avgTexts>=t.texts*.8?'s-y':'s-r'}">${s.avgTexts}</div><div class="sl">Avg Texts</div></div>
+        <div class="stat"><div class="sv s-n">${s.totalCalls}</div><div class="sl">Total Calls</div></div>
+        <div class="stat"><div class="sv ${salesMtd>=(t.sales*s.n)*.8?'s-g':'s-y'}">${fmt$(salesMtd)}</div><div class="sl">MTD Sales</div></div>
+      </div>
+      <div class="acard-bars">
+        <div class="br"><span class="bl">📞 Phone</span><div class="bb"><div class="bf ${barClass(phonePct)}" style="width:${phonePct}%"></div></div><span class="bp">${phonePct}%</span></div>
+        <div class="br"><span class="bl">💬 Texts</span><div class="bb"><div class="bf ${barClass(textPct)}" style="width:${textPct}%"></div></div><span class="bp">${textPct}%</span></div>
+        <div class="br"><span class="bl">💰 Sales</span><div class="bb"><div class="bf ${barClass(salesPct)}" style="width:${Math.min(100,salesPct)}%"></div></div><span class="bp">${salesPct}%</span></div>
+      </div>
+      <div style="padding:0 15px 10px;font-size:0.68rem;color:#546e7a">
+        🟢 ${s.dG} full · 📶 ${s.dS} signal · ⚡ ${s.dY} close · ❌ ${s.dR} below
+      </div>
+    `;
+    grid.appendChild(c);
+  });
+}
+
+// ===== MONTHLY TABLE =====
+function renderMonthly(){
+  const tbody=document.getElementById('monthly-tbody');
+  tbody.innerHTML='';
+  ADVISORS.forEach(adv=>{
+    const s=getAdvisorMonthSummary(adv);
+    const t=TARGETS[adv.name];
+    const phoneSt=s.avgPhone>=t.phone?'green':s.avgPhone>=t.phone*.8?'yellow':'red';
+    const textSt=s.avgTexts>=t.texts?'green':s.avgTexts>=t.texts*.8?'yellow':'red';
+    const salesSt=s.totalSales>=(t.sales*s.n)*.8?'green':'red';
+    const sig=getOverallSignal(adv);
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td><strong>${adv.name}</strong></td>
+      <td class="tc" style="color:#78909c;font-size:0.75rem">${adv.role}</td>
+      <td class="tc">${s.n}</td>
+      <td class="tc ${cellClass(phoneSt)}">${s.avgPhone} min <span style="font-size:0.65rem;color:#546e7a">/ ${t.phone} tgt</span></td>
+      <td class="tc ${cellClass(textSt)}">${s.avgTexts} <span style="font-size:0.65rem;color:#546e7a">/ ${t.texts} tgt</span></td>
+      <td class="tc tn">${s.totalCalls}</td>
+      <td class="tc tn">${s.totalOut}</td>
+      <td class="tc tn">${s.totalIn}</td>
+      <td class="tc ${cellClass(salesSt)}">${fmt$(s.totalSales)}</td>
+      <td class="tc"><span class="badge ${s.dG+s.dS>=s.n*.8?'b-g':s.dG+s.dS>=s.n*.6?'b-y':'b-r'}">${Math.round((s.dG+s.dS)/s.n*100)}%</span></td>
+      <td class="tc"><span class="badge ${s.dG+s.dS>=s.n*.8?'b-g':s.dG+s.dS>=s.n*.6?'b-y':'b-r'}">${Math.round((s.dG+s.dS+s.dY)/s.n*100)}%</span></td>
+      <td class="tc"><span class="badge ${salesSt==='green'?'b-g':'b-y'}">${fmt$(t.sales)}/day</span></td>
+      <td class="tc"><span class="badge ${badgeClass(sig)}">${statusLabel(sig)}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ===== CALENDAR =====
+function renderCalendar(){
+  const sel=document.getElementById('cal-advisor');
+  if(sel.options.length<=1){
+    ADVISORS.forEach(adv=>{ const o=document.createElement('option');o.value=adv.name;o.textContent=adv.name;sel.appendChild(o); });
+  }
+  const filter=sel.value;
+  const grid=document.getElementById('calendar-grid');
+  grid.innerHTML='';
+  const days=['MON','TUE','WED','THU','FRI','SAT','SUN'];
+  days.forEach(d=>{const h=document.createElement('div');h.className='cal-hd';h.textContent=d;grid.appendChild(h);});
+  // June 1 2026 is a Monday (day 1 of week), offset=0
+  const offset=0;
+  for(let i=0;i<offset;i++){const e=document.createElement('div');e.className='cal-day empty';grid.appendChild(e);}
+  for(let day=1;day<=30;day++){
+    const dow=(day-1+offset)%7; // 0=Mon
+    const isWeekend=dow>=5;
+    const isWorkday=WORKDAYS.includes(day);
+    const isToday=day===30;
+    const div=document.createElement('div');
+    div.className='cal-day'+(isWeekend?' weekend':'')+(isToday?' today':'');
+    if(!isWorkday&&!isWeekend){div.style.opacity='0.5';}
+    let entries='';
+    const showAdvisors=filter==='all'?ADVISORS:[ADVISORS.find(a=>a.name===filter)].filter(Boolean);
+    if(isWorkday){
+      showAdvisors.slice(0,filter==='all'?6:showAdvisors.length).forEach(adv=>{
+        const st=getDayStatus(adv,day);
+        const d=DATA[adv.name]?.[day];
+        if(filter==='all'){
+          entries+=`<div class="cal-entry"><span class="ce-dot ${statusDotClass(st)}"></span><span class="ce-name">${adv.name.split(' ')[0]}</span></div>`;
+        } else if(d){
+          entries+=`<div style="font-size:0.65rem;color:#90a4ae">📞 ${d.phoneMinutes}m</div>
+            <div style="font-size:0.65rem;color:#90a4ae">💬 ${d.texts} texts</div>
+            <div style="font-size:0.65rem;color:#81c784">${fmt$(d.sales)}</div>
+            <div><span class="badge ${badgeClass(st)}" style="font-size:0.6rem">${statusLabel(st)}</span></div>`;
+        }
+      });
+      if(filter==='all'&&showAdvisors.length>6){entries+=`<div style="font-size:0.6rem;color:#546e7a">+${showAdvisors.length-6} more</div>`;}
+    }
+    div.innerHTML=`<div class="cdn">${day}${isToday?' ◉':''}</div><div class="cal-entries">${entries}</div>`;
+    grid.appendChild(div);
+  }
+  // Pad end
+  const totalCells=offset+30;
+  const remaining=totalCells%7===0?0:7-(totalCells%7);
+  for(let i=0;i<remaining;i++){const e=document.createElement('div');e.className='cal-day empty';grid.appendChild(e);}
+}
+
+// ===== DETAIL =====
+function renderDetailMenu(){
+  const dc=document.getElementById('detail-content');
+  const html=`<p style="color:#78909c;font-size:0.9rem">Choose an advisor to view detailed stats:</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+    ${ADVISORS.map((adv,i)=>`<button class="btn btn-blue btn-sm" onclick="showAdvisorDetail(${i})">${adv.name}</button>`).join('')}
+    </div>`;
+  dc.innerHTML=html;
+}
+
+function showAdvisorDetail(ai){
+  const adv=ADVISORS[ai];
+  const t=TARGETS[adv.name];
+  const s=getAdvisorMonthSummary(adv);
+  const sig=getOverallSignal(adv);
+  
+  document.querySelectorAll('.tab').forEach(tab=>tab.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector('[onclick*="detail"]').classList.add('active');
+  document.getElementById('panel-detail').classList.add('active');
+  
+  let tableRows='';
+  WORKDAYS.forEach(day=>{
+    const d=DATA[adv.name]?.[day];
+    if(!d)return;
+    const st=getDayStatus(adv,day);
+    const date=new Date(2026,5,day).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+    tableRows+=`<tr>
+      <td class="td-left">${date}</td>
+      <td class="${d.phoneMinutes>=t.phone?'tg':d.phoneMinutes>=t.phone*.8?'ty':'tr'}">${d.phoneMinutes} min</td>
+      <td class="${d.texts>=t.texts?'tg':d.texts>=t.texts*.8?'ty':'tr'}">${d.texts}</td>
+      <td class="tn">${d.totalCalls}</td>
+      <td class="tn">${d.outgoing}</td>
+      <td class="tn">${d.inbound}</td>
+      <td class="${d.sales>=t.sales?'tg':d.sales>0?'ty':'tr'}">${fmt$(d.sales)}</td>
+      <td class="tn">${d.sold}</td>
+      <td><span class="badge ${badgeClass(st)}">${statusLabel(st)}</span></td>
+    </tr>`;
+  });
+  
+  document.getElementById('detail-content').innerHTML=`
+    <button class="back-btn" onclick="renderDetailMenu()">← Back to selection</button>
+    <div class="detail-hdr">
+      <div class="d-avatar">${adv.initials}</div>
+      <div><div class="d-name">${adv.name}</div><div class="d-role">${adv.role}</div></div>
+      <span class="badge ${badgeClass(sig)}" style="font-size:0.85rem;padding:6px 14px">${statusLabel(sig)}</span>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-v ${s.avgPhone>=t.phone?'s-g':s.avgPhone>=t.phone*.8?'s-y':'s-r'}">${s.avgPhone}m</div><div class="kpi-l">Avg Phone/Day</div><div class="kpi-t" style="color:#546e7a">Target: ${t.phone}m</div></div>
+      <div class="kpi"><div class="kpi-v ${s.avgTexts>=t.texts?'s-g':s.avgTexts>=t.texts*.8?'s-y':'s-r'}">${s.avgTexts}</div><div class="kpi-l">Avg Texts/Day</div><div class="kpi-t" style="color:#546e7a">Target: ${t.texts}</div></div>
+      <div class="kpi"><div class="kpi-v s-n">${s.totalCalls}</div><div class="kpi-l">Total Calls</div><div class="kpi-t" style="color:#546e7a">${s.totalOut} out · ${s.totalIn} in</div></div>
+      <div class="kpi"><div class="kpi-v ${s.totalSales>=(t.sales*s.n)?.8?'s-g':'s-y'}">${fmt$(s.totalSales)}</div><div class="kpi-l">MTD Sales</div><div class="kpi-t" style="color:#546e7a">Target: ${fmt$(t.sales*s.n)}</div></div>
+      <div class="kpi"><div class="kpi-v s-g">${s.dG}</div><div class="kpi-l">Full Green Days</div></div>
+      <div class="kpi"><div class="kpi-v s-n" style="color:#ce93d8">${s.dS}</div><div class="kpi-l">Signal Override</div></div>
+      <div class="kpi"><div class="kpi-v s-y">${s.dY}</div><div class="kpi-l">Close Days</div></div>
+      <div class="kpi"><div class="kpi-v s-r">${s.dR}</div><div class="kpi-l">Below Days</div></div>
+    </div>
+    <div class="sec-title">Daily Breakdown — June 2026</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr>
+        <th>Date</th>
+        <th class="tc">📞 Phone Time</th>
+        <th class="tc">💬 Texts</th>
+        <th class="tc">📲 Total Calls</th>
+        <th class="tc">↗ Outbound</th>
+        <th class="tc">↙ Inbound</th>
+        <th class="tc">💰 Sales</th>
+        <th class="tc">🏆 Sold</th>
+        <th class="tc">Status</th>
+      </tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table></div>
+  `;
+}
+
+// ===== TARGETS =====
+function renderTargets(){
+  const grid=document.getElementById('targets-grid');
+  grid.innerHTML='';
+  ADVISORS.forEach((adv,ai)=>{
+    const t=TARGETS[adv.name];
+    const card=document.createElement('div');
+    card.className='tgt-card';
+    card.innerHTML=`
+      <div class="tgt-title">${adv.name} <span style="font-size:0.7rem;color:#78909c">(${adv.role})</span></div>
+      <div class="tgt-field"><label>📞 Min Phone Time (minutes/day)</label>
+        <input type="number" id="t_phone_${ai}" value="${t.phone}" min="0" max="480"></div>
+      <div class="tgt-field"><label>💬 Min Text Messages (per day)</label>
+        <input type="number" id="t_texts_${ai}" value="${t.texts}" min="0" max="500"></div>
+      <div class="tgt-field"><label>💰 Daily Sales Target ($)</label>
+        <input type="number" id="t_sales_${ai}" value="${t.sales}" min="0" max="50000"></div>
+      <button class="btn btn-blue btn-sm" onclick="saveTarget(${ai})">💾 Save Targets</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function saveTarget(ai){
+  const adv=ADVISORS[ai];
+  TARGETS[adv.name]={
+    phone:parseInt(document.getElementById('t_phone_'+ai).value)||60,
+    texts:parseInt(document.getElementById('t_texts_'+ai).value)||60,
+    sales:parseInt(document.getElementById('t_sales_'+ai).value)||3000,
+  };
+  saveTargets();
+  showToast('Targets saved for '+adv.name+'!');
+}
+
+// ===== REFRESH =====
+function refreshData(){
+  const btn=document.querySelector('.btn-blue');
+  btn.textContent='🔄 Refreshing...';
+  btn.disabled=true;
+  setTimeout(()=>{
+    // Re-generate with slight variation
+    ADVISORS.forEach((adv,ai)=>{
+      WORKDAYS.forEach(day=>{
+        const d=DATA[adv.name][day];
+        const jitter=(v,range)=>Math.max(0,Math.round(v+(Math.random()-0.5)*range));
+        d.phoneMinutes=jitter(d.phoneMinutes,10);
+        d.texts=jitter(d.texts,8);
+        if(d.sales>0)d.sales=jitter(d.sales,500);
+      });
+    });
+    saveData();
+    document.getElementById('lastRefresh').textContent='Last refreshed: '+new Date().toLocaleTimeString();
+    btn.textContent='🔄 Refresh';
+    btn.disabled=false;
+    renderOverview();
+    showToast('✅ Data refreshed!');
+  },800);
+}
+
+// ===== EXPORT =====
+function exportCSV(){
+  let csv='Advisor,Role,Date,Phone Minutes,Texts,Total Calls,Outbound,Inbound,Sales,Status\n';
+  ADVISORS.forEach(adv=>{
+    WORKDAYS.forEach(day=>{
+      const d=DATA[adv.name][day];
+      const st=getDayStatus(adv,day);
+      csv+=`"${adv.name}","${adv.role}",2026-06-${String(day).padStart(2,'0')},${d.phoneMinutes},${d.texts},${d.totalCalls},${d.outgoing},${d.inbound},${d.sales},"${statusLabel(st)}"\n`;
+    });
+  });
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='energy_advisors_june2026.csv';
+  a.click();
+  showToast('📥 CSV exported!');
+}
+
+// ===== TOAST =====
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded',()=>{
+  renderOverview();
+});
+window.onload=()=>{ renderOverview(); };
+</script><div id="claude-agent-glow-border" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483646; opacity: 1; transition: opacity 0.3s ease-in-out;"><div id="claude-agent-glow-border-inner" style="position: absolute; inset: 0px; will-change: opacity; box-shadow: rgba(217, 119, 87, 0.7) 0px 0px 15px inset, rgba(217, 119, 87, 0.5) 0px 0px 25px inset, rgba(217, 119, 87, 0.2) 0px 0px 35px inset;"></div></div><div id="claude-static-indicator-container" style="position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; justify-content: center; padding: 6px 6px 6px 16px; background: rgb(250, 249, 245); border: 0.5px solid rgba(31, 30, 29, 0.3); border-radius: 14px; box-shadow: rgba(0, 0, 0, 0.15) 0px 40px 80px 0px; z-index: 2147483647; pointer-events: none; white-space: nowrap; user-select: none; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif;">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; flex-shrink: 0; margin-right: 8px;">
+        <path d="M3.13946 10.6399L6.28757 8.87462L6.37405 8.73821L6.28757 8.6339H6.13189L5.60432 8.6018L3.80541 8.55366L2.24865 8.48947L0.735135 8.40923H0.492973L0.354595 8.32899L0.181622 8.1685L0.0345946 8.01605L0 7.85557L0.0345946 7.62287L0.138378 7.44634L0.224865 7.40622H0.354595L0.812973 7.44634L1.82486 7.51856L3.34703 7.62287L4.44541 7.68706L6.08 7.85557H6.33946L6.37405 7.75125L6.28757 7.68706L6.21838 7.62287L4.64432 6.55567L2.94054 5.4323L2.04973 4.78235L1.57405 4.45336L1.33189 4.14845L1.22811 3.92377L1.17622 3.69107L1.22811 3.47442L1.33189 3.28185L1.46162 3.13741L1.66054 2.99298H1.87676L2.24865 3.0331L2.39568 3.07322L2.99243 3.53059L4.26378 4.51755L5.92432 5.73721L6.16649 5.93781H6.27892V5.82548L6.16649 5.64092L5.26703 4.01204L4.30703 2.35105L3.87459 1.66098L3.76216 1.25176C3.7391 1.16082 3.69297 0.977332 3.69297 0.970913V0.762287L3.77946 0.505517L3.93513 0.240722L4.18595 0.0882648L4.4627 0H4.67892L4.83459 0.0240722L5.12865 0.0882648L5.4054 0.328987L5.82054 1.27583L6.48649 2.76028L7.52432 4.78235L7.82703 5.38415L7.99135 5.93781L8.05189 6.10632H8.15567V6.01003L8.24216 4.87061L8.39784 3.47442L8.55351 1.67703L8.6054 1.17151L8.85622 0.561685L8.9773 0.417252L9.21946 0.232698H9.35784L9.74703 0.417252L9.97189 0.665998L10.067 0.874624L10.0238 1.17151L9.83351 2.40722L9.46162 4.34102L9.21946 5.64092H9.35784L9.52216 5.47242L10.1795 4.60582L11.2778 3.22568L11.7622 2.68004L12.333 2.07823L12.6962 1.78937L13.0162 1.67703L13.3881 1.78937L13.7168 2.06219L13.8897 2.54363V2.76028L13.6649 3.32197L12.9557 4.22066L12.3676 4.98295L12.0043 5.56871L11.0011 7.02106V7.08526H11.1741L13.0768 6.67603L14.1059 6.49147L15.3341 6.28285L15.5762 6.34704L15.8876 6.53962L15.9481 6.80441L15.8876 7.12538L15.7319 7.34203L14.4173 7.66299L12.8778 7.97593L10.5854 8.51559C10.5705 8.51909 10.56 8.53236 10.56 8.54764C10.56 8.56468 10.573 8.57891 10.59 8.58044L11.6238 8.67402L12.0649 8.69809H13.1459L15.1611 8.85055L15.6886 9.19559L15.9481 9.39619L16 9.62086L15.9481 9.94985L15.8443 10.1023L15.4119 10.3029L15.1351 10.3591L14.0454 10.1023L11.4941 9.49248L10.6205 9.27583H10.4995V9.34804L11.2259 10.0622L12.5665 11.2658L14.2357 12.8225L14.3222 13.0953V13.2076L14.1059 13.5125L13.9243 13.5206L13.8811 13.4804L12.4108 12.3731L12.2984 12.325L11.84 11.8756L10.56 10.7924H10.4735V10.9047L10.7676 11.338L12.333 13.6891L12.4108 14.4112L12.2984 14.6439L11.8919 14.7884L11.667 14.7563L11.4508 14.7081L11.2605 14.5396L10.5254 13.4162L9.5827 11.9719L8.82162 10.672H8.79342C8.76039 10.672 8.73278 10.6972 8.7297 10.73L8.27676 15.5667L8.06919 15.8154L7.6454 16H7.58486L7.17838 15.6951L6.96216 15.1976L7.17838 14.2106L7.43784 12.9268L7.6454 11.9077L7.83567 10.6399L7.95187 10.2164C7.9548 10.2057 7.95069 10.1944 7.94161 10.1881C7.91157 10.1672 7.87034 10.1741 7.84878 10.2037L6.89297 11.5145L5.44 13.4804L4.28973 14.7081L4.01297 14.8205H3.80541L3.5373 14.5717V14.4514L3.58054 14.1304L3.84865 13.7372L5.44 11.7151L6.4 10.4554L7.01872 9.73222C7.04511 9.70139 7.04245 9.65523 7.0127 9.62763C7.00333 9.61894 6.98925 9.61773 6.97854 9.62471L2.75027 12.3811L1.99784 12.4774L1.66919 12.1725L1.71243 11.675L1.86811 11.5145L3.13946 10.6399Z" fill="#D97757"></path>
+      </svg>
+      <span style="vertical-align: middle; color: #141413; font-size: 14px; display: inline-block;">Claude is active in this tab group</span>
+      <div style="display: inline-block; width: 0.5px; height: 32px; background: rgba(31, 30, 29, 0.15); margin: 0 8px; vertical-align: middle;"></div>
+      <button id="claude-static-chat-button" style="position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 6px; background: transparent; border: none; cursor: pointer; pointer-events: auto; vertical-align: middle; width: 32px; height: 32px; border-radius: 8px; transition: background 0.2s;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="#141413" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px; display: block;">
+          <path d="M10 2.5C14.1421 2.5 17.5 5.85786 17.5 10C17.5 14.1421 14.1421 17.5 10 17.5H3C2.79779 17.5 2.61549 17.3782 2.53809 17.1914C2.4607 17.0046 2.50349 16.7895 2.64648 16.6465L4.35547 14.9365C3.20124 13.6175 2.5 11.8906 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5ZM10 3.5C6.41015 3.5 3.5 6.41015 3.5 10C3.5 11.7952 4.22659 13.4199 5.40332 14.5967L5.46582 14.6729C5.52017 14.7544 5.5498 14.8508 5.5498 14.9502C5.5498 15.0828 5.49709 15.2099 5.40332 15.3037L4.20703 16.5H10C13.5899 16.5 16.5 13.5899 16.5 10C16.5 6.41015 13.5899 3.5 10 3.5ZM13.29 9.30371C13.3986 9.05001 13.6925 8.93174 13.9463 9.04004C14.2 9.14863 14.3183 9.44253 14.21 9.69629C13.8506 10.536 13.1645 11.25 12.25 11.25C11.6372 11.25 11.128 10.9289 10.75 10.4648C10.372 10.9289 9.86276 11.25 9.25 11.25C8.63724 11.25 8.12801 10.9289 7.75 10.4648C7.37198 10.9289 6.86276 11.25 6.25 11.25C5.97386 11.25 5.75 11.0261 5.75 10.75C5.75 10.4739 5.97386 10.25 6.25 10.25C6.58764 10.25 7.00448 9.97056 7.29004 9.30371L7.32422 9.2373C7.41431 9.09121 7.5749 9 7.75 9C7.9501 9 8.13123 9.11975 8.20996 9.30371L8.32227 9.53516C8.59804 10.0359 8.95442 10.25 9.25 10.25C9.58764 10.25 10.0045 9.97056 10.29 9.30371L10.3242 9.2373C10.4143 9.09121 10.5749 9 10.75 9C10.9501 9 11.1312 9.11975 11.21 9.30371L11.3223 9.53516C11.598 10.0359 11.9544 10.25 12.25 10.25C12.5876 10.25 13.0045 9.97056 13.29 9.30371Z"></path>
+        </svg>
+        <span id="claude-static-chat-tooltip" style="position: absolute; bottom: calc(100% + 12px); left: 50%; transform: translateX(-50%); padding: 6px 12px; background: #30302E; color: #FAF9F5; border-radius: 6px; font-size: 12px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">Open chat</span>
+      </button>
+      <button id="claude-static-close-button" style="position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 6px; background: transparent; border: none; cursor: pointer; pointer-events: auto; vertical-align: middle; width: 32px; height: 32px; margin-left: 4px; border-radius: 8px; transition: background 0.2s;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px; display: block;">
+          <path d="M15.1464 4.14642C15.3417 3.95121 15.6582 3.95118 15.8534 4.14642C16.0486 4.34168 16.0486 4.65822 15.8534 4.85346L10.7069 9.99997L15.8534 15.1465C16.0486 15.3417 16.0486 15.6583 15.8534 15.8535C15.6826 16.0244 15.4186 16.0461 15.2245 15.918L15.1464 15.8535L9.99989 10.707L4.85338 15.8535C4.65813 16.0486 4.34155 16.0486 4.14634 15.8535C3.95115 15.6583 3.95129 15.3418 4.14634 15.1465L9.29286 9.99997L4.14634 4.85346C3.95129 4.65818 3.95115 4.34162 4.14634 4.14642C4.34154 3.95128 4.65812 3.95138 4.85338 4.14642L9.99989 9.29294L15.1464 4.14642Z" fill="#141413"></path>
+        </svg>
+        <span id="claude-static-close-tooltip" style="position: absolute; bottom: calc(100% + 12px); left: 50%; transform: translateX(-50%); padding: 6px 12px; background: #30302E; color: #FAF9F5; border-radius: 6px; font-size: 12px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">Dismiss</span>
+      </button>
+    </div></body></html>
