@@ -153,8 +153,6 @@ button{font-family:inherit;cursor:pointer}
 .q-total .l{font-family:var(--disp);font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .q-total .l small{display:block;font-family:var(--body);font-size:10.5px;color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0}
 .q-total .v{font-family:var(--mono);font-size:28px;font-weight:600}
-.q-zelle{padding:12px 20px;background:#F6F1FC;color:#4B1D8F;font-size:13.5px;display:flex;justify-content:space-between;align-items:center}
-.q-zelle b{font-family:var(--mono);font-size:17px}
 .q-note{padding:10px 20px 16px;font-size:11.5px;color:var(--muted)}
 
 /* trust */
@@ -471,7 +469,6 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
     <div id="qPending" style="display:none;background:#FFF6E5;border-top:2px solid #E8A13D;padding:13px 20px;font-size:13px;color:#7A5200;line-height:1.55">&#9888;&#65039; <b>Price subject to change.</b> This quote was prepared without a confirmed panel picture / exact charger location &amp; distance. Final pricing can change — even after approving this quote — and is easily confirmed by your Energy Advisor right after approval with a quick panel photo or on-site check.</div>
     <div class="q-total"><div class="l">Final Price<small id="qTermsLine">Parts &amp; Labor · Payment due on installation completion</small></div><div class="v" id="qTotal"></div></div>
     <div id="qLaborRow" style="display:none;padding:9px 20px;border-top:1px solid var(--line);font-size:13px;display:none;justify-content:space-between;align-items:center"><span>Parts &amp; Labor only (without permit)</span><b style="font-family:var(--mono);font-size:15px" id="qLaborVal"></b></div>
-    <div class="q-zelle" id="qZelleRow" style="display:none"><span>&#9889; Pay by Zelle and save the card fee:</span><b id="qZelle"></b></div>
     <div class="q-note">One-year warranty included. Price reflects installation as detailed in this proposal — any change to the final charger location must be discussed with your Energy Advisor.</div>
   </div>
 </section>
@@ -656,7 +653,6 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
   "loadNote":"",
   "items":["Single-Family Home Installation","Wiring & Conduit — back-to-back/side-to-side","Special Breaker: Zinsco 50A","One-year Warranty"],
   "price":"$670.00",
-  "zellePrice":"$647.00",
   "taxLine":"Parts & Labor · Payment due on installation completion",
   "permitTotal":"",
   "priceLabor":"",
@@ -954,8 +950,6 @@ function render(){
   if(hasPermit && (C.priceLabor||'').trim()){
     $('qLaborRow').style.display='flex'; $('qLaborVal').textContent=money(C.priceLabor);
   } else $('qLaborRow').style.display='none';
-  const zp=(C.zellePrice||'').trim();
-  if(zp && !/^(blank|none|n\/a|no|-+)$/i.test(zp)){ $('qZelleRow').style.display='flex'; $('qZelle').textContent=money(zp); } else $('qZelleRow').style.display='none';
   $('sPrice').textContent=money(C.price);
 
   $('aAdv').textContent=C.advisor;
@@ -1382,7 +1376,7 @@ $('edReset').onclick=()=>{
     loadSolution:'', subpanel:'', subpanelRating:'', subpanelLoad:'',
     practicalLoad:'', practicalDocs:[],
     items:[], loadRows:[], photos:[],
-    price:'', permitTotal:'', priceLabor:'', zellePrice:'',
+    price:'', permitTotal:'', priceLabor:'',
     taxLine:'Parts & Labor · Payment due on installation completion',
     acceptUrl:'', signUrl:'', signRole:'', loadNote:'',
     ...keep
