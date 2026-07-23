@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en"><head><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/src/scripts/content/location-spoofing.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your EV Charging Installation — Faraday Electric</title>
@@ -104,11 +104,6 @@ button{font-family:inherit;cursor:pointer}
 .gcard.tech .v{color:#2B62B5}
 .gcard.warn{border-color:#F0DCB4;background:#FFF8EC}
 .gcard.warn .v{color:#B7791F}
-.load-detail{margin-top:18px}
-.load-detail summary{cursor:pointer;font-weight:600;font-size:13.5px;color:var(--muted)}
-.load-detail table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
-.load-detail td{padding:6px 8px;border-bottom:1px solid var(--line)}
-.load-detail td:last-child{text-align:right;font-family:var(--mono);font-size:12px}
 
 /* photos */
 .photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:26px}
@@ -157,8 +152,6 @@ button{font-family:inherit;cursor:pointer}
 .q-total .l{font-family:var(--disp);font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .q-total .l small{display:block;font-family:var(--body);font-size:10.5px;color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0}
 .q-total .v{font-family:var(--mono);font-size:28px;font-weight:600}
-.q-zelle{padding:12px 20px;background:#F6F1FC;color:#4B1D8F;font-size:13.5px;display:flex;justify-content:space-between;align-items:center}
-.q-zelle b{font-family:var(--mono);font-size:17px}
 .q-note{padding:10px 20px 16px;font-size:11.5px;color:var(--muted)}
 
 /* trust */
@@ -255,10 +248,10 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 .btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
 </style>
 </head>
-<body>
+<body data-client="1">
 
-<div id="chargebar"><div class="fill" style="width: 0%;"></div></div>
-<div id="chargepct">0%</div>
+<div id="chargebar"><div class="fill" style="width: 0.623701%;"></div></div>
+<div id="chargepct">1%</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -448,15 +441,6 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
     </div>
     <div class="badges">
       <div id="loadBadges"><div class="badge "><span class="ck">✓</span> No panel upgrade needed</div><div class="badge "><span class="ck">✓</span> No subpanel needed</div><div class="badge "><span class="ck">✓</span> Dedicated circuit, to code (NEC 625)</div></div>
-      <div id="practicalDocWrap" style="display:none;margin-top:12px">
-        <button id="practicalDocBtn" style="display:flex;gap:12px;align-items:center;width:100%;background:#fff;border:1.5px solid #C8D8F0;border-radius:10px;padding:10px 12px;cursor:zoom-in;text-align:left">
-          <img id="practicalDocThumb" style="width:64px;height:48px;object-fit:cover;border-radius:5px" alt="Practical load worksheet">
-          <span style="font-size:13px;font-weight:600;color:#1D4373"><span id="practicalDocLabel">View your practical load worksheet</span><br><span style="font-weight:400;font-size:11.5px;color:#6E6E6A">NEC 220.87 · based on your 12-month utility data</span></span>
-        </button>
-      </div>
-      <details class="load-detail"><summary>See the full load calculation</summary>
-        <table id="loadTable"><tbody><tr><td>General lighting load (2,749 sqft × 3 VA)</td><td>8,247 VA</td></tr><tr><td>Small appliance branch circuits (11)</td><td>16,500 VA</td></tr><tr><td>240V appliance circuit (50A)</td><td>9,600 VA</td></tr><tr><td>Microwave / disposal / dishwasher / washer</td><td>5,000 VA</td></tr><tr><td>Oven + range (40A each)</td><td>15,360 VA</td></tr><tr><td>Dryer (30A)</td><td>5,760 VA</td></tr><tr><td>Proposed EVSE Level 2 (50A @ 40A)</td><td>9,600 VA</td></tr><tr><td>Subtotal (A)</td><td>70,067 VA</td></tr><tr><td>After demand factors (B)</td><td>34,027 VA</td></tr><tr><td>A/C load (50A)</td><td>9,600 VA</td></tr><tr><td>Total D = (B)+(C)</td><td>43,627 VA → 182 A</td></tr></tbody></table>
-      </details>
     </div>
   </div>
 </section>
@@ -475,14 +459,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
       <li>If the space isn't cleared on installation day, a re-schedule and additional fee may apply.</li>
     </ul>
   </div>
-  <div class="doc-card" id="sowDocCard" style="display:none">
-    <div class="doc-stack"><img id="sowDocCover" alt="Scope of Work document"></div>
-    <div class="doc-info">
-      <h4>The complete Scope of Work</h4>
-      <p id="sowDocSub">Every detail of your installation, documented — load calculation, line diagram, code references, and renderings.</p>
-      <button class="btn btn-dark" id="sowDocBtn">📄 View the full document</button>
-    </div>
-  </div>
+
 </section>
 
 <!-- PRICING -->
@@ -492,9 +469,9 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
   <div class="quote-card">
     <div class="q-head"><div class="t">Your Installation</div><div class="pn" id="qProj">CA-0626246</div></div>
     <div class="q-items" id="qItems"><div class="q-item"><span>Single-Family Home Installation</span><span class="inc">INCLUDED</span></div><div class="q-item"><span>Wiring &amp; Conduit — back-to-back/side-to-side</span><span class="inc">INCLUDED</span></div><div class="q-item"><span>Special Breaker: Zinsco 50A</span><span class="inc">INCLUDED</span></div><div class="q-item"><span>One-year Warranty</span><span class="inc">INCLUDED</span></div></div>
+    <div id="qPending" style="display:none;background:#FFF6E5;border-top:2px solid #E8A13D;padding:13px 20px;font-size:13px;color:#7A5200;line-height:1.55">⚠️ <b>Price subject to change.</b> This quote was prepared without a confirmed panel picture / exact charger location &amp; distance. Final pricing can change — even after approving this quote — and is easily confirmed by your Energy Advisor right after approval with a quick panel photo or on-site check.</div>
     <div class="q-total"><div class="l">Final Price<small id="qTermsLine">Parts &amp; Labor · Payment due on installation completion</small></div><div class="v" id="qTotal">$670.00</div></div>
     <div id="qLaborRow" style="display:none;padding:9px 20px;border-top:1px solid var(--line);font-size:13px;display:none;justify-content:space-between;align-items:center"><span>Parts &amp; Labor only (without permit)</span><b style="font-family:var(--mono);font-size:15px" id="qLaborVal"></b></div>
-    <div class="q-zelle" id="qZelleRow" style="display: flex;"><span>⚡ Pay by Zelle and save the card fee:</span><b id="qZelle">$647.00</b></div>
     <div class="q-note">One-year warranty included. Price reflects installation as detailed in this proposal — any change to the final charger location must be discussed with your Energy Advisor.</div>
   </div>
 </section>
@@ -508,6 +485,8 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
     <div class="tcard"><div class="ic">🛡</div><h4>$2M Insured</h4><p>Commercial general liability ($1M per occurrence / $2M aggregate), $25,000 contractor's bond, and workers' compensation coverage.</p></div>
     <div class="tcard"><div class="ic">⚡</div><h4>EV Specialists</h4><p>EV charging installations are our specialty — done to the current National Electrical Code (Article 625), permitted and inspected when required.</p></div>
     <div class="tcard"><div class="ic">💰</div><h4>Warranty Included</h4><p>Every installation includes a one-year workmanship warranty. Extended coverage available — ask your Energy Advisor.</p></div>
+    <div class="tcard"><div class="ic">🏆</div><h4>Tesla &amp; ChargePoint Certified</h4><p>Certified installer for both Tesla and ChargePoint — trained, vetted and approved by the manufacturers themselves.</p></div>
+    <div class="tcard"><div class="ic">🚀</div><h4>8,000+ Chargers Installed</h4><p>Installing EV chargers since 2017 — more than 8,000 chargers delivered for homes and businesses.</p></div>
   </div>
 </section>
 
@@ -590,28 +569,27 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
 <!-- EDITOR (advisors only — open the page with #edit) -->
 <button id="editFab" title="Edit proposal" style="display: none;">✎</button>
 <div id="editPanel" class=""><div class="ed-card">
-  <h3>Personalize this proposal <span style="font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:400">v2.1</span></h3>
+  <h3>Personalize this proposal <span style="font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:400">v2.3</span></h3>
+  <div style="background:#FBEDEC;border:2px solid var(--red);border-radius:10px;padding:14px 16px;margin:6px 0 14px">
+    <div style="font-family:var(--disp);font-size:17px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.03em">⚠️ Review before you publish</div>
+    <div style="font-size:13px;color:#7A1610;margin-top:6px;font-weight:600">Always check each of these by hand for every client before publishing:</div>
+    <ul style="margin:8px 0 0 18px;font-size:13px;color:#7A1610;line-height:1.7">
+      <li><b>Final price, permit total &amp; Parts/Labor</b> — confirm the dollar amounts.</li>
+      <li><b>Panel load situation</b> — set the dropdown (OK / load management / practical / panel upgrade).</li>
+      <li><b>Subpanel situation</b> — set the dropdown and the subpanel rating/load if used.</li>
+      <li><b>Panel rating &amp; calculated load</b> — verify against the load calc.</li>
+      <li><b>Photos</b> — add the satellite view, panel pictures &amp; product renderings, and annotate them.</li>
+      <li><b>Charger &amp; car model</b> — confirm the exact model (brand matters).</li>
+      <li><b>Client name, address, phone, email &amp; project #</b> — double-check spelling.</li>
+      <li><b>CRM Accept link</b> — paste the client's accept URL so the button works.</li>
+    </ul>
+  </div>
   <div class="hint">Fill the client's details, then <b>Save client copy</b> — you'll get a personalized HTML file to host or send. Clients never see this panel (it only appears when the address ends in <span class="mono">#edit</span>).</div>
-  <div class="ed-f" style="background:#FBEDEC;border:1.5px dashed var(--red);border-radius:10px;padding:12px;margin-bottom:14px">
-    <label style="color:var(--red)">⚡ Auto-fill from Scope of Work PDF</label>
-    <input type="file" accept="application/pdf" id="edSow">
-    <div class="hint" style="margin:6px 0 0">Upload the SOW PDF and I'll extract the customer, project, panel, breaker, load and price details automatically — and optionally attach the full document for the client to view. Always review the fields before saving.</div>
-    <button class="btn btn-ghost" id="edSowClear" style="margin-top:6px;padding:6px 11px;font-size:11.5px">Remove attached SOW document</button>
-  </div>
-  <div class="ed-f" style="background:#EEF3FB;border:1.5px dashed #2B62B5;border-radius:10px;padding:12px;margin-bottom:14px">
-    <label style="color:#2B62B5">📊 Load Calculation only (no full SOW?)</label>
-    <input type="file" accept="application/pdf,image/*,.xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="edLoadCalc">
-    <div class="hint" style="margin:6px 0 0">Upload just the EVSE Load Calculation Worksheet — Excel (.xlsx), PDF, or photo. I'll pull the panel rating, calculated load, the line-item breakdown, and attach the worksheet. Use this when you don't have the full Scope of Work PDF.</div>
-  </div>
-  <div class="ed-grid" id="edFields"><div class="ed-f"><label>Hero title — wrap the accent words in *asterisks*</label><input data-k="heroTitle" value="The best charging station in town is about to be *your home*."></div><div class="ed-f"><label>Hero subtitle (blank = auto benefits line)</label><input data-k="heroSub" value=""></div><div class="ed-f"><label>Customer full name</label><input data-k="customerName" value="Jim Grandy"></div><div class="ed-f"><label>First name</label><input data-k="firstName" value="Jim"></div><div class="ed-f"><label>Installation address</label><input data-k="address" value="24831 Buckboard Ln, Laguna Hills, CA 92653"></div><div class="ed-f"><label>Customer email</label><input data-k="email" value="jgrandy@cullinsgrandylaw.com"></div><div class="ed-f"><label>Customer phone</label><input data-k="phone" value="949.697.2199"></div><div class="ed-f"><label>Project number</label><input data-k="projectNo" value="CA-0626246"></div><div class="ed-f"><label>Proposal date</label><input data-k="date" value="Monday, June 8th, 2026"></div><div class="ed-f"><label>Energy advisor</label><input data-k="advisor" value="Rudy Ubico"></div><div class="ed-f"><label>Advisor phone</label><input data-k="advisorPhone" value="(866) 860-8420"></div><div class="ed-f"><label>Advisor email</label><input data-k="advisorEmail" value="info@faradayelectric-ev.com"></div><div class="ed-f"><label>Car model / EV (any brand)</label><input data-k="carModel" value="Tesla Vehicle"></div><div class="ed-f"><label>EV charger model — any brand, shown At a Glance (e.g. ChargePoint HomeFlex, Wallbox Pulsar, Tesla Wall Connector)</label><input data-k="charger" value="Tesla Wall Connector"></div><div class="ed-f"><label>Breaker amps (number)</label><input data-k="breakerAmps" value="50"></div><div class="ed-f"><label>Constant draw amps</label><input data-k="drawAmps" value="40"></div><div class="ed-f"><label>Panel description</label><input data-k="panelDesc" value="200amp Zinsco Main Panel (outside garage)"></div><div class="ed-f"><label>Panel rating (A)</label><input data-k="panelRating" value="200"></div><div class="ed-f"><label>Calculated load (A)</label><input data-k="calcLoad" value="182"></div><div class="ed-f"><label>Wire / conduit run</label><input data-k="wireRun" value="&lt;5 ft of ¾&quot; EMT conduit · #6 THHN copper + #10 ground"></div><div class="ed-f"><label>Charger location</label><input data-k="locationDesc" value="Inside the garage, on the same wall directly behind the main panel"></div><div class="ed-f"><label>Site note — sentence under 'Exactly where it goes' (blank = auto from data)</label><input data-k="siteNote" value=""></div><div class="ed-f"><label>Panel load situation</label><select data-k="loadSolution"><option value="" selected="">Auto (OK if load ≤ rating)</option><option value="ok">Panel OK — no upgrade needed</option><option value="practical">Over capacity on paper — practical load per NEC 220.87 (12-mo utility bills)</option><option value="schedule">Over capacity — night charging schedules (no permit)</option><option value="dcc">Over capacity — DCC Load Management</option><option value="sak">Over capacity — SAK Load Management</option><option value="tesla">Over capacity — Tesla Remote Meter</option><option value="simpleswitch">Over capacity — simpleSwitch EVEMS (48A)</option><option value="upgrade">Panel Upgrade — included in project</option></select></div><div class="ed-f"><label>Subpanel situation</label><select data-k="subpanel"><option value="" selected="">No subpanel needed</option><option value="required">Subpanel required — no breaker space (capacity OK)</option><option value="distance">Use existing subpanel — closer to charger (distance/convenience)</option><option value="addon">Subpanel available as optional add-on</option></select></div><div class="ed-f"><label>Subpanel rating (A) — enables subpanel load calc</label><input data-k="subpanelRating" value=""></div><div class="ed-f"><label>Subpanel calculated load (A)</label><input data-k="subpanelLoad" value=""></div><div class="ed-f"><label>Practical load result (A) — NEC 220.87</label><input data-k="practicalLoad" value=""></div><div class="ed-f"><label>Extra load-management note (optional)</label><input data-k="loadNote" value=""></div><div class="ed-f"><label>Final price — grand total (e.g. $954.20)</label><input data-k="price" value="$670.00"></div><div class="ed-f"><label>Permit total (blank = no permit, e.g. $244.90)</label><input data-k="permitTotal" value=""></div><div class="ed-f"><label>Parts &amp; Labor only price (shown when permit present)</label><input data-k="priceLabor" value=""></div><div class="ed-f"><label>Zelle price (blank = hide)</label><input data-k="zellePrice" value="$647.00"></div><div class="ed-f"><label>Price subtitle line</label><input data-k="taxLine" value="Parts &amp; Labor · Payment due on installation completion"></div><div class="ed-f"><label>CRM quote Accept link (client-specific URL)</label><input data-k="acceptUrl" value=""></div><div class="ed-f"><label>E-signature link — Dropbox Sign/HelloSign or DocuSign URL, or type: email</label><input data-k="signUrl" value=""></div><div class="ed-f"><label>Prefill role name (DocuSign PowerForms only, optional)</label><input data-k="signRole" value=""></div></div>
-  <div class="ed-f"><label>Quote line items (one per line)</label><textarea id="edItems" rows="4"></textarea></div>
-  <div class="ed-f"><label>Load calculation table — one per line: Label | Value (auto-filled from the SOW PDF)</label><textarea id="edLoadRows" rows="5"></textarea></div>
-  <div class="ed-f"><label>Practical load worksheet — image or PDF (shown when NEC 220.87 mode is selected)</label>
-    <div style="display:flex;gap:8px;align-items:center">
-      <input type="file" accept="image/*,application/pdf" id="edPractical" style="flex:1">
-      <button class="btn btn-ghost" id="edPracticalClear" style="padding:7px 12px;font-size:12px">Clear</button>
-    </div>
-  </div>
+  <div class="ed-grid" id="edFields"><div class="ed-f"><label>Hero title — wrap the accent words in *asterisks*</label><input data-k="heroTitle" value="The best charging station in town is about to be *your home*."></div><div class="ed-f"><label>Customer full name</label><input data-k="customerName" value="Jim Grandy"></div><div class="ed-f"><label>First name</label><input data-k="firstName" value="Jim"></div><div class="ed-f"><label>Installation address</label><input data-k="address" value="24831 Buckboard Ln, Laguna Hills, CA 92653"></div><div class="ed-f"><label>Customer email</label><input data-k="email" value="jgrandy@cullinsgrandylaw.com"></div><div class="ed-f"><label>Customer phone</label><input data-k="phone" value="949.697.2199"></div><div class="ed-f"><label>Project number</label><input data-k="projectNo" value="CA-0626246"></div><div class="ed-f"><label>Proposal date</label><input data-k="date" value="Monday, June 8th, 2026"></div><div class="ed-f"><label>Energy advisor</label><input data-k="advisor" value="Rudy Ubico"></div><div class="ed-f"><label>Advisor phone</label><input data-k="advisorPhone" value="(866) 860-8420"></div><div class="ed-f"><label>Advisor email</label><input data-k="advisorEmail" value="info@faradayelectric-ev.com"></div><div class="ed-f"><label>Car model / EV (any brand)</label><input data-k="carModel" value="Tesla Vehicle"></div><div class="ed-f"><label>EV charger model — any brand, shown At a Glance (e.g. ChargePoint HomeFlex, Wallbox Pulsar, Tesla Wall Connector)</label><input data-k="charger" value="Tesla Wall Connector"></div><div class="ed-f"><label>Breaker amps (number)</label><input data-k="breakerAmps" value="50"></div><div class="ed-f"><label>Constant draw amps</label><input data-k="drawAmps" value="40"></div><div class="ed-f"><label>Panel rating (A)</label><input data-k="panelRating" value="200"></div><div class="ed-f"><label>Calculated load (A)</label><input data-k="calcLoad" value="182"></div><div class="ed-f"><label>Wire / conduit run</label><input data-k="wireRun" value="&lt;5 ft of ¾&quot; EMT conduit · #6 THHN copper + #10 ground"></div><div class="ed-f"><label>Charger location &amp; site note — tell the client where it goes (e.g. "Next to the main panel", "5 ft inside the garage", "Exterior pedestal on driveway, ~100 ft from panel")</label><input data-k="locationDesc" value="Inside the garage, on the same wall directly behind the main panel"></div><div class="ed-f"><label>Panel load situation</label><select data-k="loadSolution"><option value="" selected="">Auto (OK if load ≤ rating)</option><option value="ok">Panel OK — no upgrade needed</option><option value="pendingpanel">Pending panel picture — capacity to be confirmed after approval</option><option value="practical">Over capacity on paper — practical load per NEC 220.87 (12-mo utility bills)</option><option value="schedule">Over capacity — night charging schedules (no permit)</option><option value="dcc">Over capacity — DCC Load Management</option><option value="sak">Over capacity — SAK Load Management</option><option value="tesla">Over capacity — Tesla Remote Meter</option><option value="simpleswitch">Over capacity — simpleSwitch EVEMS (48A)</option><option value="upgrade">Panel Upgrade — included in project</option></select></div><div class="ed-f"><label>Subpanel situation</label><select data-k="subpanel"><option value="" selected="">No subpanel needed</option><option value="required">Subpanel required — no breaker space (capacity OK)</option><option value="distance">Use existing subpanel — closer to charger (distance/convenience)</option><option value="addon">Subpanel available as optional add-on</option></select></div><div class="ed-f"><label>Subpanel rating (A) — enables subpanel load calc</label><input data-k="subpanelRating" value=""></div><div class="ed-f"><label>Subpanel calculated load (A)</label><input data-k="subpanelLoad" value=""></div><div class="ed-f"><label>Practical load result (A) — NEC 220.87</label><input data-k="practicalLoad" value=""></div><div class="ed-f"><label>Extra load-management note (optional)</label><input data-k="loadNote" value=""></div><div class="ed-f"><label>Final price — grand total (e.g. $954.20)</label><input data-k="price" value="$670.00"></div><div class="ed-f"><label>Permit total (blank = no permit, e.g. $244.90)</label><input data-k="permitTotal" value=""></div><div class="ed-f"><label>Parts &amp; Labor only price (shown when permit present)</label><input data-k="priceLabor" value=""></div><div class="ed-f"><label>Price subtitle line</label><input data-k="taxLine" value="Parts &amp; Labor · Payment due on installation completion"></div><div class="ed-f"><label>CRM quote Accept link (client-specific URL)</label><input data-k="acceptUrl" value=""></div></div>
+  <div class="ed-f"><label>Quote line items (one per line) — copy the line items from your Jumptech Quote Builder. Do NOT include permit line items: those are added automatically when you fill the permit total below.</label><textarea id="edItems" rows="4" placeholder="Tesla Wall Connector
+Single-Family Home Installation
+Wiring &amp; Conduit: 15-20ft
+One-year Warranty"></textarea></div>
   <div class="ed-f"><label>Project photos — add as many as you need</label>
     <input type="file" accept="image/*" multiple="" id="edAddPhotos">
     <div class="hint" style="margin-top:4px">Select multiple at once (panel, location, satellite view, several final-product shots…). Each photo gets its own caption and 📍 annotations.</div>
@@ -647,7 +625,7 @@ footer{max-width:880px;margin:40px auto 110px;padding:0 22px;font-size:11.5px;co
   </details>
 </div></div>
 
-<script id="cfg" type="application/json">{"customerName":"Jim Grandy","heroTitle":"The best charging station in town is about to be *your home*.","heroSub":"","firstName":"Jim","address":"24831 Buckboard Ln, Laguna Hills, CA 92653","email":"jgrandy@cullinsgrandylaw.com","phone":"949.697.2199","projectNo":"CA-0626246","date":"Monday, June 8th, 2026","advisor":"Rudy Ubico","advisorPhone":"(866) 860-8420","advisorEmail":"info@faradayelectric-ev.com","carModel":"Tesla Vehicle","charger":"Tesla Wall Connector","chargerProvided":"customer","breakerAmps":50,"drawAmps":40,"panelDesc":"200amp Zinsco Main Panel (outside garage)","panelRating":200,"calcLoad":182,"wireRun":"<5 ft of ¾\" EMT conduit · #6 THHN copper + #10 ground","locationDesc":"Inside the garage, on the same wall directly behind the main panel","siteNote":"","loadSolution":"","subpanel":"","subpanelRating":"","subpanelLoad":"","practicalLoad":"","practicalDocs":[],"sowPages":[],"loadNote":"","items":["Single-Family Home Installation","Wiring & Conduit — back-to-back/side-to-side","Special Breaker: Zinsco 50A","One-year Warranty"],"price":"$670.00","zellePrice":"$647.00","taxLine":"Parts & Labor · Payment due on installation completion","permitTotal":"","priceLabor":"","acceptUrl":"","signUrl":"","signRole":"","photos":[],"loadRows":[["General lighting load (2,749 sqft × 3 VA)","8,247 VA"],["Small appliance branch circuits (11)","16,500 VA"],["240V appliance circuit (50A)","9,600 VA"],["Microwave / disposal / dishwasher / washer","5,000 VA"],["Oven + range (40A each)","15,360 VA"],["Dryer (30A)","5,760 VA"],["Proposed EVSE Level 2 (50A @ 40A)","9,600 VA"],["Subtotal (A)","70,067 VA"],["After demand factors (B)","34,027 VA"],["A/C load (50A)","9,600 VA"],["Total D = (B)+(C)","43,627 VA → 182 A"]]}</script>
+<script id="cfg" type="application/json">{"customerName":"Jim Grandy","heroTitle":"The best charging station in town is about to be *your home*.","heroSub":"","firstName":"Jim","address":"24831 Buckboard Ln, Laguna Hills, CA 92653","email":"jgrandy@cullinsgrandylaw.com","phone":"949.697.2199","projectNo":"CA-0626246","date":"Monday, June 8th, 2026","advisor":"Rudy Ubico","advisorPhone":"(866) 860-8420","advisorEmail":"info@faradayelectric-ev.com","carModel":"Tesla Vehicle","charger":"Tesla Wall Connector","chargerProvided":"customer","breakerAmps":50,"drawAmps":40,"panelDesc":"200amp Zinsco Main Panel (outside garage)","panelRating":200,"calcLoad":182,"wireRun":"<5 ft of ¾\" EMT conduit · #6 THHN copper + #10 ground","locationDesc":"Inside the garage, on the same wall directly behind the main panel","siteNote":"","loadSolution":"","subpanel":"","subpanelRating":"","subpanelLoad":"","practicalLoad":"","practicalDocs":[],"loadNote":"","items":["Single-Family Home Installation","Wiring & Conduit — back-to-back/side-to-side","Special Breaker: Zinsco 50A","One-year Warranty"],"price":"$670.00","taxLine":"Parts & Labor · Payment due on installation completion","permitTotal":"","priceLabor":"","acceptUrl":"","signUrl":"","signRole":"","photos":[],"loadRows":[]}</script>
 
 <script>
 const $=id=>document.getElementById(id);
@@ -671,7 +649,10 @@ let selModel = modelFromCar(JSON.parse(document.getElementById('cfg').textConten
 function nearestBreaker(a){const ks=Object.keys(SPEEDS).map(Number);return ks.reduce((b,k)=>Math.abs(k-a)<Math.abs(b-a)?k:b,ks[0]);}
 
 function render(){
-  const C=CFG;
+  const C=Object.assign({}, CFG, {
+    panelDesc:(CFG.panelDesc||'').trim() || ((CFG.panelRating?CFG.panelRating+'A ':'')+'Main Panel'),
+    locationDesc:(CFG.locationDesc||'').trim() || 'the planned charger location'
+  });
   $('hKick').textContent='Scope of Work · Level 2 EV Charger · Residential EV Charging';
   const ht=(C.heroTitle||'The best charging station in town is about to be *your home*.');
   document.querySelector('.hero h1').innerHTML=esc(ht).replace(/\*([^*]+)\*/g,'<em>$1</em>');
@@ -746,6 +727,13 @@ function render(){
           ['techb','&#128202;','NEC 220.87 allows using your home\u2019s actual maximum demand, measured from 12 months of utility bills, instead of the theoretical worst case'],
           ['techb','&#128203;','Your actual maximum demand × 125% + the EV charger = '+(C.practicalLoad||'—')+'A — within your '+C.panelRating+'A panel'],
           ['','✓','Permit-eligible under NEC 220.87 — no panel upgrade, no load management needed']]},
+    pendingpanel:{card:['warn','&#128247;','Pending verification','Panel photo needed to confirm capacity'],
+        h2:'Panel verification pending',
+        lead:'This proposal was prepared before we received a photo of your electrical panel. After you approve the quote, your Energy Advisor will confirm the panel\u2019s breaker space, brand and capacity \u2014 from a quick photo or on-site \u2014 to finalize the exact load calculation and permit eligibility.',
+        badges:[['warnb','&#128247;','Panel picture pending \u2014 breaker space, brand and capacity still need to be confirmed'],
+          ['techb','&#128203;','Once confirmed, we run the full NEC load calculation for your home \u2014 every appliance, every circuit, plus the new charger'],
+          ['techb','&#9989;','Confirmation is quick: a photo of your open panel, or a brief on-site check with your Energy Advisor'],
+          ['warnb','&#9888;','Permit eligibility is confirmed at the same step']]},
     over:{card:['warn','&#9888;','At capacity','Managed solution — see load section'],
         h2:'Your panel is at capacity',
         lead:'The NEC load calculation shows your panel is over capacity with the charger added — your Energy Advisor will review the management options for your home.',
@@ -843,9 +831,13 @@ function render(){
   }
   if(C.subpanel==='addon') $('loadBadges').innerHTML+=B('techb','&#129513;','Optional add-on: a subpanel to create extra breaker space (your panel\u2019s capacity is fine) — ask your Energy Advisor');
   if((C.loadNote||'').trim()) $('loadBadges').innerHTML+=B('techb','&#128172;',esc(C.loadNote.trim()));
+  const pendingPanel = lm==='pendingpanel';
   const gaugeLoad = (lm==='practical' && C.practicalLoad) ? C.practicalLoad : C.calcLoad;
-  $('gLoad').textContent=gaugeLoad; $('gCap').textContent=C.panelRating;
-  document.querySelector('.gauge-box > div').innerHTML = lm==='practical'
+  $('gLoad').textContent = pendingPanel ? '—' : gaugeLoad;
+  $('gCap').textContent = pendingPanel ? (C.panelRating||'—') : C.panelRating;
+  document.querySelector('.gauge-box > div').innerHTML = pendingPanel
+    ? 'Final load calculation pending panel confirmation<br>(quick photo or on-site — after quote approval)'
+    : lm==='practical'
     ? 'Actual maximum demand incl. your new EV charger<br>(NEC 220.87 · 12 months of utility data)'
     : 'Calculated load including your new EV charger<br>(NEC 220.53 / 220.82)';
   if(C.subpanel && C.subpanelRating && C.subpanelLoad){
@@ -853,30 +845,8 @@ function render(){
     $('subGaugeTxt').textContent=C.subpanelLoad+'A of '+C.subpanelRating+'A';
     requestAnimationFrame(()=>{ $('subGaugeFill').style.width=Math.min(C.subpanelLoad/C.subpanelRating*100,100)+'%'; });
   } else $('subGaugeWrap').style.display='none';
-  const pct=Math.min(gaugeLoad/C.panelRating,1);
+  const pct=pendingPanel ? 0 : Math.min(gaugeLoad/C.panelRating,1);
   requestAnimationFrame(()=>{ $('gArc').style.transition='stroke-dashoffset 1.4s ease'; $('gArc').style.strokeDashoffset=283*(1-pct); });
-  $('loadTable').innerHTML=(C.loadRows||[]).map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('');
-  if((C.sowPages||[]).length){
-    $('sowDocCard').style.display='flex';
-    $('sowDocCover').src=C.sowPages[0];
-    $('sowDocBtn').innerHTML='&#128196; View the full document ('+C.sowPages.length+' pages)';
-    $('sowDocBtn').onclick=()=>{
-      $('lbStage').innerHTML=C.sowPages.map(p=>`<img src="${p}" style="margin-bottom:14px">`).join('');
-      $('lbCap').textContent='Scope of Work — '+(C.projectNo||'')+' · scroll for all '+C.sowPages.length+' pages';
-      $('lightbox').classList.add('open');
-    };
-  } else $('sowDocCard').style.display='none';
-  const pdocs = C.practicalDocs && C.practicalDocs.length ? C.practicalDocs : (C.practicalDoc?[C.practicalDoc]:[]);
-  if(lm==='practical' && pdocs.length){
-    $('practicalDocWrap').style.display='block';
-    $('practicalDocThumb').src=pdocs[0];
-    $('practicalDocLabel').textContent = pdocs.length>1 ? 'View your practical load worksheet ('+pdocs.length+' pages)' : 'View your practical load worksheet';
-    $('practicalDocBtn').onclick=()=>{
-      $('lbStage').innerHTML=pdocs.map(p=>`<img src="${p}" style="margin-bottom:14px">`).join('');
-      $('lbCap').textContent='Practical load worksheet — NEC 220.87 (12 months of utility data)'+(pdocs.length>1?' · scroll for all '+pdocs.length+' pages':'');
-      $('lightbox').classList.add('open');
-    };
-  } else $('practicalDocWrap').style.display='none';
 
   $('siteLead').textContent = (C.siteNote||'').trim()
     ? C.siteNote.trim()
@@ -917,11 +887,13 @@ function render(){
     });
   } else {
     const ph=(cap,sub,icon)=>`<div class="ph"><div class="img" style="cursor:default">${icon}</div><div class="cap">${cap}<span>${sub}</span></div></div>`;
-    $('photos').innerHTML =
-      ph('Site overview','Charger & panel locations marked','&#128506;')+
-      ph('Existing main panel',esc(C.panelDesc),'&#128268;')+
-      ph('Charger location',esc(C.locationDesc),'&#127968;')+
-      ph('The final product',esc(C.charger)+' installed','&#9889;');
+    const pendNote = pendingPanel ? `<div style="grid-column:1/-1;background:#FFF6E5;border:1.5px dashed #E8A13D;border-radius:10px;padding:12px 16px;font-size:13.5px;color:#7A5200;font-weight:600">&#128247; Pending to receive client photos for the renderings below</div>` : '';
+    const psub=s=> pendingPanel ? 'Pending client photo' : s;
+    $('photos').innerHTML = pendNote +
+      ph('Site overview',psub('Charger & panel locations marked'),'&#128506;')+
+      ph('Existing main panel',psub(esc(C.panelDesc)),'&#128268;')+
+      ph('Charger location',psub(esc(C.locationDesc)),'&#127968;')+
+      ph('The final product',psub(esc(C.charger)+' installed'),'&#9889;');
   }
 
   $('qProj').textContent=C.projectNo;
@@ -934,14 +906,13 @@ function render(){
   if(hasPermit) qHtml+=`<div class="q-item"><span><b>Permit — processed by Faraday Electric</b></span><span style="font-family:var(--mono);font-weight:600">${esc(money(C.permitTotal))}</span></div>`;
   $('qItems').innerHTML=qHtml;
   $('qTotal').textContent=money(C.price);
+  $('qPending').style.display = pendingPanel ? 'block' : 'none';
   let sub=C.taxLine||'';
   if(hasPermit && /^Parts & Labor\b/.test(sub)) sub=sub.replace(/^Parts & Labor/,'Parts, Labor & Permit');
   $('qTermsLine').textContent=sub;
   if(hasPermit && (C.priceLabor||'').trim()){
     $('qLaborRow').style.display='flex'; $('qLaborVal').textContent=money(C.priceLabor);
   } else $('qLaborRow').style.display='none';
-  const zp=(C.zellePrice||'').trim();
-  if(zp && !/^(blank|none|n\/a|no|-+)$/i.test(zp)){ $('qZelleRow').style.display='flex'; $('qZelle').textContent=money(zp); } else $('qZelleRow').style.display='none';
   $('sPrice').textContent=money(C.price);
 
   $('aAdv').textContent=C.advisor;
@@ -996,13 +967,13 @@ $('hrs').addEventListener('input',render);
 
 /* ====== EDITOR ====== */
 const FIELDS=[
- ['heroTitle','Hero title — wrap the accent words in *asterisks*'],['heroSub','Hero subtitle (blank = auto benefits line)'],
+ ['heroTitle','Hero title — wrap the accent words in *asterisks*'],
  ['customerName','Customer full name'],['firstName','First name'],['address','Installation address'],['email','Customer email'],
  ['phone','Customer phone'],['projectNo','Project number'],['date','Proposal date'],['advisor','Energy advisor'],
  ['advisorPhone','Advisor phone'],['advisorEmail','Advisor email'],['carModel','Car model / EV (any brand)'],['charger','EV charger model — any brand, shown At a Glance (e.g. ChargePoint HomeFlex, Wallbox Pulsar, Tesla Wall Connector)'],
- ['breakerAmps','Breaker amps (number)'],['drawAmps','Constant draw amps'],['panelDesc','Panel description'],['panelRating','Panel rating (A)'],
- ['calcLoad','Calculated load (A)'],['wireRun','Wire / conduit run'],['locationDesc','Charger location'],['siteNote','Site note — sentence under \'Exactly where it goes\' (blank = auto from data)'],['loadSolution','Panel load situation','select',[['','Auto (OK if load ≤ rating)'],['ok','Panel OK — no upgrade needed'],['practical','Over capacity on paper — practical load per NEC 220.87 (12-mo utility bills)'],['schedule','Over capacity — night charging schedules (no permit)'],['dcc','Over capacity — DCC Load Management'],['sak','Over capacity — SAK Load Management'],['tesla','Over capacity — Tesla Remote Meter'],['simpleswitch','Over capacity — simpleSwitch EVEMS (48A)'],['upgrade','Panel Upgrade — included in project']]],['subpanel','Subpanel situation','select',[['','No subpanel needed'],['required','Subpanel required — no breaker space (capacity OK)'],['distance','Use existing subpanel — closer to charger (distance/convenience)'],['addon','Subpanel available as optional add-on']]],['subpanelRating','Subpanel rating (A) — enables subpanel load calc'],['subpanelLoad','Subpanel calculated load (A)'],['practicalLoad','Practical load result (A) — NEC 220.87'],['loadNote','Extra load-management note (optional)'],['price','Final price — grand total (e.g. $954.20)'],['permitTotal','Permit total (blank = no permit, e.g. $244.90)'],['priceLabor','Parts & Labor only price (shown when permit present)'],
- ['zellePrice','Zelle price (blank = hide)'],['taxLine','Price subtitle line'],['acceptUrl','CRM quote Accept link (client-specific URL)'],['signUrl','E-signature link — Dropbox Sign/HelloSign or DocuSign URL, or type: email'],['signRole','Prefill role name (DocuSign PowerForms only, optional)']
+ ['breakerAmps','Breaker amps (number)'],['drawAmps','Constant draw amps'],['panelRating','Panel rating (A)'],
+ ['calcLoad','Calculated load (A)'],['wireRun','Wire / conduit run'],['locationDesc','Charger location & site note — tell the client where it goes (e.g. "Next to the main panel", "5 ft inside the garage", "Exterior pedestal on driveway, ~100 ft from panel")'],['loadSolution','Panel load situation','select',[['','Auto (OK if load ≤ rating)'],['ok','Panel OK — no upgrade needed'],['pendingpanel','Pending panel picture — capacity to be confirmed after approval'],['practical','Over capacity on paper — practical load per NEC 220.87 (12-mo utility bills)'],['schedule','Over capacity — night charging schedules (no permit)'],['dcc','Over capacity — DCC Load Management'],['sak','Over capacity — SAK Load Management'],['tesla','Over capacity — Tesla Remote Meter'],['simpleswitch','Over capacity — simpleSwitch EVEMS (48A)'],['upgrade','Panel Upgrade — included in project']]],['subpanel','Subpanel situation','select',[['','No subpanel needed'],['required','Subpanel required — no breaker space (capacity OK)'],['distance','Use existing subpanel — closer to charger (distance/convenience)'],['addon','Subpanel available as optional add-on']]],['subpanelRating','Subpanel rating (A) — enables subpanel load calc'],['subpanelLoad','Subpanel calculated load (A)'],['practicalLoad','Practical load result (A) — NEC 220.87'],['loadNote','Extra load-management note (optional)'],['price','Final price — grand total (e.g. $954.20)'],['permitTotal','Permit total (blank = no permit, e.g. $244.90)'],['priceLabor','Parts & Labor only price (shown when permit present)'],
+ ['taxLine','Price subtitle line'],['acceptUrl','CRM quote Accept link (client-specific URL)']
 ];
 function editorOpen(){
   $('edFields').innerHTML=FIELDS.map(f=>{
@@ -1011,7 +982,6 @@ function editorOpen(){
     return `<div class="ed-f"><label>${l}</label><input data-k="${k}" value="${esc(CFG[k]??'')}"></div>`;
   }).join('');
   $('edItems').value=(CFG.items||[]).join('\n');
-  $('edLoadRows').value=(CFG.loadRows||[]).map(r=>r[0]+' | '+r[1]).join('\n');
   galleryRender();
   $('editPanel').classList.add('open');
 }
@@ -1024,7 +994,6 @@ function editorApply(){
   });
   CFG.items=$('edItems').value.split('\n').map(s=>s.trim()).filter(Boolean);
   selModel=modelFromCar(CFG.carModel);
-  CFG.loadRows=$('edLoadRows').value.split('\n').map(s=>s.trim()).filter(Boolean).map(l=>{const i=l.lastIndexOf('|');return i>0?[l.slice(0,i).trim(),l.slice(i+1).trim()]:[l,''];});
   render();
 }
 function shrink(file){
@@ -1040,94 +1009,8 @@ function shrink(file){
     rd.readAsDataURL(file);
   });
 }
-$('edLoadCalc').addEventListener('change',async e=>{
-  const f=e.target.files[0]; if(!f) return;
-  const isXlsx=/\.(xlsx|xls)$/i.test(f.name)||/spreadsheet/i.test(f.type);
-  try{
-    if(isXlsx){
-      await loadSheetJs();
-      const wb=window.XLSX.read(await f.arrayBuffer(),{type:'array'});
-      const sheets=listLoadSheets(wb);
-      if(!sheets.length){ alert('No EVSE load worksheet found in that file.'); e.target.value=''; return; }
-      let chosen=sheets[0];
-      if(sheets.length>1){
-        const menu=sheets.map((s,i)=>(i+1)+'. '+s.name+(sheetIsMain(s.name,s.ws)?'  (main panel)':'  (subpanel)')).join('\n');
-        const ans=prompt('This file has more than one load worksheet — which one is for THIS proposal?\n\n'+menu+'\n\nEnter the number:', '1');
-        const idx=parseInt(ans)-1;
-        if(isNaN(idx)||idx<0||idx>=sheets.length){ e.target.value=''; return; }
-        chosen=sheets[idx];
-      }
-      const found=parseLoadSheet(chosen.ws);
-      const picked={};
-      ['panelRating','calcLoad','breakerAmps','drawAmps','loadRows','address'].forEach(k=>{ if(found[k]!==undefined) picked[k]=found[k]; });
-      Object.assign(CFG, picked);
-      document.querySelectorAll('#edFields input, #edFields select').forEach(i=>{ if(picked[i.dataset.k]!==undefined) i.value=picked[i.dataset.k]; });
-      if(found.loadRows) $('edLoadRows').value=found.loadRows.map(r=>r[0]+' | '+r[1]).join('\n');
-      render();
-      const n=Object.keys(picked).length;
-      alert(n? 'Pulled '+n+' field'+(n>1?'s':'')+' from "'+chosen.name+'" (panel rating, load, breakdown). Please review before saving.' : 'Could not read that spreadsheet layout — enter the values manually.');
-      e.target.value=''; return;
-    }
-    if(f.type==='application/pdf'){
-      await loadPdfJs();
-      const pdf=await window.pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;
-      let text=''; const pages=[];
-      for(let p=1;p<=Math.min(pdf.numPages,6);p++){
-        const pg=await pdf.getPage(p);
-        const tc=await pg.getTextContent(); let last=null;
-        tc.items.forEach(it=>{ const y=Math.round(it.transform[5]); if(last!==null&&Math.abs(y-last)>3) text+='\n'; text+=it.str+' '; last=y; });
-        text+='\n';
-        const vp=pg.getViewport({scale:1.4});
-        const cv=document.createElement('canvas'); cv.width=vp.width; cv.height=vp.height;
-        await pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
-        pages.push(cv.toDataURL('image/jpeg',.8));
-      }
-      const found=parseSOW(text);
-      const picked={};
-      ['panelRating','calcLoad','breakerAmps','drawAmps','loadRows','address','projectNo'].forEach(k=>{ if(found[k]!==undefined) picked[k]=found[k]; });
-      Object.assign(CFG, picked);
-      CFG.practicalDocs=pages;  // also show as the worksheet (useful for NEC 220.87 mode)
-      document.querySelectorAll('#edFields input, #edFields select').forEach(i=>{ if(picked[i.dataset.k]!==undefined) i.value=picked[i.dataset.k]; });
-      if(found.loadRows) $('edLoadRows').value=found.loadRows.map(r=>r[0]+' | '+r[1]).join('\n');
-      render();
-      const n=Object.keys(picked).length;
-      alert(n? 'Pulled '+n+' field'+(n>1?'s':'')+' from the load calculation (panel rating, load, breakdown). Review before saving.' : 'Could not read this layout as text — if it\u2019s a scanned image, the values can be typed in manually. The worksheet image was still attached.');
-    } else {
-      // image: can't extract text, but attach it as the worksheet
-      CFG.practicalDocs=[await shrink(f)];
-      render();
-      alert('Worksheet image attached. (Text extraction only works on PDF worksheets — enter the panel rating and load manually for image uploads.)');
-    }
-  }catch(err){ alert('Could not read that file ('+err.message+'). Enter the values manually.'); }
-  e.target.value='';
-});
 
-$('edPractical').addEventListener('change',async e=>{
-  const f=e.target.files[0]; if(!f) return;
-  try{
-    if(f.type==='application/pdf'){
-      await loadPdfJs();
-      const pdf=await window.pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;
-      const pages=[]; const n=Math.min(pdf.numPages,10);
-      for(let p=1;p<=n;p++){
-        const pg=await pdf.getPage(p);
-        const vp=pg.getViewport({scale:1.6});
-        const cv=document.createElement('canvas'); cv.width=vp.width; cv.height=vp.height;
-        await pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
-        pages.push(cv.toDataURL('image/jpeg',.85));
-      }
-      CFG.practicalDocs=pages;
-      if(pdf.numPages>10) alert('Note: only the first 10 pages were included.');
-    } else {
-      CFG.practicalDocs=[await shrink(f)];
-    }
-    render();
-    alert('Worksheet attached ('+CFG.practicalDocs.length+' page'+(CFG.practicalDocs.length>1?'s':'')+') — it will appear in the load section when the NEC 220.87 option is selected.');
-  }catch(err){ alert('Could not read that file ('+err.message+'). Try a screenshot/photo of the worksheet instead.'); }
-  e.target.value='';
-});
-$('edPracticalClear').onclick=()=>{ CFG.practicalDocs=[]; render(); };
-$('edSowClear').onclick=()=>{ CFG.sowPages=[]; render(); alert('SOW document removed from the proposal.'); };
+
 
 $('edAddPhotos').addEventListener('change',async e=>{
   CFG.photos=CFG.photos||[];
@@ -1182,7 +1065,9 @@ function buildClientHtml(){
   $('lightbox').classList.remove('open');
   const fab=$('editFab'), fabPrev=fab.style.display; fab.style.display='none';
   const pubPrev=$('pubResult').style.display; $('pubResult').style.display='none';
+  document.body.setAttribute('data-client','1');
   const src='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  document.body.removeAttribute('data-client');
   if(wasOpen) panel.classList.add('open');
   fab.style.display=fabPrev; $('pubResult').style.display=pubPrev;
   return src;
@@ -1196,7 +1081,37 @@ function b64utf8(str){
   for(let i=0;i<bytes.length;i+=chunk) bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+chunk));
   return btoa(bin);
 }
+function prePublishCheck(){
+  editorApply();
+  const C=CFG, warn=[];
+  // non-default LOAD solution selected -> remind + check required fields
+  const lmNames={pendingpanel:'Pending panel picture',schedule:'Night charging schedule',practical:'Practical load (NEC 220.87)',dcc:'DCC Load Management',sak:'SAK Load Management',tesla:'Tesla Remote Meter',simpleswitch:'simpleSwitch EVEMS',upgrade:'Panel Upgrade'};
+  if(C.loadSolution && lmNames[C.loadSolution]){
+    warn.push('\u26A1 LOAD SOLUTION = "'+lmNames[C.loadSolution]+'" (not the default). Make sure this is correct for this job.');
+    if(C.loadSolution==='practical' && !String(C.practicalLoad||'').trim())
+      warn.push('   \u2192 Practical load (A) is blank \u2014 enter the NEC 220.87 result.');
+  }
+  // panel over capacity but no managed solution chosen
+  if(C.calcLoad && C.panelRating && (+C.calcLoad > +C.panelRating) && (!C.loadSolution || C.loadSolution==='ok')){
+    warn.push('\u26A0\uFE0F Calculated load ('+C.calcLoad+'A) is OVER the panel rating ('+C.panelRating+'A) but no load-management option is selected. Pick one in "Panel load situation".');
+  }
+  // subpanel selected -> remind + check rating/load
+  const subNames={required:'Subpanel required (new)',distance:'Use existing subpanel (closer)',addon:'Subpanel add-on'};
+  if(C.subpanel && subNames[C.subpanel]){
+    warn.push('\uD83E\uDDF0 SUBPANEL = "'+subNames[C.subpanel]+'". Confirm the diagram & wording match the job.');
+    if(!String(C.subpanelRating||'').trim() || !String(C.subpanelLoad||'').trim())
+      warn.push('   \u2192 Subpanel rating/load is blank \u2014 add it so the subpanel gauge shows.');
+  }
+  // basics that should never be blank before sending to a client
+  if(!String(C.price||'').trim()) warn.push('\uD83D\uDCB2 Final price is blank.');
+  if(!String(C.customerName||'').trim()) warn.push('\uD83D\uDC64 Customer name is blank.');
+  if(!(C.photos&&C.photos.length)) warn.push('\uD83D\uDCF7 No photos added yet (satellite / panel / rendering).');
+  if(!String(C.acceptUrl||'').trim()) warn.push('\uD83D\uDD17 CRM Accept link is blank \u2014 the Accept button will fall back to email.');
+  if(!warn.length) return true;
+  return confirm('BEFORE YOU PUBLISH \u2014 please double-check:\n\n'+warn.join('\n')+'\n\nPublish anyway?');
+}
 $('edPublish').onclick=async()=>{
+  if(!prePublishCheck()) return;
   const owner=$('ghOwner').value.trim(), repo=$('ghRepo').value.trim(), token=$('ghToken').value.trim();
   if(!owner||!repo||!token){ alert('Open "Publishing setup" below and fill the GitHub details first (one time). Ask your admin for the token.'); return; }
   const btn=$('edPublish'); btn.disabled=true; const prev=btn.innerHTML; btn.innerHTML='Publishing…';
@@ -1332,6 +1247,15 @@ function parseSOW(t){
   return out;
 }
 window.parseSOW=parseSOW;
+function fileToB64(file){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(',')[1]); r.onerror=()=>rej(new Error('read failed')); r.readAsDataURL(file); }); }
+async function aiExtract(blocks){
+  const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1500,messages:[{role:'user',content:blocks}]})});
+  if(!resp.ok) throw new Error('HTTP '+resp.status);
+  const data=await resp.json();
+  return (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n').trim();
+}
+function fmtMoney(v){ v=String(v==null?'':v).trim().replace(/^\$/,'').replace(/,/g,''); if(/^\d+(\.\d+)?$/.test(v)) return '$'+parseFloat(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); return v?('$'+v):''; }
 function loadSheetJs(){
   return new Promise((res,rej)=>{
     if(window.XLSX) return res();
@@ -1402,48 +1326,6 @@ function loadPdfJs(){
     document.head.appendChild(s);
   });
 }
-$('edSow').addEventListener('change',async e=>{
-  const f=e.target.files[0]; if(!f) return;
-  try{
-    await loadPdfJs();
-    const buf=await f.arrayBuffer();
-    const pdf=await window.pdfjsLib.getDocument({data:buf}).promise;
-    let text='';
-    for(let p=1;p<=pdf.numPages;p++){
-      const pg=await pdf.getPage(p);
-      const tc=await pg.getTextContent();
-      let last=null;
-      tc.items.forEach(it=>{
-        const y=Math.round(it.transform[5]);
-        if(last!==null && Math.abs(y-last)>3) text+='\n';
-        text+=it.str+' ';
-        last=y;
-      });
-      text+='\n';
-    }
-    const found=parseSOW(text);
-    Object.assign(CFG, found);
-    if(confirm('Also attach the full Scope of Work document so the client can view it on the page? ('+Math.min(pdf.numPages,12)+' pages)')){
-      const pages=[];
-      for(let p=1;p<=Math.min(pdf.numPages,12);p++){
-        const pg=await pdf.getPage(p);
-        const vp=pg.getViewport({scale:1.3});
-        const cv=document.createElement('canvas'); cv.width=vp.width; cv.height=vp.height;
-        await pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
-        pages.push(cv.toDataURL('image/jpeg',.78));
-      }
-      CFG.sowPages=pages;
-    }
-    // refresh inputs
-    document.querySelectorAll('#edFields input, #edFields select').forEach(i=>{ if(found[i.dataset.k]!==undefined) i.value=found[i.dataset.k]; });
-    if(found.items) $('edItems').value=found.items.join('\n');
-  if(found.loadRows) $('edLoadRows').value=found.loadRows.map(r=>r[0]+' | '+r[1]).join('\n');
-    render();
-    const n=Object.keys(found).length;
-    alert(n? 'Auto-filled '+n+' field'+(n>1?'s':'')+' from the PDF. Please review each field — especially price and load — before saving the client copy.' : 'Could not recognize this PDF layout — please fill the fields manually.');
-  }catch(err){ alert('Could not read that PDF here ('+err.message+'). Fill the fields manually.'); }
-  e.target.value='';
-});
 
 /* reset for a new client — keeps advisor info, hero branding, and publishing setup */
 $('edReset').onclick=()=>{
@@ -1455,9 +1337,9 @@ $('edReset').onclick=()=>{
     breakerAmps:50, drawAmps:40, panelDesc:'', panelRating:200, calcLoad:'',
     wireRun:'', locationDesc:'', siteNote:'',
     loadSolution:'', subpanel:'', subpanelRating:'', subpanelLoad:'',
-    practicalLoad:'', practicalDocs:[], sowPages:[],
+    practicalLoad:'', practicalDocs:[],
     items:[], loadRows:[], photos:[],
-    price:'', permitTotal:'', priceLabor:'', zellePrice:'',
+    price:'', permitTotal:'', priceLabor:'',
     taxLine:'Parts & Labor · Payment due on installation completion',
     acceptUrl:'', signUrl:'', signRole:'', loadNote:'',
     ...keep
@@ -1469,9 +1351,20 @@ $('edReset').onclick=()=>{
   alert('Cleared — ready for the new client. Tip: start with the SOW PDF auto-fill.');
 };
 
-function checkEdit(){ $('editFab').style.display = location.hash==='#edit' ? 'block':'none'; }
+function isClientCopy(){ return document.body.getAttribute('data-client')==='1'; }
+function checkEdit(){ $('editFab').style.display = (location.hash==='#edit' && !isClientCopy()) ? 'block':'none'; }
 window.addEventListener('hashchange',checkEdit); checkEdit();
 $('editFab').onclick=editorOpen;
+
+/* advisor unlock that works inside the Claude artifact frame (where #edit can't reach the page) */
+function unlockEditor(){ if(isClientCopy()) return; $('editFab').style.display='block'; editorOpen(); }
+(function(){
+  let clicks=0, t=null;
+  const logo=document.querySelector('.hero .logo');
+  if(logo) logo.addEventListener('click',()=>{ clicks++; clearTimeout(t); t=setTimeout(()=>clicks=0,1400);
+    if(clicks>=5){ clicks=0; unlockEditor(); } });
+  document.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&e.shiftKey&&(e.key==='E'||e.key==='e')){ e.preventDefault(); unlockEditor(); } });
+})();
 
 render(); onScroll();
 </script>
